@@ -24,6 +24,16 @@ gRPC for Chatie
 
 [github.com/wechaty/go-grpc](https://github.com/wechaty/go-grpc)
 
+### Java
+
+```xml
+<dependency>
+    <groupId>io.github.wechaty</groupId>
+    <version>0.11.25-SANPSHOT</version>
+    <artifactId>grpc</artifactId>
+</dependency>
+```
+
 ## Build
 
 ```shell
