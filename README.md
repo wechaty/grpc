@@ -29,6 +29,7 @@ gRPC for Chatie
 
 [https://mvnrepository.com/artifact/io.github.wechaty/grpc](https://mvnrepository.com/artifact/io.github.wechaty/grpc)
 
+Maven:
 ```xml
 <dependency>
     <groupId>io.github.wechaty</groupId>
@@ -36,6 +37,12 @@ gRPC for Chatie
     <artifactId>grpc</artifactId>
 </dependency>
 ```
+
+Gradle:
+```groovy
+compile 'io.github.wechaty:grpc:0.11.25'
+```
+
 
 ## Debug
 
