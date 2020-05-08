@@ -9,7 +9,7 @@ DEPLOY_DIR="wechaty-go-grpc.$$"
 
 mkdir "$DEPLOY_DIR"
 pushd "$DEPLOY_DIR"
-trap "rm -rfv $(pwd)/$DEPLOY_DIR" EXIT
+# trap "rm -rfv $(pwd)/$DEPLOY_DIR" EXIT
 
 git clone git@github.com:wechaty/go-grpc.git
 cd go-grpc
@@ -23,10 +23,13 @@ if [ -z "$(git status --porcelain)" ]; then
   exit 0
 fi
 
-git config --global user.email "mike@zixia.net"
-git config --global user.name "Mike BO"
+git \
+  -c "user.name=Mike BO" \
+  -c "user.email=mike@zixia.net" \
+  \
+  commit \
+  -am "Deploy Go Grpc Module v${VERSION}"
 
-git commit -am "Deploy Go Grpc Module v${VERSION}"
 git push
 echo
 echo '[Publish] New code has been generated and pushed'

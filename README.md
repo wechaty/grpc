@@ -1,12 +1,13 @@
-# GRPC [![NPM](https://github.com/Chatie/grpc/workflows/NPM/badge.svg)](https://github.com/Chatie/grpc/actions?query=workflow%3ANPM) [![PyPI](https://github.com/Chatie/grpc/workflows/PyPI/badge.svg)](https://github.com/Chatie/grpc/actions?query=workflow%3APyPI) [![Go](https://github.com/chatie/grpc/workflows/Go/badge.svg)](https://github.com/chatie/grpc/actions?query=workflow%3AGo)
+# GRPC [![NPM](https://github.com/Chatie/grpc/workflows/NPM/badge.svg)](https://github.com/Chatie/grpc/actions?query=workflow%3ANPM) [![PyPI](https://github.com/Chatie/grpc/workflows/PyPI/badge.svg)](https://github.com/Chatie/grpc/actions?query=workflow%3APyPI) [![Go](https://github.com/chatie/grpc/workflows/Go/badge.svg)](https://github.com/chatie/grpc/actions?query=workflow%3AGo) [![Maven](https://github.com/Chatie/grpc/workflows/Maven/badge.svg)](https://github.com/Chatie/grpc/actions?query=workflow%3A%22Maven%22) [![Node.js](https://github.com/Chatie/grpc/workflows/Node.js/badge.svg)](https://github.com/Chatie/grpc/actions?query=workflow%3ANode.js)
 
 ![chatie grpc](https://chatie.io/grpc/images/grpc.png)
 
-[![NPM Version](https://badge.fury.io/js/%40chatie%2Fgrpc.svg)](https://www.npmjs.com/package/@chatie/grpc)
-[![PyPI Version](https://img.shields.io/pypi/v/chatie-grpc?color=blue)](https://pypi.org/project/chatie-grpc/)
-[![node](https://img.shields.io/node/v/wechaty.svg?maxAge=604800)](https://nodejs.org/)
-[![Python 3.7](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/release/python-370/)
+[![NPM Version](https://img.shields.io/npm/v/@chatie/grpc?color=brightgreen&label=NPM)](https://www.npmjs.com/package/@chatie/grpc)
+[![PyPI Version](https://img.shields.io/pypi/v/chatie-grpc?color=blue&label=PyPI)](https://pypi.org/project/chatie-grpc/)
+[![node](https://img.shields.io/node/v/wechaty.svg?maxAge=604800&label=Node.js)](https://nodejs.org/)
+[![Python 3.7](https://img.shields.io/badge/python-3.7+-blue.svg?label=Python)](https://www.python.org/downloads/release/python-370/)
 ![Go Version](https://img.shields.io/github/go-mod/go-version/wechaty/go-wechaty)
+[![Java Version](https://img.shields.io/maven-central/v/io.github.wechaty/grpc?label=Java)](https://mvnrepository.com/artifact/io.github.wechaty/grpc)
 
 gRPC for Chatie
 
@@ -26,13 +27,19 @@ gRPC for Chatie
 
 ### Java
 
+[https://mvnrepository.com/artifact/io.github.wechaty/grpc](https://mvnrepository.com/artifact/io.github.wechaty/grpc)
+
 ```xml
 <dependency>
     <groupId>io.github.wechaty</groupId>
-    <version>0.11.25-SANPSHOT</version>
+    <version>0.11.25</version>
     <artifactId>grpc</artifactId>
 </dependency>
 ```
+
+## Debug
+
+- [GUI Client for GRPC Services](https://github.com/uw-labs/bloomrpc) - BloomRPC aim to give the simplest and efficient developer experience for exploring and querying your GRPC services.(Inspired by Postman and GraphQL Playground)
 
 ## Build
 
@@ -162,7 +169,12 @@ TCP hole punching
 
 ## History
 
-### v0.11 (Apr 2020)
+### v0.13 (Apr 19, 2020)
+
+- Add Java Support ([#52](https://github.com/Chatie/grpc/issues/52) [#53](https://github.com/Chatie/grpc/issues/53) by [@diaozxin007](https://github.com/diaozxin007))
+- Publish Java Module at [Open Source Project Repository HostingOSSRH-56843 - Release the Chatie/grpc Java Client](https://issues.sonatype.org/browse/OSSRH-56843)
+
+### v0.11 (Apr 10, 2020)
 
 - Add Go Support ([#50](https://github.com/Chatie/grpc/issues/50) by [@dchaofei](https://github.com/dchaofei))
 - Publish Go Module at <github.com/wechaty/go-grpc>
