@@ -2,10 +2,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
   <groupId>io.github.wechaty</groupId>
-  <version>0.11.25-SANPSHOT</version>
+  <version>0.11.25</version>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>grpc</artifactId>
   <packaging>jar</packaging>
+  <name>wechaty-grpc</name>
 
   <description>
     Wechaty is a Wechat Bot SDK for Personal Account that lets you create software to extend the functionality of the
@@ -20,6 +21,20 @@
       <email>diaozxin@gmail.com</email>
     </contributor>
   </contributors>
+
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <name>Zhengxin Diao</name>
+      <email>diaozxin@gmail.com</email>
+    </developer>
+  </developers>
 
 
   <distributionManagement>
@@ -244,6 +259,33 @@
                 <arg>loopback</arg>
               </gpgArguments>
             </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>3.2.1</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>jar-no-fork</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <!-- Javadoc -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.2.0</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
           </execution>
         </executions>
       </plugin>
