@@ -15,5 +15,7 @@ function autoload($clazz) {
 
 spl_autoload_register("autoload");
 
-$client = new \Wechaty\PuppetClient("localhost", array());
+$client = new \Wechaty\PuppetClient("localhost", [
+  'credentials' => Grpc\ChannelCredentials::createInsecure()
+]);
 $client->Version(null);
