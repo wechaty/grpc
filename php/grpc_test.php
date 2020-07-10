@@ -18,4 +18,5 @@ spl_autoload_register("autoload");
 $client = new \Wechaty\PuppetClient("localhost", [
   'credentials' => Grpc\ChannelCredentials::createInsecure()
 ]);
-$client->Version(null);
+$request = new \Wechaty\Puppet\VersionRequest();
+$client->Version($request);
