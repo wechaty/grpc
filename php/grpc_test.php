@@ -22,9 +22,9 @@ function autoload($clazz) {
 
 spl_autoload_register("autoload");
 
-$client = new \Wechaty\PuppetClient("localhost", [
+$client = new \Wechaty\PuppetClient("localhost:8788", [
   'credentials' => Grpc\ChannelCredentials::createInsecure()
 ]);
-$request = new \Wechaty\Puppet\VersionRequest();
-list($response, $status) = $client->Version($request)->wait();;
+$request = new \Wechaty\Puppet\DingRequest();
+list($response, $status) = $client->Ding($request)->wait();
 echo sprintf("code: %s, msg: %s \n", $status->code, $status->details);
