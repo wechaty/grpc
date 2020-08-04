@@ -2,7 +2,7 @@
 # For more setup-php see: https://github.com/shivammathur/setup-php
 # For more setup-php protoc see: https://github.com/shivammathur/setup-php/issues/262
 
-name: PHP CI
+name: PHP
 
 on:
   push:
