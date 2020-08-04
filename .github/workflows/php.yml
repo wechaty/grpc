@@ -35,8 +35,7 @@ jobs:
         php -r "if(strpos(phpversion(), '${{ matrix.php-versions }}') === false) {throw new Exception('Wrong PHP version Installed');}"
     - name: Test grpc_php_plugin and protoc
       run: |
-        git clone https://github.com/grpc/grpc
         cd grpc/examples/php
-        cp ${{ steps.php.outputs.grpc_php_plugin_path }} /usr/local/bin/grpc_php_plugin
+        ls -al ${{ steps.php.outputs.grpc_php_plugin_path }}
         cd php
         make generate
