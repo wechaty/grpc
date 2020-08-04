@@ -19,7 +19,7 @@ protoc \
   -I $PROTO_PUPPET_DIR \
   --php_out=$OUT_PUPPET_DIR \
   --grpc_out=$OUT_PUPPET_DIR \
-  --plugin=protoc-gen-grpc=../../grpc-demo/grpc/bins/opt/grpc_php_plugin \
+  --plugin=protoc-gen-grpc=/usr/local/bin/grpc_php_plugin \
   $PROTO_PUPPET_DIR/*.proto
 
 protoc \
@@ -27,5 +27,5 @@ protoc \
   -I $PROTO_PUPPET_DIR \
   --php_out=$OUT_WECHATY_DIR \
   --grpc_out=$OUT_WECHATY_DIR \
-  --plugin=protoc-gen-grpc=../../grpc-demo/grpc/bins/opt/grpc_php_plugin \
+  --plugin=protoc-gen-grpc=/usr/local/bin/grpc_php_plugin \
   $PROTO_WECHATY_DIR/*.proto
