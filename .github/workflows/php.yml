@@ -35,7 +35,7 @@ jobs:
         php -r "if(strpos(phpversion(), '${{ matrix.php-versions }}') === false) {throw new Exception('Wrong PHP version Installed');}"
     - name: Test grpc_php_plugin and protoc
       run: |
-        ls /usr/local/include/google
+        ls /usr/local/include
         which protoc
         cd php
         make generate
