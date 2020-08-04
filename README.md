@@ -17,13 +17,25 @@ gRPC for Chatie
 
 [@chatie/grpc@NPM](https://www.npmjs.com/package/@chatie/grpc)
 
+Maintainer:
+
+- [@huan](https://github.com/huan) - Huan LI (李卓桓)
+
 ### Python
 
 [chatie-grpc@PyPI](https://pypi.org/project/chatie-grpc)
 
+Maintainer:
+
+- [@wj-Mcat](https://github.com/wj-Mcat) - Jingjing WU (吴京京)
+
 ### Go
 
 [github.com/wechaty/go-grpc](https://github.com/wechaty/go-grpc)
+
+Maintainer:
+
+- [@dchaofei](https://github.com/dchaofei) - Chaofei DING (丁超飞)
 
 ### Java
 
@@ -43,6 +55,17 @@ Gradle:
 compile 'io.github.wechaty:grpc:0.11.25'
 ```
 
+Maintainer:
+
+- [@diaozxin007](https://github.com/diaozxin007) - Zhengxin DIAO (刁政欣)
+
+### PHP
+
+[github.com/wechaty/php-grpc](https://github.comwechaty/php-grpc)
+
+Maintainer:
+
+- [@zhangchunsheng](https://github.com/zhangchunsheng) - Chunsheng ZHANG (张春生)
 
 ## Debug
 
