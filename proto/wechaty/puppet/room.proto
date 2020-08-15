@@ -23,6 +23,11 @@ message RoomPayloadResponse {
   repeated string member_ids = 6;
 }
 
+message RoomPayloadDirtyRequest {
+  string id = 1;
+}
+message RoomPayloadDirtyResponse {}
+
 message RoomAddRequest {
   string id = 1;
   string contact_id = 2;

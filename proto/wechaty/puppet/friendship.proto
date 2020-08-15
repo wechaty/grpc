@@ -43,6 +43,11 @@ message FriendshipPayloadResponse {
   FriendshipSceneType scene      = 7;
 }
 
+message FriendshipPayloadDirtyRequest {
+  string id = 1;
+}
+message FriendshipPayloadDirtyResponse {}
+
 message FriendshipSearchPhoneRequest {
   string phone = 1;
 }

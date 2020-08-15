@@ -47,6 +47,11 @@ message MessagePayloadResponse {
   repeated    string mention_ids = 9;
 }
 
+message MessagePayloadDirtyRequest {
+  string id = 1;
+}
+message MessagePayloadDirtyResponse {}
+
 message MessageImageRequest {
   string    id   = 1;
   ImageType type = 2;

@@ -42,6 +42,11 @@ message ContactPayloadResponse {
   string        weixin    = 13;
 }
 
+message ContactPayloadDirtyRequest {
+  string id = 1;
+}
+message ContactPayloadDirtyResponse {}
+
 message ContactSelfQRCodeRequest {}
 message ContactSelfQRCodeResponse {
   string qrcode = 1;
