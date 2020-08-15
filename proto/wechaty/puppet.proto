@@ -129,6 +129,7 @@ service Puppet {
    *
    */
   rpc RoomMemberPayload (puppet.RoomMemberPayloadRequest) returns (puppet.RoomMemberPayloadResponse) {}
+  rpc RoomMemberPayloadDirty (puppet.RoomMemberPayloadDirtyRequest) returns (puppet.RoomMemberPayloadDirtyResponse) {}
 
   rpc RoomMemberList (puppet.RoomMemberListRequest) returns (puppet.RoomMemberListResponse) {}
 
