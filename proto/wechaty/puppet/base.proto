@@ -1,10 +1,17 @@
 syntax = "proto3";
 package wechaty.puppet;
 
-import public "event.proto";
-
 option go_package="github.com/wechaty/go-grpc/wechaty/puppet";
 option java_package="io.github.wechaty.grpc.puppet";
+
+enum PayloadType {
+  PAYLOAD_TYPE_UNKNOWN    = 0;
+  PAYLOAD_TYPE_MESSAGE    = 1;
+  PAYLOAD_TYPE_CONTACT    = 2;
+  PAYLOAD_TYPE_ROOM       = 3;
+  PAYLOAD_TYPE_ROOMMEMBER = 4;
+  PAYLOAD_TYPE_FRIENDSHIP = 5;
+}
 
 message StartRequest {}
 message StartResponse {}
@@ -29,7 +36,7 @@ message DingResponse {
 }
 
 message DirtyPayloadRequest {
-  EventType payloadType = 1;
+  PayloadType payloadType = 1;
   string payloadId = 2;
 }
 
