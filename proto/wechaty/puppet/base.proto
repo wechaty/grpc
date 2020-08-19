@@ -36,8 +36,8 @@ message DingResponse {
 }
 
 message DirtyPayloadRequest {
-  PayloadType payloadType = 1;
-  string payloadId = 2;
+  PayloadType payload_type = 1;
+  string payload_id = 2;
 }
 
 message DirtyPayloadResponse {}
