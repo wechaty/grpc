@@ -45,7 +45,7 @@ service Puppet {
    */
   rpc Event (puppet.EventRequest)  returns (stream puppet.EventResponse) {}
 
-  rpc DirtyPayload (puppet.DirtyPayloadRequest) returns (puppet.DityPayloadResponse) {}
+  rpc DirtyPayload (puppet.DirtyPayloadRequest) returns (puppet.DirtyPayloadResponse) {}
 
   /**
    *
