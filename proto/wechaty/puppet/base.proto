@@ -1,6 +1,8 @@
 syntax = "proto3";
 package wechaty.puppet;
 
+import public "event.proto";
+
 option go_package="github.com/wechaty/go-grpc/wechaty/puppet";
 option java_package="io.github.wechaty.grpc.puppet";
 
@@ -25,3 +27,10 @@ message DingResponse {
   // Ding has no return value
   // Puppet should emit a `ding` event when it receives a `ding()` call
 }
+
+message DirtyPayloadRequest {
+  EventType payloadType = 1;
+  string payloadId = 2;
+}
+
+message DirtyPayloadResponse {}

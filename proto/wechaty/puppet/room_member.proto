@@ -16,11 +16,6 @@ message RoomMemberPayloadResponse {
   string name       = 5;
 }
 
-message RoomMemberPayloadDirtyRequest {
-  string id = 1;
-}
-message RoomMemberPayloadDirtyResponse {}
-
 message RoomMemberListRequest {
   string id = 1;
 }

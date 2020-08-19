@@ -45,6 +45,8 @@ service Puppet {
    */
   rpc Event (puppet.EventRequest)  returns (stream puppet.EventResponse) {}
 
+  rpc DirtyPayload (puppet.DirtyPayloadRequest) returns (puppet.DityPayloadResponse) {}
+
   /**
    *
    * Contact Self
@@ -60,7 +62,6 @@ service Puppet {
    *
    */
   rpc ContactPayload (puppet.ContactPayloadRequest)  returns (puppet.ContactPayloadResponse) {}
-  rpc ContactPayloadDirty (puppet.ContactPayloadDirtyRequest) returns (puppet.ContactPayloadDirtyResponse) {}
 
   rpc ContactAlias (puppet.ContactAliasRequest) returns (puppet.ContactAliasResponse) {}
   rpc ContactAvatar (puppet.ContactAvatarRequest) returns (puppet.ContactAvatarResponse) {}
@@ -73,7 +74,6 @@ service Puppet {
    *
    */
   rpc FriendshipPayload (puppet.FriendshipPayloadRequest)  returns (puppet.FriendshipPayloadResponse) {}
-  rpc FriendshipPayloadDirty (puppet.FriendshipPayloadDirtyRequest) returns (puppet.FriendshipPayloadDirtyResponse) {}
 
   rpc FriendshipSearchPhone (puppet.FriendshipSearchPhoneRequest) returns (puppet.FriendshipSearchPhoneResponse) {}
   rpc FriendshipSearchWeixin (puppet.FriendshipSearchWeixinRequest) returns (puppet.FriendshipSearchWeixinResponse) {}
@@ -87,7 +87,6 @@ service Puppet {
    *
    */
   rpc MessagePayload (puppet.MessagePayloadRequest)  returns (puppet.MessagePayloadResponse) {}
-  rpc MessagePayloadDirty (puppet.MessagePayloadDirtyRequest) returns (puppet.MessagePayloadDirtyResponse) {}
 
   rpc MessageContact (puppet.MessageContactRequest) returns (puppet.MessageContactResponse) {}
   rpc MessageFile (puppet.MessageFileRequest) returns (puppet.MessageFileResponse) {}
@@ -109,7 +108,6 @@ service Puppet {
    *
    */
   rpc RoomPayload (puppet.RoomPayloadRequest)  returns (puppet.RoomPayloadResponse) {}
-  rpc RoomPayloadDirty (puppet.RoomPayloadDirtyRequest) returns (puppet.RoomPayloadDirtyResponse) {}
 
   rpc RoomList (puppet.RoomListRequest)        returns (puppet.RoomListResponse) {}
 
@@ -129,7 +127,6 @@ service Puppet {
    *
    */
   rpc RoomMemberPayload (puppet.RoomMemberPayloadRequest) returns (puppet.RoomMemberPayloadResponse) {}
-  rpc RoomMemberPayloadDirty (puppet.RoomMemberPayloadDirtyRequest) returns (puppet.RoomMemberPayloadDirtyResponse) {}
 
   rpc RoomMemberList (puppet.RoomMemberListRequest) returns (puppet.RoomMemberListResponse) {}
 
