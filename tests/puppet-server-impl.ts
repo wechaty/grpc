@@ -31,12 +31,6 @@ export const puppetServerImpl: IPuppetServer = {
     throw new Error('not implmented.')
   },
 
-  contactPayloadDirty: (call, callback) => {
-    void call
-    void callback
-    throw new Error('not implmented.')
-  },
-
   contactSelfName: (call, callback) => {
     void call
     void callback
@@ -134,12 +128,6 @@ export const puppetServerImpl: IPuppetServer = {
   },
 
   messagePayload: (call, callback) => {
-    void call
-    void callback
-    throw new Error('not implmented.')
-  },
-
-  messagePayloadDirty: (call, callback) => {
     void call
     void callback
     throw new Error('not implmented.')
@@ -247,19 +235,7 @@ export const puppetServerImpl: IPuppetServer = {
     throw new Error('not implmented.')
   },
 
-  roomMemberPayloadDirty: (call, callback) => {
-    void call
-    void callback
-    throw new Error('not implmented.')
-  },
-
   roomPayload: (call, callback) => {
-    void call
-    void callback
-    throw new Error('not implmented.')
-  },
-
-  roomPayloadDirty: (call, callback) => {
     void call
     void callback
     throw new Error('not implmented.')
