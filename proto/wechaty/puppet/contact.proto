@@ -6,8 +6,6 @@ option java_package="io.github.wechaty.grpc.puppet";
 
 import "google/protobuf/wrappers.proto";
 
-import public "event.proto";
-
 enum ContactGender {
   CONTACT_GENDER_UNSPECIFIED = 0;
   CONTACT_GENDER_MALE        = 1;
