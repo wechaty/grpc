@@ -91,14 +91,14 @@ message ContactPhoneResponse {
 
 message ContactCorporationRemarkRequest {
   string contact_id = 1;
-  string corporation_remark = 2;
+  google.protobuf.StringValue corporation_remark = 2;
 }
 
 message ContactCorporationRemarkResponse {}
 
 message ContactDescriptionRequest {
   string contact_id = 1;
-  string description = 2;
+  google.protobuf.StringValue description = 2;
 }
 
 message ContactDescriptionResponse {}
