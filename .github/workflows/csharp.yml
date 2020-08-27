@@ -14,8 +14,6 @@ jobs:
         dotnet-version: 3.1.100
 
     - name: push package
-      run: .\publish.ps1
+      run: .\publish.ps1 123456
       working-directory: .\csharp\Wechaty.Grpc\buildTool
       shell: powershell
-      with:
-        args: 123456789
