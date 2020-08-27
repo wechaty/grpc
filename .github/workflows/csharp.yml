@@ -22,6 +22,7 @@ jobs:
       uses: rohith/publish-nuget@v2
       with:
         PROJECT_FILE_PATH: .\csharp\Wechaty.Grpc\Wechaty.Grpc.csproj
+        VERSION_FILE_PATH: .\csharp\Wechaty.Grpc\common.props
         NUGET_KEY: ${{ secrets.NUGET_APIKEY }}
       
       
