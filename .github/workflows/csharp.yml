@@ -15,10 +15,10 @@ jobs:
 
     - name: copy wechaty proto
       run: .\copy.ps1
-      working-directory: .\buildTool
+      working-directory: .\csharp\Wechaty.Grpc\buildTool
       shell: powershell
 
     - name: build and create nuget package
       run: .\build.ps1
-      working-directory: .\buildTool
+      working-directory: .\csharp\Wechaty.Grpc\buildTool
       shell: powershell
