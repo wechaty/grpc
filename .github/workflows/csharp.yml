@@ -18,12 +18,24 @@ jobs:
       working-directory: .\csharp\Wechaty.Grpc\buildTool
       shell: powershell
 
-    - name: build and create nuget package
-      run: .\build.ps1
-      working-directory: .\csharp\Wechaty.Grpc\buildTool
-      shell: powershell
+    - name: publish on version change
+      uses: rohith/publish-nuget@v2
+      with:
+        PROJECT_FILE_PATH: .\csharp\Wechaty.Grpc\Wechaty.Grpc.csproj
+        NUGET_KEY: ${{ secrets.NUGET_APIKEY }}
+      
+      
 
-    - name: push package
-      run: .\publish.ps1 ${{ secrets.NUGET_APIKEY }}
-      working-directory: .\csharp\Wechaty.Grpc\buildTool
-      shell: powershell
+
+#    - name: build and create nuget package
+#      run: .\build.ps1
+#      working-directory: .\csharp\Wechaty.Grpc\buildTool
+#      shell: powershell
+
+
+
+#    - name: push package
+#      run: .\publish.ps1 ${{ secrets.NUGET_APIKEY }}
+#      working-directory: .\csharp\Wechaty.Grpc\buildTool
+#      shell: powershell
+  

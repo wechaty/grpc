@@ -24,6 +24,14 @@ $file = Get-Content $puppetFilePath
 # update import as csharp catalog
 $file.Replace("import public `"puppet/","import public `"proto/wechaty/puppet/")  | set-Content $puppetFilePath
 
+
+# update common.props version as package.json version
+$commonPropPath = Join-Path $solutionFolder "common.props"
+$commonPropsData = Get-Content $commonPropPath
+
+$versionNode="<Version>" + $version + "</Version>"
+$commonPropsData -Replace "<Version>(.*)</Version>" , $versionNode | set-Content $commonPropPath
+
 Set-Location $buildFolder
 
 

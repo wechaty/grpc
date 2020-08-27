@@ -8,13 +8,6 @@ if(Test-Path $releasePath)
     Remove-Item -Recurse $releasePath
 }
 
-# update common.props version as package.json version
-$commonPropPath = Join-Path $solutionFolder "common.props"
-$commonPropsData = Get-Content $commonPropPath
-
-$versionNode="<Version>" + $version + "</Version>"
-$commonPropsData -Replace "<Version>(.*)</Version>" , $versionNode | set-Content $commonPropPath
-
 dotnet restore
 & dotnet msbuild /t:pack /p:Configuration=Release /p:SourceLinkCreate=true
 
