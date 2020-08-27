@@ -1,5 +1,8 @@
 # Paths
 
+$test=$MyInvocation.MyCommand.Definition
+echo $test
+
 # csharp build Folder
 $buildFolder = (Get-Item -Path "./" -Verbose).FullName
 

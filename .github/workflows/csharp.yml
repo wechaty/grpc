@@ -1,11 +1,11 @@
-name: "build and push nuget package"
+name: "csharp"
 on:
   push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
 jobs:
-  build-test:
+  build-push:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
