@@ -85,3 +85,4 @@ csharp/Wechaty.Grpc/proto
 csharp/Wechaty.Grpc/obj/
 csharp/Wechaty.Grpc/bin/
 csharp/Wechaty.Grpc/nupkg/package/
+*.nupkg
