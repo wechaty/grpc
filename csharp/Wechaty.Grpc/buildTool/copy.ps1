@@ -3,6 +3,7 @@
 
 # Get-ChildItem $projectFolder | ?{$_.psiscontainer -eq $false} 
 
+Set-Location $buildFolder
 
 # csharp wechaty proto folder
 $csharpProtoFolder=Join-Path $solutionFolder "proto"
