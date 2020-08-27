@@ -24,19 +24,3 @@ jobs:
         PROJECT_FILE_PATH: .\csharp\Wechaty.Grpc\Wechaty.Grpc.csproj
         VERSION_FILE_PATH: .\csharp\Wechaty.Grpc\common.props
         NUGET_KEY: ${{ secrets.NUGET_APIKEY }}
-      
-      
-
-
-#    - name: build and create nuget package
-#      run: .\build.ps1
-#      working-directory: .\csharp\Wechaty.Grpc\buildTool
-#      shell: powershell
-
-
-
-#    - name: push package
-#      run: .\publish.ps1 ${{ secrets.NUGET_APIKEY }}
-#      working-directory: .\csharp\Wechaty.Grpc\buildTool
-#      shell: powershell
-  
