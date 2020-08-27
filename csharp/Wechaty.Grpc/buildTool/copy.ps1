@@ -40,5 +40,3 @@ Set-Location $buildFolder
 
 
 
-
-

@@ -1,0 +1,62 @@
+name: Go
+
+on: [push, pull_request]
+
+jobs:
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Set up Go 1.14
+      uses: actions/setup-go@master
+      with:
+        stable: false
+        go-version: 1.14
+      id: go
+    - name: Install Protoc
+      uses: arduino/setup-protoc@master
+
+    - name: Check out code into the Go module directory
+      uses: actions/checkout@v2
+
+    - name: Get dependencies
+      run: |
+        cd go
+        make install
+
+    - name: Build
+      run: |
+        cd go
+        make generate
+        go build -v generated/wechaty/puppet.pb.go
+
+  publish:
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/heads/v'))
+    name: Publish
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Set up Go 1.14
+      uses: actions/setup-go@master
+      with:
+        stable: false
+        go-version: 1.14
+      id: go
+    - name: Install Protoc
+      uses: arduino/setup-protoc@master
+    - name: Check out code into the Go module directory
+      uses: actions/checkout@v2
+    - name: Deploy
+      run: |
+        cd go
+        make install
+        # https://stackoverflow.com/a/4565746/1123955
+        # https://stackoverflow.com/a/46253163/1123955
+        ssh-agent bash -c "\
+          echo '${SSH_PRIVATE_KEY}' | ssh-add - ;\
+          make publish ;\
+        "
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
