@@ -13,12 +13,9 @@ jobs:
       with:
         dotnet-version: 3.1.100
 
-    - name: copy wechaty proto
-      run: .\copy.ps1
+    - name: push package
+      run: .\publish.ps1
       working-directory: .\csharp\Wechaty.Grpc\buildTool
       shell: powershell
-
-    - name: build and create nuget package
-      run: .\build.ps1
-      working-directory: .\csharp\Wechaty.Grpc\buildTool
-      shell: powershell
+      with:
+        args: 123456789
