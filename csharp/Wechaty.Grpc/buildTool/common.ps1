@@ -1,17 +1,10 @@
 # Paths
 
-$test=$MyInvocation.MyCommand.Definition
-echo "当前目录地址"
-echo $test
-
 # csharp build Folder
 $buildFolder = (Get-Item -Path "./" -Verbose).FullName
 
-echo "build folder"
-echo $buildFolder
-
 # wechaty root folder
-$rootFolder = Join-Path $packFolder "../../../"
+$rootFolder = Join-Path $buildFolder "../../../"
 
 # wechaty proto folder
 $wechatyProtoFolder=Join-Path $rootFolder "proto"
