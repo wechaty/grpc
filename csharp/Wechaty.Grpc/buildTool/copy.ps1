@@ -33,9 +33,6 @@ $versionNode="<Version>" + $version + "</Version>"
 echo $versionNode
 $commonPropsData -Replace "<Version>(.*)</Version>" , $versionNode | set-Content $commonPropPath
 
-$testdata = Get-Content $commonPropPath
-echo $testdata
-
 Set-Location $buildFolder
 
 

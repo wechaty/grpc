@@ -12,9 +12,6 @@ $wechatyProtoFolder=Join-Path $rootFolder "proto"
 # chsarp solution Folder
 $solutionFolder = Join-Path $rootFolder "csharp/Wechaty.Grpc"
 
-# nuget package Folder
-$packageFolder=Join-Path $solutionFolder "nupkg"
-
 # get package.json data
 $packageData=Get-Content (Join-Path $rootFolder "package.json") | ConvertFrom-Json
 
