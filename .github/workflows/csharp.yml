@@ -9,11 +9,8 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/setup-dotnet@master
-      with:
-        dotnet-version: 3.1.100
 
     - name: push package
-      run: .\publish.ps1 123456
+      run: .\publish.ps1 ${{ secrets.NUGET_APIKEY }}
       working-directory: .\csharp\Wechaty.Grpc\buildTool
       shell: powershell
