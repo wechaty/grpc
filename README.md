@@ -76,6 +76,15 @@ Maintainer:
 
 - [@zhangchunsheng](https://github.com/zhangchunsheng) - Chunsheng ZHANG (张春生)
 
+### Csharp
+
+[Wechaty.Grpc @ Nuget](https://www.nuget.org/packages/Wechaty.Grpc)
+
+Maintainer:
+
+- [@Darren](https://github.com/jesn)  - Darren (郑波)
+
+
 ## DEVELOPMENT
 
 ### Debug
