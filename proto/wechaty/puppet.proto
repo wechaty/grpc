@@ -93,7 +93,9 @@ service Puppet {
 
   rpc MessageContact (puppet.MessageContactRequest) returns (puppet.MessageContactResponse) {}
   rpc MessageFile (puppet.MessageFileRequest) returns (puppet.MessageFileResponse) {}
+  rpc MessageFileStream (puppet.MessageFileStreamRequest) returns (stream puppet.MessageFileStreamResponse) {}
   rpc MessageImage (puppet.MessageImageRequest) returns (puppet.MessageImageResponse) {}
+  rpc MessageImageStream (puppet.MessageImageStreamRequest) returns (stream puppet.MessageImageStreamResponse) {}
   rpc MessageMiniProgram (puppet.MessageMiniProgramRequest) returns (puppet.MessageMiniProgramResponse) {}
   rpc MessageUrl (puppet.MessageUrlRequest) returns (puppet.MessageUrlResponse) {}
 
