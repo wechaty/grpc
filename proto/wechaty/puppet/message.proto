@@ -116,6 +116,14 @@ message MessageSendFileResponse {
   google.protobuf.StringValue id = 1;
 }
 
+message MessageSendFileStreamRequest {
+  string conversation_id = 1;
+  string filebox = 2;
+}
+message MessageSendFileStreamResponse {
+  google.protobuf.StringValue id = 1;
+}
+
 message MessageSendTextRequest {
   string conversation_id = 1;
   string text = 2;
