@@ -58,6 +58,7 @@ message MessageImageResponse {
 
 message MessageImageStreamRequest {
   string id = 1;
+  ImageType type = 2;
 }
 message MessageImageStreamResponse {
   bytes data = 1;
