@@ -30,6 +30,8 @@ jobs:
       run: |
         cd go
         make generate
+        mkdir -p $GOPATH/src/github.com/wechaty/go-grpc
+        ln -s `pwd`/generated/wechaty/ $GOPATH/src/github.com/wechaty/go-grpc/wechaty
         go build -v generated/wechaty/puppet.pb.go
 
   publish:
