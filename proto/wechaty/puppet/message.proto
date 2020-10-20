@@ -33,6 +33,18 @@ enum ImageType {
   IMAGE_TYPE_ARTWORK     = 3;
 }
 
+message FileBoxChunk {
+  oneof payload {
+    bytes data = 1;
+    string name = 2;
+  }
+}
+
+message MessageSendFileInfo {
+  string conversation_id = 1;
+  string name = 2;
+}
+
 message MessagePayloadRequest {
   string id = 1;
 }
@@ -46,10 +58,6 @@ message MessagePayloadResponse {
   string      room_id            = 7;
   string      to_id              = 8;
   repeated    string mention_ids = 9;
-}
-
-message FileBoxChunk {
-  bytes data = 1;
 }
 
 message MessageImageRequest {
@@ -114,6 +122,12 @@ message MessageSendFileResponse {
   google.protobuf.StringValue id = 1;
 }
 
+message MessageSendFileRequest {
+  oneof payload {
+    MessageSendFileInfo info = 1;
+    bytes data = 2;
+  }
+}
 message MessageSendFileStreamResponse {
   google.protobuf.StringValue id = 1;
 }
