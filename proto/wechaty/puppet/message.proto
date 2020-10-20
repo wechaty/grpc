@@ -122,7 +122,7 @@ message MessageSendFileResponse {
   google.protobuf.StringValue id = 1;
 }
 
-message MessageSendFileRequest {
+message MessageSendFileChunk {
   oneof payload {
     MessageSendFileInfo info = 1;
     bytes data = 2;
