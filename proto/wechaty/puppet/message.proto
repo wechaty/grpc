@@ -48,8 +48,8 @@ message MessagePayloadResponse {
   repeated    string mention_ids = 9;
 }
 
-message FileBoxMessage {
-  bytes data = 1;
+message FileBoxChunk {
+  bytes chunk = 1;
 }
 
 message MessageImageRequest {
