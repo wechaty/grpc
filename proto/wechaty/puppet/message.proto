@@ -62,7 +62,6 @@ message MessageImageStreamRequest {
 }
 message MessageImageStreamResponse {
   bytes data = 1;
-  string name = 2;
 }
 
 message MessageContactRequest {
@@ -84,7 +83,6 @@ message MessageFileStreamRequest {
 }
 message MessageFileStreamResponse {
   bytes data = 1;
-  string name = 2;
 }
 
 message MessageMiniProgramRequest {
@@ -119,9 +117,7 @@ message MessageSendFileResponse {
 }
 
 message MessageSendFileStreamRequest {
-  string conversation_id = 1;
   bytes data = 2;
-  string name = 3;
 }
 message MessageSendFileStreamResponse {
   google.protobuf.StringValue id = 1;
