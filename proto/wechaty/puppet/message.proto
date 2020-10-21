@@ -115,7 +115,7 @@ message MessageSendFileResponse {
 message MessageSendFileStreamRequestChunk {
   oneof payload {
     string conversation_id = 1;
-    FileBoxChunk filebox = 2;
+    FileBoxChunk file_box_chunk = 2;
   };
 }
 message MessageSendFileStreamResponse {
