@@ -62,6 +62,9 @@ message MessageImageStreamRequest {
   string id = 1;
   ImageType type = 2;
 }
+message MessageImageStreamResponse {
+  FileBoxChunk file_box_chunk = 1;
+}
 
 message MessageContactRequest {
   string id = 1;
@@ -79,6 +82,9 @@ message MessageFileResponse {
 
 message MessageFileStreamRequest {
   string id = 1;
+}
+message MessageFileStreamResponse {
+  FileBoxChunk file_box_chunk = 1;
 }
 
 message MessageMiniProgramRequest {
@@ -112,7 +118,7 @@ message MessageSendFileResponse {
   google.protobuf.StringValue id = 1;
 }
 
-message MessageSendFileStreamRequestChunk {
+message MessageSendFileStreamRequest {
   oneof payload {
     string conversation_id = 1;
     FileBoxChunk file_box_chunk = 2;
