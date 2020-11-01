@@ -7,6 +7,8 @@ option csharp_namespace = "github.wechaty.grpc.puppet";
 
 import "google/protobuf/wrappers.proto";
 
+import "puppet/filebox.proto";
+
 enum MessageType {
   MESSAGE_TYPE_UNSPECIFIED  = 0;
 
@@ -61,8 +63,7 @@ message MessageImageStreamRequest {
   ImageType type = 2;
 }
 message MessageImageStreamResponse {
-  bytes data = 1;
-  string name = 2;
+  FileBoxChunk file_box_chunk = 1;
 }
 
 message MessageContactRequest {
@@ -83,8 +84,7 @@ message MessageFileStreamRequest {
   string id = 1;
 }
 message MessageFileStreamResponse {
-  bytes data = 1;
-  string name = 2;
+  FileBoxChunk file_box_chunk = 1;
 }
 
 message MessageMiniProgramRequest {
@@ -119,9 +119,10 @@ message MessageSendFileResponse {
 }
 
 message MessageSendFileStreamRequest {
-  string conversation_id = 1;
-  bytes data = 2;
-  string name = 3;
+  oneof payload {
+    string conversation_id = 1;
+    FileBoxChunk file_box_chunk = 2;
+  };
 }
 message MessageSendFileStreamResponse {
   google.protobuf.StringValue id = 1;
