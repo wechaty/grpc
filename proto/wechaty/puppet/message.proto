@@ -170,3 +170,11 @@ message MessageRecallRequest {
 message MessageRecallResponse {
   bool success = 1;
 }
+message MessageForwardRequest{
+  string conversation_id = 1;
+  MessageType type = 2;
+  google.protobuf.StringValue payload = 3;
+}
+message MessageForwardResponse {
+  google.protobuf.StringValue id = 1;
+}
