@@ -171,9 +171,8 @@ message MessageRecallResponse {
   bool success = 1;
 }
 message MessageForwardRequest{
-  string conversation_id = 1;
-  MessageType type = 2;
-  google.protobuf.StringValue payload = 3;
+  string id = 1;
+  string conversation_id = 2;
 }
 message MessageForwardResponse {
   google.protobuf.StringValue id = 1;
