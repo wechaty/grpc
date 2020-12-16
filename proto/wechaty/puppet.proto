@@ -123,6 +123,7 @@ service Puppet {
   rpc MessageSendUrl (puppet.MessageSendUrlRequest) returns (puppet.MessageSendUrlResponse) {}
 
   rpc MessageRecall (puppet.MessageRecallRequest) returns (puppet.MessageRecallResponse) {}
+  rpc MessageForward (puppet.MessageForwardRequest) returns (puppet.MessageForwardResponse) {}
 
   /**
    *
