@@ -1,7 +1,7 @@
 /**
  *
  * Wechaty Puppet gRPC Protocol Buffers
- *  https://github.com/chatie/grpc/
+ *  https://github.com/wechaty/grpc/
  *  Huan LI <zixia@zixia.net>
  *  Apr 2018
  *  License: Apache-2.0
@@ -12,9 +12,6 @@
  */
 syntax = "proto3";
 package wechaty;
-
-option java_package="io.github.wechaty.grpc";
-option go_package="github.com/wechaty/go-grpc/wechaty";
 
 import public "puppet/base.proto";
 import public "puppet/contact.proto";
@@ -30,10 +27,13 @@ import public "puppet/tag.proto";
 import "google/api/annotations.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
 
+option java_package="io.github.wechaty.grpc";
+option go_package="github.com/wechaty/go-grpc/wechaty";
+
 option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
   info: {
       title: "Wechaty Puppet Service"
-      version: "0.0.1"
+      version: "0.0.0"  // MUST be 0.0.0 at here: will be synced with the Git Repo when generating.
       contact: {
           name: "Huan"
           url: "https://wechaty.js.org/contributors/huan"
@@ -64,18 +64,18 @@ service Puppet {
    */
   rpc Start (puppet.StartRequest)  returns (puppet.StartResponse) {
     option (google.api.http) = {
-      post: "/start"
+      put: "/start"
     };
   }
   rpc Stop (puppet.StopRequest)    returns (puppet.StopResponse) {
     option (google.api.http) = {
-      post: "/stop"
+      put: "/stop"
     };
   }
 
   rpc Logout (puppet.LogoutRequest)      returns (puppet.LogoutResponse) {
     option (google.api.http) = {
-      post: "/logout"
+      put: "/logout"
     };
   }
   rpc Ding (puppet.DingRequest)          returns (puppet.DingResponse) {
@@ -156,44 +156,32 @@ service Puppet {
 
   rpc ContactAlias (puppet.ContactAliasRequest) returns (puppet.ContactAliasResponse) {
     option (google.api.http) = {
-      get: "/contacts/{id}/alias" // TODO: Huan(202002) disable the alias query parameters
-      additional_bindings {
-        put: "/contacts/{id}/alias/{alias}"
-      }
+      put: "/contacts/{id}/alias/{alias}"
     };
   }
   rpc ContactAvatar (puppet.ContactAvatarRequest) returns (puppet.ContactAvatarResponse) {
     option (google.api.http) = {
       get: "/contacts/{id}/avatar" // TODO: Huan(202002) disable the avatar query parameters
-      additional_bindings {
-        put: "/contacts/{id}/avatar"
-        body: "*"
-      }
+      // additional_bindings {
+      //   put: "/contacts/{id}/avatar"
+      //   body: "*"
+      // }
     };
   }
   rpc ContactPhone (puppet.ContactPhoneRequest) returns (puppet.ContactPhoneResponse) {
     option (google.api.http) = {
-      get: "/contacts/{contact_id}/phone" // TODO: Huan(202002) disable the phone query parameters
-      additional_bindings {
-        put: "/contacts/{contact_id}/phone/{phone_list}"  // XXX: repeated data???
-      }
+      put: "/contacts/{contact_id}/phone/{phone_list}"  // XXX: repeated data???
     };
 
   }
   rpc ContactCorporationRemark (puppet.ContactCorporationRemarkRequest) returns (puppet.ContactCorporationRemarkResponse) {
     option (google.api.http) = {
-      get: "/contacts/{contact_id}/corporation-remark" // TODO: Huan(202002) disable the phone query parameters
-      additional_bindings {
-        put: "/contacts/{contact_id}/corporation-remark/{corporation_remark}"
-      }
+      put: "/contacts/{contact_id}/corporation-remark/{corporation_remark}"
     };
   }
   rpc ContactDescription (puppet.ContactDescriptionRequest) returns (puppet.ContactDescriptionResponse) {
     option (google.api.http) = {
-      get: "/contacts/{contact_id}/description" // TODO: Huan(202002) disable the query parameters
-      additional_bindings {
-        put: "/contacts/{contact_id}/description/{description}"
-      }
+      put: "/contacts/{contact_id}/description/{description}"
     };
   }
 
@@ -219,23 +207,23 @@ service Puppet {
 
   rpc FriendshipSearchPhone (puppet.FriendshipSearchPhoneRequest) returns (puppet.FriendshipSearchPhoneResponse) {
     option (google.api.http) = {
-      get: "/friendship/search"
+      get: "/friendship/search/phone/{phone}"
     };
   }
   rpc FriendshipSearchWeixin (puppet.FriendshipSearchWeixinRequest) returns (puppet.FriendshipSearchWeixinResponse) {
     option (google.api.http) = {
-      get: "/friendship/search"
+      get: "/friendship/search/weixin/{weixin}"
     };
   }
 
   rpc FriendshipAdd (puppet.FriendshipAddRequest) returns (puppet.FriendshipAddResponse) {
     option (google.api.http) = {
-      post: "/friendship/add/{contact_id}"
+      put: "/friendship/add/{contact_id}"
     };
   }
   rpc FriendshipAccept (puppet.FriendshipAcceptRequest) returns (puppet.FriendshipAcceptResponse) {
     option (google.api.http) = {
-      post: "/friendship/accept/{id}"
+      put: "/friendship/accept/{id}"
     };
   }
 
@@ -378,10 +366,7 @@ service Puppet {
 
   rpc RoomTopic (puppet.RoomTopicRequest) returns (puppet.RoomTopicResponse) {
     option (google.api.http) = {
-      get: "/rooms/{id}/topic"  // TODO: disable other get parameters
-      additional_bindings {
-        put: "/rooms/{id}/topic/{topic}"
-      }
+      put: "/rooms/{id}/topic/{topic}"
     };
   }
   rpc RoomQRCode (puppet.RoomQRCodeRequest) returns (puppet.RoomQRCodeResponse) {
@@ -428,7 +413,7 @@ service Puppet {
   }
   rpc RoomInvitationAccept (puppet.RoomInvitationAcceptRequest) returns (puppet.RoomInvitationAcceptResponse) {
     option (google.api.http) = {
-      post: "/room-invitations/{id}/accept"
+      put: "/room-invitations/{id}/accept"
     };
   }
 
@@ -437,9 +422,31 @@ service Puppet {
    * Tag
    *
    */
-  rpc TagContactAdd (puppet.TagContactAddRequest) returns (puppet.TagContactAddResponse) {}
-  rpc TagContactRemove (puppet.TagContactRemoveRequest) returns (puppet.TagContactRemoveResponse) {}
-  rpc TagContactDelete (puppet.TagContactDeleteRequest) returns (puppet.TagContactDeleteResponse) {}
-  rpc TagContactList (puppet.TagContactListRequest) returns (puppet.TagContactListResponse) {}
+  rpc TagContactAdd (puppet.TagContactAddRequest) returns (puppet.TagContactAddResponse) {
+    option (google.api.http) = {
+      put: "/contacts/contact_id/tags/id"
+    };
+  }
+  rpc TagContactRemove (puppet.TagContactRemoveRequest) returns (puppet.TagContactRemoveResponse) {
+    option (google.api.http) = {
+      delete: "/contacts/contact_id/tags/id"
+    };
+  }
+
+  /**
+   * Operate Sub-Collections
+   *   https://cloud.google.com/apis/design/design_patterns#list_sub-collections
+   */
+  rpc TagContactDelete (puppet.TagContactDeleteRequest) returns (puppet.TagContactDeleteResponse) {
+    option (google.api.http) = {
+      delete: "/contacts/-/tags/id"
+    };
+  }
+
+   rpc TagContactList (puppet.TagContactListRequest) returns (puppet.TagContactListResponse) {
+    option (google.api.http) = {
+      get: "/contacts/contact_id/tags"
+    };
+  }
 
 }
