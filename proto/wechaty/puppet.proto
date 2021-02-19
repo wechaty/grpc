@@ -35,8 +35,8 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
       title: "Wechaty Puppet Service"
       version: "0.0.1"
       contact: {
-          name: "Huan LI (李卓桓)"
-          url: "https://github.com/huan"
+          name: "Huan"
+          url: "https://wechaty.js.org/contributors/huan"
           email: "huan@chatie.io"
       };
   };
