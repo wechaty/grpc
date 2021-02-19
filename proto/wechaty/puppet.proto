@@ -32,13 +32,18 @@ option go_package="github.com/wechaty/go-grpc/wechaty";
 
 option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
   info: {
-      title: "Wechaty Puppet Service"
-      version: "0.0.0"  // MUST be 0.0.0 at here: will be synced with the Git Repo when generating.
+      title: "Wechaty Puppet Service OpenAPI Specification"
+      description: "Wechaty is a Conversational RPA SDK for chatbot makers. With only 6 lines of code, you can create a bot on the most popular IMs like WeChat, Whatsapp, WeCom, Gitter, etc.\n\nWechaty Puppet Service is the RESTful API for Wechaty API, which is build on top of the Wechaty Puppet Abstraction and the gRPC proto definition."
+      license: {
+        name: "Apache-2.0"
+        url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+      }
       contact: {
-          name: "Huan"
-          url: "https://wechaty.js.org/contributors/huan"
-          email: "huan@chatie.io"
-      };
+          name: "Wechaty"
+          url: "https://github.com/wechaty/openapi"
+          email: "wechaty@chatie.io"
+      }
+      version: "0.0.0"  // MUST be 0.0.0 at here: will be synced with the Git Repo when generating.
   };
   schemes: [HTTP,HTTPS,WS,WSS]
   consumes: "application/json"
@@ -139,7 +144,8 @@ service Puppet {
   }
   rpc ContactSelfSignature (puppet.ContactSelfSignatureRequest) returns (puppet.ContactSelfSignatureResponse) {
     option (google.api.http) = {
-      put: "/contacts/self/signature/{signature}"
+      put: "/contacts/self/signature"
+      body: "*"
     };
   }
 
@@ -156,7 +162,8 @@ service Puppet {
 
   rpc ContactAlias (puppet.ContactAliasRequest) returns (puppet.ContactAliasResponse) {
     option (google.api.http) = {
-      put: "/contacts/{id}/alias/{alias}"
+      put: "/contacts/{id}/alias"
+      body: "*"
     };
   }
   rpc ContactAvatar (puppet.ContactAvatarRequest) returns (puppet.ContactAvatarResponse) {
@@ -170,18 +177,21 @@ service Puppet {
   }
   rpc ContactPhone (puppet.ContactPhoneRequest) returns (puppet.ContactPhoneResponse) {
     option (google.api.http) = {
-      put: "/contacts/{contact_id}/phone/{phone_list}"  // XXX: repeated data???
+      put: "/contacts/{contact_id}/phone"
+      body: "*"
     };
 
   }
   rpc ContactCorporationRemark (puppet.ContactCorporationRemarkRequest) returns (puppet.ContactCorporationRemarkResponse) {
     option (google.api.http) = {
-      put: "/contacts/{contact_id}/corporation-remark/{corporation_remark}"
+      put: "/contacts/{contact_id}/corporation-remark"
+      body: "*"
     };
   }
   rpc ContactDescription (puppet.ContactDescriptionRequest) returns (puppet.ContactDescriptionResponse) {
     option (google.api.http) = {
-      put: "/contacts/{contact_id}/description/{description}"
+      put: "/contacts/{contact_id}/description"
+      body: "*"
     };
   }
 
@@ -219,6 +229,7 @@ service Puppet {
   rpc FriendshipAdd (puppet.FriendshipAddRequest) returns (puppet.FriendshipAddResponse) {
     option (google.api.http) = {
       put: "/friendship/add/{contact_id}"
+      body: "*"
     };
   }
   rpc FriendshipAccept (puppet.FriendshipAcceptRequest) returns (puppet.FriendshipAcceptResponse) {
@@ -237,19 +248,25 @@ service Puppet {
    * @deprecated: using MessageFileStream to transfer files
    * Huan(202010): will be removed (replaced by MessageFileStream) after Dec 31, 2021
    */
-  rpc MessageFile (puppet.MessageFileRequest) returns (puppet.MessageFileResponse) {}
+  rpc MessageFile (puppet.MessageFileRequest) returns (puppet.MessageFileResponse) {
+    option deprecated = true;
+  }
 
   /**
    * @deprecated: using MessageImageStream to transfer images
    * Huan(202010): will be removed (replaced by MessageImageStream) after Dec 31, 2021
    */
-  rpc MessageImage (puppet.MessageImageRequest) returns (puppet.MessageImageResponse) {}
+  rpc MessageImage (puppet.MessageImageRequest) returns (puppet.MessageImageResponse) {
+    option deprecated = true;
+  }
 
   /**
    * @deprecated: using MesageSendFileStream to transfer file message to server
    * Huan(202010): will be removed (replaced by MessageSendFileStream) after Dec 31, 2021
    */
-  rpc MessageSendFile (puppet.MessageSendFileRequest) returns (puppet.MessageSendFileResponse) {}
+  rpc MessageSendFile (puppet.MessageSendFileRequest) returns (puppet.MessageSendFileResponse) {
+    option deprecated = true;
+  }
 
   rpc MessagePayload (puppet.MessagePayloadRequest)  returns (puppet.MessagePayloadResponse) {
     option (google.api.http) = {
@@ -300,6 +317,10 @@ service Puppet {
       * TODO: Add support for client upload files
       *   https://github.com/wechaty/openapi/issues/1
       */
+    option (google.api.http) = {
+      post: "/conversations/-/filebox"
+      body: "*"
+    };
   }
   rpc MessageSendText (puppet.MessageSendTextRequest) returns (puppet.MessageSendTextResponse) {
     option (google.api.http) = {
@@ -339,7 +360,7 @@ service Puppet {
 
   rpc RoomAdd (puppet.RoomAddRequest) returns (puppet.RoomAddResponse) {
     option (google.api.http) = {
-      post: "/rooms/{id}/add/{contact_id}"
+      put: "/rooms/{id}/add/{contact_id}"
     };
   }
   rpc RoomAvatar (puppet.RoomAvatarRequest) returns (puppet.RoomAvatarResponse) {
