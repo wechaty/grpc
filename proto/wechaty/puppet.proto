@@ -28,6 +28,33 @@ import public "puppet/room_member.proto";
 import public "puppet/tag.proto";
 
 import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+      title: "Wechaty Puppet Service"
+      version: "0.0.1"
+      contact: {
+          name: "Huan LI (李卓桓)"
+          url: "https://github.com/huan"
+          email: "huan@chatie.io"
+      };
+  };
+  schemes: [HTTP,HTTPS,WS,WSS]
+  consumes: "application/json"
+  produces: "application/json"
+  responses: {
+      key: "default"
+      value: {
+          description: ""
+          schema: {
+              json_schema: {
+                  ref: ".google.rpc.Status"
+              };
+          };
+      };
+  };
+};
 
 service Puppet {
   /**

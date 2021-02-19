@@ -16,9 +16,14 @@ clean:
 .PHONY: install
 install:
 	[ -d ${OUT_DIR} ] || mkdir ${OUT_DIR}
+
 	[ -e ${OUT_DIR}/google/api } || mkdir -p ${OUT_DIR}/google/api
 	curl https://raw.githubusercontent.com/googleapis/googleapis/master/google/api/annotations.proto > ${OUT_DIR}/google/api/annotations.proto
 	curl https://raw.githubusercontent.com/googleapis/googleapis/master/google/api/http.proto > ${OUT_DIR}/google/api/http.proto
+
+	[ -e ${OUT_DIR}/protoc-gen-openapiv2/options } || mkdir -p ${OUT_DIR}/protoc-gen-openapiv2/options
+	curl https://raw.githubusercontent.com/grpc-ecosystem/grpc-gateway/master/protoc-gen-openapiv2/options/annotations.proto > ${OUT_DIR}/protoc-gen-openapiv2/options/annotations.proto
+	curl https://raw.githubusercontent.com/grpc-ecosystem/grpc-gateway/master/protoc-gen-openapiv2/options/openapiv2.proto > ${OUT_DIR}/protoc-gen-openapiv2/options/openapiv2.proto
 
 	go install \
 		github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway \
