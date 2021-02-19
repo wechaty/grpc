@@ -103,8 +103,21 @@ service Puppet {
 
   rpc DirtyPayload (puppet.DirtyPayloadRequest) returns (puppet.DirtyPayloadResponse) {
     option (google.api.http) = {
-      post: "/dirty-payload/{id}"
-      body: "*"
+      additional_bindings {
+        put: "/message/{id}/dirty/{type=PAYLOAD_TYPE_MESSAGE}"
+      }
+      additional_bindings {
+        put: "/contacts/{id}/dirty/{type=PAYLOAD_TYPE_CONTACT}"
+      }
+      additional_bindings {
+        put: "/rooms/{id}/dirty/{type=PAYLOAD_TYPE_ROOM}"
+      }
+      additional_bindings {
+        put: "/rooms/{id}/dirty/members/{type=PAYLOAD_TYPE_ROOM_MEMBER}"
+      }
+      additional_bindings {
+        put: "/friendships/{id}/dirty/{type=PAYLOAD_TYPE_FRIENDSHIP}"
+      }
     };
   }
 
