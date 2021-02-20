@@ -1,30 +1,28 @@
-OUT_DIR=./gen
+GENERATED_DIR:="${CURDIR}/../generated/"
+THIRD_PARTY_DIR:="${CURDIR}/../third-party/"
 
-PROTOC=protoc \
+PROTOC:=protoc \
 	-I ../proto/ \
 	-I ../proto/wechaty/ \
-	-I ${OUT_DIR} \
+	-I ${THIRD_PARTY_DIR} \
 	../proto/wechaty/puppet.proto \
 
 .PHONY: all
-all: clean generate reverse_proxy_server
+all: generate
+
+.PHONY: generate
+generate:
+	${PROTOC} \
+		--openapiv2_out ${GENERATED_DIR} \
+		--openapiv2_opt logtostderr=true \
+		--openapiv2_opt generate_unbound_methods=true \
 
 .PHONY: clean
 clean:
-	rm -fr ${OUT_DIR}/*
+	rm -fr ${GENERATED_DIR}/*
 
 .PHONY: install
 install:
-	[ -d ${OUT_DIR} ] || mkdir ${OUT_DIR}
-
-	[ -e ${OUT_DIR}/google/api } || mkdir -p ${OUT_DIR}/google/api
-	curl https://raw.githubusercontent.com/googleapis/googleapis/master/google/api/annotations.proto > ${OUT_DIR}/google/api/annotations.proto
-	curl https://raw.githubusercontent.com/googleapis/googleapis/master/google/api/http.proto > ${OUT_DIR}/google/api/http.proto
-
-	[ -e ${OUT_DIR}/protoc-gen-openapiv2/options } || mkdir -p ${OUT_DIR}/protoc-gen-openapiv2/options
-	curl https://raw.githubusercontent.com/grpc-ecosystem/grpc-gateway/master/protoc-gen-openapiv2/options/annotations.proto > ${OUT_DIR}/protoc-gen-openapiv2/options/annotations.proto
-	curl https://raw.githubusercontent.com/grpc-ecosystem/grpc-gateway/master/protoc-gen-openapiv2/options/openapiv2.proto > ${OUT_DIR}/protoc-gen-openapiv2/options/openapiv2.proto
-
 	go install \
 		github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway \
 		github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2 \
@@ -32,27 +30,16 @@ install:
 		google.golang.org/grpc/cmd/protoc-gen-go-grpc
 	go mod tidy
 
-.PHONY: generate
-generate: gen_protobuf gen_gateway gen_openapi
-
 .PHONY: gen_protobuf
 gen_protobuf:
 	${PROTOC} \
-		--go_out ${OUT_DIR} --go_opt paths=source_relative \
-		--go-grpc_out ${OUT_DIR} --go-grpc_opt paths=source_relative \
+		--go_out ${GENERATED_DIR} --go_opt paths=source_relative \
+		--go-grpc_out ${GENERATED_DIR} --go-grpc_opt paths=source_relative \
 
 .PHONY: gen_gateway
 gen_gateway:
 	${PROTOC} \
-		--grpc-gateway_out ${OUT_DIR} \
+		--grpc-gateway_out ${GENERATED_DIR} \
 		--grpc-gateway_opt logtostderr=true \
 		--grpc-gateway_opt paths=source_relative \
 		--grpc-gateway_opt generate_unbound_methods=true \
-
-.PHONY: gen_openapi
-gen_openapi:
-	${PROTOC} \
-		--openapiv2_out ${OUT_DIR} \
-		--openapiv2_opt logtostderr=true \
-		--openapiv2_opt generate_unbound_methods=true \
-
