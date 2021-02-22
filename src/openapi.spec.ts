@@ -5,7 +5,7 @@ import test  from 'tstest'
 
 import {
   puppet,
-}                 from './open-api'
+}                 from './openapi'
 
 test('puppet.v0.file', async (t) => {
   const EXPECTED_PATH_REG = /puppet.swagger.json$/

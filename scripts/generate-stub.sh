@@ -64,8 +64,8 @@ function gen_web_grpc () {
     --plugin="protoc-gen-ts=node_modules/ts-protoc-gen/bin/protoc-gen-ts" \
     --ts_out="service=grpc-web:${OUT_DIR}"
 }
-function gen_open_api () {
-  pushd open-api
+function gen_openapi () {
+  pushd openapi
   make generate
   popd
 }
@@ -77,7 +77,7 @@ function main () {
 
   gen_web_grpc
 
-  gen_open_api
+  gen_openapi
 }
 
 main

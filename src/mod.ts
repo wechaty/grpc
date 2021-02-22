@@ -1,5 +1,5 @@
 import * as proto from './proto'
-import * as openApi from './open-api'
+import * as openApi from './openapi'
 import {
   VERSION,
 }           from './config'
