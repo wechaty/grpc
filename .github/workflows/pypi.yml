@@ -16,6 +16,12 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: 3.9
+    - uses: actions/cache@master
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('python/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
 
     - name: Install Protoc
       uses: arduino/setup-protoc@master
@@ -42,6 +48,12 @@ jobs:
       - uses: actions/setup-python@v1
         with:
           python-version: 3.9
+      - uses: actions/cache@master
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('python/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
 
       - name: Install Protoc
         uses: arduino/setup-protoc@master
@@ -71,7 +83,13 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v1
         with:
-          python-version: '3.7'
+          python-version: '3.9'
+      - uses: actions/cache@master
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('python/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
 
       - name: Install Protoc
         uses: arduino/setup-protoc@master
