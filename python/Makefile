@@ -9,7 +9,7 @@ all : generate
 
 .PHONY: clean
 clean:
-	rm -fr generated/*
+	rm -fr src/*
 
 .PHONY: install
 install:
@@ -17,8 +17,8 @@ install:
 	pip3 install -r requirements-dev.txt
 
 .PHONY: test
-pytest:
-	python3 -m pytest src/ tests/
+test:
+	python3 -m pytest tests/
 
 code:
 	code .
