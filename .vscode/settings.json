@@ -55,7 +55,7 @@
   },
   "protoc": {
     "options": [
-        "--proto_path=protobuf"
+      "--proto_path=source_relative"  // https://github.com/zxh0/vscode-proto3/issues/31#issuecomment-628162495
     ],
   },
   "alignment": {
@@ -75,6 +75,14 @@
     "javascript",
     "typescript",
   ],
+  "cSpell.words": [
+    "PYPI",
+    "bdist",
+    "proto",
+    "sdist",
+    "setuptools"
+  ],
+  "python.linting.pylintEnabled": true,
 
 }
 

@@ -1,7 +1,7 @@
 # Makefile for Python Wechaty
 #
 # 	GitHb: https://github.com/wechaty/python-wechaty
-# 	Author: Huan LI <zixia@zixia.net> git.io/zixia
+# 	Author: Huan LI <zixia@zixia.net> https://github.com/huan
 #
 
 .PHONY: all
@@ -9,16 +9,17 @@ all : generate
 
 .PHONY: clean
 clean:
-	rm -fr generated/*
+	rm -fr src/*
 
 .PHONY: install
 install:
-	pip install -r requirements.txt
-	pip install -r requirements-dev.txt
+	pip3 install -r requirements.txt
+	pip3 install -r requirements-dev.txt
+	../scripts/install-protoc.sh
 
 .PHONY: test
-pytest:
-	pytest src/ tests/
+test:
+	python3 -m pytest tests/
 
 code:
 	code .

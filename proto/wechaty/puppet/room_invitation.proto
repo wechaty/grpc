@@ -3,11 +3,17 @@ package wechaty.puppet;
 
 option go_package="github.com/wechaty/go-grpc/wechaty/puppet";
 option java_package="io.github.wechaty.grpc.puppet";
+option csharp_namespace = "github.wechaty.grpc.puppet";
 
 import "google/protobuf/wrappers.proto";
 
 message RoomInvitationPayloadRequest {
   string                      id      = 1;
+  /**
+   * Huan(202002): `payload` should be removed.
+   *  The puppet server should take the responsibilities
+   *  for storing the unaccepted friend-request payload.
+   */
   google.protobuf.StringValue payload = 2;
 }
 message RoomInvitationPayloadResponse {

@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+#
+# DEPRECATED: this script was deprecated
+#   https://github.com/wechaty/grpc/issues/46
+#
+# Huan(20200222): betterproto[compiler]>=2.0.0b2 is OK
+#
+
 set -eo pipefail
 
 function echo_name () {
@@ -25,7 +32,7 @@ function main () {
   cat <<'_EOF_'
 syntax = "proto3";
 import "google/protobuf/wrappers.proto";
-package wechaty.puppet;
+package wechaty;
 _EOF_
 
   for file in ../proto/wechaty/puppet/*.proto; do
