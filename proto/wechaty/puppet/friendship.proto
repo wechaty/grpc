@@ -63,7 +63,7 @@ message FriendshipSearchWeixinResponse {
 message FriendshipAddRequest {
   string contact_id = 1;
   string hello = 2;
-  string options = 2;
+  string options = 3;
 }
 message FriendshipAddResponse {}
 
