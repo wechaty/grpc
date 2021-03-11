@@ -62,9 +62,9 @@ message FriendshipSearchWeixinResponse {
 
 
 message FriendshipAddOptions {
-  string hello = 1;
-  string room_id = 2;
-  string contact_id = 3;
+  optional string hello = 1;
+  optional string room_id = 2;
+  optional string contact_id = 3;
 }
 message FriendshipAddRequest {
   string contact_id = 1;
