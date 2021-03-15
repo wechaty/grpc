@@ -60,16 +60,11 @@ message FriendshipSearchWeixinResponse {
   google.protobuf.StringValue contact_id = 1;
 }
 
-
-message FriendshipAddOptions {
-  optional string hello = 1;
-  optional string room_id = 2;
-  optional string contact_id = 3;
-}
 message FriendshipAddRequest {
   string contact_id = 1;
-  string hello = 2;
-  FriendshipAddOptions options = 3;
+  google.protobuf.StringValue hello = 2;
+  google.protobuf.StringValue inviter_room_id = 3;
+  google.protobuf.StringValue inviter_contact_id = 4;
 }
 
 message FriendshipAddResponse {}
