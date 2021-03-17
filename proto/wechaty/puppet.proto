@@ -124,7 +124,6 @@ service Puppet {
 
   rpc MessageRecall (puppet.MessageRecallRequest) returns (puppet.MessageRecallResponse) {}
   rpc MessageForward (puppet.MessageForwardRequest) returns (puppet.MessageForwardResponse) {}
-  rpc MessageOfflineForward (puppet.MessageOfflineForwardRequest) returns (puppet.MessageForwardResponse) {}
 
   /**
    *
