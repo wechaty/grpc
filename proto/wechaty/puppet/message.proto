@@ -171,7 +171,7 @@ message MessageRecallResponse {
   bool success = 1;
 }
 message MessageForwardRequest{
-  string id = 1;
+  string message_id = 1;
   string conversation_id = 2;
 }
 message MessageForwardResponse {
