@@ -76,9 +76,6 @@ t.*
 .idea
 target/
 
-# Python
-python/src/
-
 # csharp
 *.nupkg
 .vs/
@@ -94,3 +91,4 @@ csharp/Wechaty.Grpc/bin/
 csharp/Wechaty.Grpc/nupkg/package/
 csharp/Wechaty.Grpc/Properties
 
+third-party/
