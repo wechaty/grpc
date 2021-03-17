@@ -36,9 +36,9 @@ function check_protoc_version () {
     exit 1
   }
 
-  # https://github.com/wechaty/grpc/issues/116
-  (($minorVer >= 5)) || {
-    echo "protoc minor version must >= 5 (the installed version is $protocVersion)"
+  # https://github.com/wechaty/grpc/issues/109
+  (($minorVer >= 15)) || {
+    echo "protoc minor version must >= 15 (the installed version is $protocVersion)"
     exit 1
   }
 
