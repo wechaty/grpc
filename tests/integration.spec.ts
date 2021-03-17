@@ -3,7 +3,7 @@
 import { test }  from 'tstest'
 
 import util from 'util'
-import grpc from 'grpc'
+import grpc from '@grpc/grpc-js'
 
 import {
   EventResponse,
