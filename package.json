@@ -49,7 +49,9 @@
     "url": "https://github.com/wechaty/grpc/issues"
   },
   "homepage": "https://github.com/wechaty/grpc#readme",
-  "dependencies": {},
+  "dependencies": {
+    "google-protobuf": "^3.15.6"
+  },
   "devDependencies": {
     "@chatie/eslint-config": "^0.12.3",
     "@chatie/git-scripts": "^0.6.2",
@@ -58,7 +60,6 @@
     "@grpc/grpc-js": "^1.2.11",
     "@types/google-protobuf": "^3.7.4",
     "@types/protobufjs": "^6.0.0",
-    "google-protobuf": "^3.15.6",
     "grpc-tools": "^1.11.0",
     "grpc_tools_node_protoc_ts": "^5.1.3",
     "grpcc": "^1.1.3",

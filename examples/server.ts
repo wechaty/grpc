@@ -1,5 +1,5 @@
 /* eslint-disable sort-keys */
-
+import util from 'util'
 import grpc from '@grpc/grpc-js'
 
 import {
@@ -17,7 +17,7 @@ import {
   puppetServerImpl,
 }                     from '../tests/puppet-server-impl'
 
-let eventStream: undefined | grpc.ServerWritableStream<EventRequest>
+let eventStream: undefined | grpc.ServerWritableStream<EventRequest, EventResponse>
 const dingQueue = [] as string[]
 
 /**
@@ -81,7 +81,10 @@ async function main () {
     PuppetService,
     puppetServerExample,
   )
-  server.bind('127.0.0.1:8788', grpc.ServerCredentials.createInsecure())
+  await util.promisify(server.bindAsync.bind(server))(
+    '127.0.0.1:8788',
+    grpc.ServerCredentials.createInsecure(),
+  )
   server.start()
   return 0
 }
