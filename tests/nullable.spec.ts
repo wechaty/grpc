@@ -4,7 +4,7 @@ import { test }  from 'tstest'
 
 import util from 'util'
 
-import grpc from '@grpc/grpc-js'
+import * as grpc from '@grpc/grpc-js'
 
 import {
   ContactAliasRequest,
@@ -66,16 +66,16 @@ test('use StringValue to support nullable values', async (t) => {
 
   // FIXME: Huan(202002) if the port has been used by another grpc server, this will still bind with succeed!
   // The result will be one port binded by two grpc server, and they are all working well...
-  const port = await util.promisify(server.bindAsync)(
+  const port = await util.promisify(server.bindAsync.bind(server))(
     SERVER_ENDPOINT,
     grpc.ServerCredentials.createInsecure(),
   )
-
   if (!port) {
     t.fail(`server bind to ${SERVER_ENDPOINT} failed.`)
     return
   }
 
+  // console.info('port', port)
   server.start()
 
   const client = new PuppetClient(
