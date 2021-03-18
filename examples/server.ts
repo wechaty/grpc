@@ -1,6 +1,6 @@
 /* eslint-disable sort-keys */
 import util from 'util'
-import grpc from '@grpc/grpc-js'
+import * as grpc from '@grpc/grpc-js'
 
 import {
   IPuppetServer,
@@ -81,10 +81,11 @@ async function main () {
     PuppetService,
     puppetServerExample,
   )
-  await util.promisify(server.bindAsync.bind(server))(
+  const port = await util.promisify(server.bindAsync.bind(server))(
     '127.0.0.1:8788',
     grpc.ServerCredentials.createInsecure(),
   )
+  console.info('Listen on port:', port)
   server.start()
   return 0
 }
