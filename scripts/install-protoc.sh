@@ -79,12 +79,21 @@ function install_protoc_gen_openapiv2 () {
 #     https://raw.githubusercontent.com/protocolbuffers/protobuf/master/src/google/protobuf/descriptor.proto
 # }
 
+function install_protoc_gen_doc () {
+  if command -v protoc-gen-doc; then
+    echo "install skipped: $(command -v protoc-gen-doc) exists"
+    return 0
+  fi
+  go install github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc
+}
+
 function main () {
   install_protoc
   check_protoc_version
 
   install_protoc_gen_lint
   install_protoc_gen_openapiv2
+  install_protoc_gen_doc
 
   install_proto_google_api
 }
