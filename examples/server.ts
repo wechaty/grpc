@@ -1,8 +1,8 @@
 /* eslint-disable sort-keys */
 import util from 'util'
-import * as grpc from '@grpc/grpc-js'
 
 import {
+  grpc,
   IPuppetServer,
   PuppetService,
   EventResponse,
@@ -18,6 +18,11 @@ import {
 }                     from '../tests/puppet-server-impl'
 
 let eventStream: undefined | grpc.ServerWritableStream<EventRequest, EventResponse>
+
+/**
+ * Huan(202003): gRPC Wait for Ready Semantics
+ *  https://github.com/grpc/grpc/blob/master/doc/wait-for-ready.md
+ */
 const dingQueue = [] as string[]
 
 /**
@@ -57,6 +62,7 @@ const puppetServerExample: IPuppetServer = {
   ding: (call, callback) => {
     const data = call.request.getData()
     console.info(`ding(${data})`)
+    console.info(call.metadata.getMap())
 
     if (!eventStream) {
       dingQueue.push(data)
