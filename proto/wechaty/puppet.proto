@@ -245,7 +245,7 @@ service Puppet {
    */
   rpc ConversationRead (puppet.ConversationReadRequest) returns (puppet.ConversationReadResponse) {
     option (google.api.http) = {
-      put: "/conversation/{id}/read"
+      put: "/conversation/{conversation_id}/read"
       body: "*"
     };
   }
