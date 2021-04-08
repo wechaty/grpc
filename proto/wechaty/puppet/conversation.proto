@@ -1,0 +1,10 @@
+syntax = "proto3";
+package wechaty.puppet;
+
+option csharp_namespace = "github.wechaty.grpc.puppet";
+
+message ConversationReadRequest {
+  string conversation_id = 1;
+}
+
+message ConversationReadResponse {}
