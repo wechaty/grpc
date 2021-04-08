@@ -67,6 +67,12 @@ export const puppetServerImpl: IPuppetServer = {
     throw new Error('not implemented.')
   },
 
+  conversationRead: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
   ding: (call, callback) => {
     void call
     void callback
@@ -116,12 +122,6 @@ export const puppetServerImpl: IPuppetServer = {
   },
 
   logout: (call, callback) => {
-    void call
-    void callback
-    throw new Error('not implemented.')
-  },
-
-  conversationRead: (call, callback) => {
     void call
     void callback
     throw new Error('not implemented.')
