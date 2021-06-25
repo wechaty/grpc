@@ -1,0 +1,560 @@
+- 0.23.12
+- add link to medium
+- 0.23.11
+- Support optional when generate grpc stub js code
+- add PuppetService export test
+- 0.23.10
+- check exported for IPuppetServer
+- port might be negative
+- 0.23.9
+- 0.23.8
+- v0.23.7
+- 0.24.0
+- check grpc for existance
+- export grpc for higher layers
+- Merge branch 'master' of github.com:wechaty/grpc
+- docs
+- 0.23.5
+- add grpc-js ad deps
+- Replace grpc with @grpc/grpc-js (#127)
+- Add room member (#122)
+- 0.21.1
+- fix linting
+- Support forwarding message (#105)
+- 0.20.19
+- specify beta version for install
+- 0.20.18
+- fix name
+- 0.20.17
+- clean
+- a workaround to fix issue #120
+- 0.20.16
+- add openapi link
+- 0.20.15
+- fix python proto path
+- 0.20.14
+- use proto full path & fix openapi
+- 0.20.13
+- fix
+- cean
+- compatible with grpc-dynamic-gateway (https://github.com/konsumer/grpc-dynamic-gateway/issues/50)
+- 0.20.12
+- sync swagger version to gRPC
+- 0.20.11
+- 0.20.10
+- 0.20.9
+- explicit python3 & pip3
+- 0.20.8
+- use abs path for install
+- Pypi rename wechaty grpc (#118)
+- add openApi & proto for export (#119)
+- 0.20.4
+- fix npm publish
+- 0.20.3
+- install 3rd party protos
+- use @master version of github actions, enable cache
+- 0.20.2
+- add more node version for testing
+- upgrade all deps
+- test ok
+- check protoc version to make sure >= 3.5 (#116)
+- lint
+- 0.20.1
+- wechaty-grpc v0.20
+- 0.19.2
+- add gRPC Web example
+- Rename & Add OpenAPI Specification Generator (#107)
+- init openapi
+- fix .net grpc  for the new file file_box.proto and update TargetFramework to  netstandard2.0 (#104)
+- 0.18.12
+- fix go-grpc generate failed (#101)
+- 0.18.11
+- link to #99
+- 0.18.10
+- fix file rename
+- 0.18.9
+- add some stream notices comments
+- Export file box (#98)
+- Improve stream message (#95)
+- Update README.md
+- 0.18.3
+- use data instead of chunk
+- Use metadata (#93)
+- keep the latest betterproto version (#92)
+- Fix go ci (#91)
+- Send message stream (#89)
+- Bump ts-protoc-gen from 0.12.0 to 0.13.0 (#86)
+- Bump grpc_tools_node_protoc_ts from 4.1.5 to 5.0.0 (#87)
+- add file stream and image stream rpc call (#88)
+- add csharp nuget  (#84)
+- bump version to publish new changes (#83)
+- add phone to contact payload (#82)
+- add more methods related to new wechaty-puppept update (#81)
+- add contact phone rpc call definition (#80)
+- add dirty rpc function definition for sync data (#79)
+- 0.17.1
+- merge
+- 0.16.2
+- fix github url
+- Update README.md
+- Update README.md
+- Update README.md
+- Update README.md
+- Update README.md
+- fix to v0.17
+- v0.17
+- Update README.md
+- tune layout for source code
+- add php action (#78)
+- 0.16.5
+- fix eslint
+- Bump @chatie/eslint-config from 0.8.1 to 0.12.1 (#75)
+- 0.16.4
+- add all codeowners for languages
+- 0.16.3
+- add PHP Grpc & maintainers
+- add php rpc (#76)
+- 0.16.2
+- specify python v3
+- Update betterproto (#46)
+- Bump @chatie/git-scripts from 0.2.5 to 0.6.2 (#68)
+- Bump grpc_tools_node_protoc_ts from 2.5.11 to 4.0.0 (#69)
+- Bump @chatie/tsconfig from 0.8.0 to 0.10.1 (#70)
+- 0.16.1
+- 0.16.0
+- merge
+- 0.13.10
+- add NOTICE
+- update pypi install_requires config (#64)
+- 0.15.5
+- use better relative path for proto_path (https://github.com/zxh0/vscode-proto3/issues/31#issuecomment-628162495)
+- deploy release jar (#61)
+- 0.15.4 (#63)
+- keep the package dir name in site-packages as `chatie_grpc` (#62)
+- 0.15.3 (#60)
+- update setup.py to fix pypi bug (#59)
+- add grpc debug client link
+- 0.15.2
+- try to install request (https://github.com/grpc/grpc-node/issues/922#issuecomment-610972948)
+- Merge pull request #58 from wj-Mcat/master
+- update the version of chatie_grpc
+- change python proto package name
+- Merge pull request #56 from su-chang/spell-mistake
+- This is a breaking change!
+- 0.13.10
+- fix: correct spell mistakes
+- 0.13.9
+- remove nodejs v13 temporary (#55)
+- 0.13.8
+- do not test under windows (#54)
+- better badges
+- 0.13.7
+- clean protoc path
+- 0.13.6
+- clean badge
+- do not depends on bash 4 globstar
+- rename GitHub Action to maven
+- 0.13.5
+- remove requirement of bash 4 for macos
+- 0.13.4
+- install lint:protoc
+- 0.13.3
+- try to provide a github token (https://github.com/arduino/setup-protoc/issues/6)
+- 0.13.2
+- add exact date
+- 0.13.1
+- add Java module
+- 0.11.42
+- Merge pull request #52 from diaozxin007/master
+- fix maven artifactId,version And add Kotlin support
+- fix maven artifactId,version And add Kotlin support
+- 0.11.41
+- install protoc for go testing
+- 0.11.40
+- use GitHub action to install protoc
+- 0.11.39
+- try to work around in win32
+- setup go before publish
+- 0.11.38
+- fix windows regexp in bash
+- 0.11.37
+- fix go deploy
+- 0.11.36
+- fix sudo under win32
+- 0.11.35
+- fix go deploy commit with user config
+- 0.11.34
+- use git config for one commit
+- 0.11.33
+- fix bash elif
+- 0.11.32
+- add windows ci support
+- 0.11.31
+- re-generate go stub code before publish
+- 0.11.30
+- test in all platforms for node.js
+- 0.11.29
+- fix node.js yml
+- 0.11.28
+- add node.js versions testing for full coverage
+- use node TLS version for npm publishing
+- fix go yml
+- 0.11.27
+- Add GitHub Actions for Java Marven (#53)
+- 0.11.26
+- Merge branch 'master' of github.com:Chatie/grpc
+- 0.11.25
+- Skip public/deploy go in Pull Request
+- Add Java Support
+- Add Java Support
+- Add Java Support
+- Add Java Support
+- Bump patch version (https://github.com/wechaty/go-grpc/issues/2#issuecomment-613225414)
+- 0.11.24
+- add node badge
+- 0.11.23
+- git config user info
+- 0.11.22
+- upgrade actions/go to v2
+- 0.11.21
+- fix go
+- 0.11.20
+- init go path
+- 0.11.19
+- see see
+- 0.11.18
+- fix
+- 0.11.17
+- whats wrong?
+- 0.11.16
+- fix -R
+- 0.11.15
+- take the ownership of ~/go
+- 0.11.14
+- sudo for go get
+- 0.11.13
+- install protoc-gen-go global
+- 0.11.12
+- install the latest protobuf compiler
+- 0.11.11
+- Use SSH Key to deploy
+- 0.11.10
+- Deploy to go repo
+- 0.11.8
+- fix path & makefile
+- 0.11.7
+- fix setup.py location
+- 0.11.6
+- fix python
+- 0.11.5
+- fix python generate
+- 0.11.4
+- fix go module url
+- 0.11.3
+- Python: move to python subdir
+- go clean
+- add Go sub dir for easy maintain
+- add Go sub dir for easy maintain
+- 0.11.2
+- Go: delete go/* (#50)
+- Python: use chatie-grpc instead of chatie_grpc
+- add go badge
+- install proto compiler
+- 0.11.1
+- move Go module to github.com/wechaty/go-grpc (#50)
+- remove generated Go files (#50)
+- script clean
+- Merge pull request #51 from dchaofei/master
+- Merge branch 'master' of https://github.com/dchaofei/grpc
+- support go
+- support go
+- Merge pull request #49 from dchaofei/master
+- Bump version minor number from 9 to 13
+- fix generate-stub-py
+- fix lint:proto
+- modify generate-stub
+- modify puppet.proto
+- modify .proto to apply to golang
+- 0.9.3
+- link to pypi
+- 0.9.2
+- BREAKING CHANGE: DONG id from 23 to 3
+- 0.9.1
+- rename WATCHDOG to HEARTBEAT (https://github.com/wechaty/wechaty-puppet/issues/88)
+- 0.7.12
+- add trouble shooting doc link
+- 0.7.11
+- add debug article link
+- 0.7.10
+- add env var doc
+- fix name
+- 0.7.9
+- add check for skipping exist version when publishing to NPM
+- 0.7.8
+- fix doc linting
+- Merge pull request #47 from Chatie/goodbye-greenkeeper
+- chore(readme): remove Greenkeeper badge
+- 0.7.7
+- add badges
+- 0.7.6
+- use python protoc for python
+- 0.7.5
+- install protoc
+- 0.7.4
+- add grpcio-tools for protoc compiler
+- 0.7.3
+- add make generate
+- 0.7.2
+- fix cicd script
+- 0.7.1
+- Enable GitHub Actions for CI/CD PyPI
+- 0.7.0
+- add python pypi publish settings
+- add python pypi publish settings
+- 0.6.17
+- python client with event emitter
+- 0.6.16
+- prepare python chatie_grpc
+- 0.6.15
+- merge
+- 0.6.14
+- 0.6.13
+- merge proto files (#46)
+- 0.6.13
+- code clean
+- add python staffs
+- smart wait for promise
+- Merge branch 'master' of github.com:Chatie/grpc
+- add integration test for ding & event
+- 0.6.12
+- add receiverId to RoomInvitation
+- add receiverId to RoomInvitation
+- 0.6.11
+- export StringValue for google-protobuf
+- 0.6.10
+- use NODE_AUTH_TOKEN instead of NPM_TOKEN
+- 0.6.9
+- Merge branch 'master' of github.com:Chatie/grpc
+- 0.6.8
+- Merge pull request #44 from Chatie/greenkeeper/initial
+- chore(package): update dependencies
+- 0.6.7
+- upgrade deps
+- fix json
+- Merge pull request #42 from Chatie/greenkeeper/grpc_tools_node_protoc_ts-2.5.9
+- Merge branch 'master' into greenkeeper/grpc_tools_node_protoc_ts-2.5.9
+- Merge pull request #39 from Chatie/greenkeeper/tstest-0.4.10
+- Update package.json
+- Merge pull request #40 from Chatie/greenkeeper/@types/google-protobuf-pin-3.7.1
+- Merge branch 'master' into greenkeeper/tstest-0.4.10
+- Merge branch 'master' into greenkeeper/@types/google-protobuf-pin-3.7.1
+- Merge pull request #38 from Chatie/greenkeeper/grpc-pin-1.24.1
+- Merge branch 'master' into greenkeeper/grpc-pin-1.24.1
+- Merge pull request #37 from Chatie/greenkeeper/grpc_tools_node_protoc_ts-pin-2.5.7
+- Merge branch 'master' into greenkeeper/grpc_tools_node_protoc_ts-pin-2.5.7
+- Merge pull request #31 from Chatie/greenkeeper/grpc_tools_node_protoc_ts-2.5.8
+- Merge branch 'master' into greenkeeper/grpc_tools_node_protoc_ts-2.5.8
+- Merge pull request #30 from Chatie/greenkeeper/grpc-1.24.2
+- Merge branch 'master' into greenkeeper/grpc-1.24.2
+- Merge pull request #29 from Chatie/greenkeeper/ts-protoc-gen-0.12.0
+- Merge branch 'master' into greenkeeper/ts-protoc-gen-0.12.0
+- Merge pull request #28 from Chatie/greenkeeper/@types/google-protobuf-3.7.2
+- Merge branch 'master' into greenkeeper/@types/google-protobuf-3.7.2
+- Merge pull request #27 from Chatie/greenkeeper/tstest-0.4.9
+- Merge branch 'master' into greenkeeper/tstest-0.4.9
+- fix: pin grpc_tools_node_protoc_ts to 2.5.7
+- chore: pin grpc to 1.24.1
+- fix: pin @types/google-protobuf to 3.7.1
+- Merge pull request #26 from Chatie/greenkeeper/grpc-tools-1.8.0
+- Merge branch 'master' into greenkeeper/grpc-tools-1.8.0
+- 0.6.6
+- merge
+- 0.6.5
+- fix dependencies
+- chore(package): update tstest to version 0.4.10
+- Merge pull request #25 from Chatie/greenkeeper/wechaty-puppet-0.20.0
+- fix(package): update wechaty-puppet to version 0.20.0
+- v0.6
+- 0.6.4
+- add actions link
+- 0.6.3
+- add messageImage (https://github.com/wechaty/wechaty/issues/1871)
+- 0.6.2
+- more stun/turn/ice links
+- 0.6.1
+- 0.6.0
+- 0.5.26
+- add google-protobuf
+- 0.5.25
+- set payload for room_invitation and friendship payloads
+- 0.5.24
+- fix proto
+- 0.5.23
+- fix linting order
+- 0.5.22
+- fix linting order
+- 0.5.21
+- fix smoke testing
+- 0.5.20
+- fix tests
+- 0.5.19
+- code clean & typo fix
+- 0.5.18
+- export room_member & tag
+- 0.5.17
+- add scene enum to friendship
+- add scene enum to friendship
+- 0.5.16
+- fix payload
+- fix payload
+- 0.5.15
+- linting
+- fix payload
+- 0.5.14
+- fix typo: conversitional_id -> conversation_id
+- 0.5.13
+- add mention_ids to message payload
+- 0.5.12
+- clean
+- 0.5.11
+- fix chmod -R
+- 0.5.10
+- chmod
+- 0.5.9
+- add execute permission to protoc
+- 0.5.8
+- add execute permission to protoc
+- 0.5.7
+- use umask instead of chmod
+- 0.5.6
+- fix permission
+- 0.5.5
+- specific include path for google proto
+- 0.5.4
+- fix ci
+- 0.5.3
+- fix ci
+- 0.5.2
+- fix ci & add doc
+- 0.5.1
+- 0.5.0
+- code clean & add unit tests
+- 0.2.25
+- clean names & fix example
+- Init version of proto buffers definatioin for wechaty puppet abstract
+- 0.2.24
+- Add client streaming: event
+- 0.2.23
+- clean
+- 0.2.22
+- ci clean
+- 0.2.21
+- re-structure code
+- Update npm.yml
+- 0.2.20
+- fix artifact
+- 0.2.19
+- clean env
+- 0.2.18
+- fix artifact
+- 0.2.17
+- upload to artifact
+- 0.2.16
+- install protoc for actions
+- 0.2.15
+- fix action
+- 0.2.14
+- fix action
+- 0.2.13
+- add GitHub Actions
+- docs
+- docs
+- 0.2.12
+- test ci
+- 0.2.11
+- 0.2.10
+- fix dist smoke testing
+- include generated wechaty directory when npm packing
+- 0.2.9
+- fix linting
+- Merge pull request #23 from Chatie/greenkeeper/nodemon-2.0.0
+- Merge pull request #14 from Chatie/greenkeeper/ts-protoc-gen-0.8.0
+- Merge branch 'master' into greenkeeper/ts-protoc-gen-0.8.0
+- Merge pull request #21 from Chatie/greenkeeper/@chatie/eslint-config-0.8.1
+- 0.2.8
+- git pushMerge branch 'master' of github.com:Chatie/grpc
+- skip osx ci
+- Merge branch 'master' into greenkeeper/nodemon-2.0.0
+- Merge pull request #24 from Chatie/greenkeeper/@chatie/tsconfig-0.8.0
+- 0.2.7
+- fix osx bash for globstar
+- 0.2.6
+- add execution permission
+- 0.2.5
+- re-structure directory
+- install proto linting tool
+- remove tslint
+- Upgrade protobuf version to v3.11.3 and install go protoc-gen-lint tool
+- add proto_path to protoc
+- format docs
+- add proto linting & enable globstar
+- Rename proto files
+- chore(package): update @chatie/tsconfig to version 0.8.0
+- chore(package): update grpc_tools_node_protoc_ts to version 2.5.9
+- chore(package): update nodemon to version 2.0.0
+- chore(package): update grpc_tools_node_protoc_ts to version 2.5.8
+- chore(package): update grpc to version 1.24.2
+- chore(package): update ts-protoc-gen to version 0.12.0
+- chore(package): update @types/google-protobuf to version 3.7.2
+- chore(package): update tstest to version 0.4.9
+- chore(package): update @chatie/eslint-config to version 0.8.1
+- follow chatie devops toolset
+- chore(package): update grpc-tools to version 1.8.0
+- Merge pull request #16 from Chatie/greenkeeper/@types/node-11.9.0
+- chore(package): update @types/node to version 11.9.0
+- chore(package): update ts-protoc-gen to version 0.8.0
+- Upgrade TypeScript 3.0 and enhance Promisify (#7)
+- clean config
+- add --proto_path to .vscode config https://github.com/zxh0/vscode-proto3/issues/31#issuecomment-409175121)
+- clean code
+- fix smoke testing
+- add puppet proto
+- use script to install protoc
+- add badges
+- add protoc installer
+- add protoc installer
+- add protoc installer
+- 0.2.4
+- install protoc for linux
+- 0.2.3
+- run generate before test
+- 0.2.2
+- ready to publish
+- Merge branch 'master' of github.com:Chatie/grpc
+- add client server
+- add some dep
+- Merge branch 'master' of github.com:Chatie/grpc
+- add doc
+- Merge pull request #1 from Chatie/greenkeeper/initial
+- docs(readme): add Greenkeeper badge
+- chore(package): update dependencies
+- better next
+- code & doc clean
+- clean lint rules
+- add docs & logo
+- generate all stubs for js/ts
+- git pushMerge branch 'master' of github.com:Chatie/grpc
+- code clean
+- code clean
+- Merge branch 'master' of github.com:Chatie/grpc
+- code clean
+- add links
+- generate tools ready
+- code clean
+- generator ready
+- add links
+- code clean
+- devops
+- add travis config
+- init grpc examples
+- Initial commit
