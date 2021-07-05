@@ -9,6 +9,15 @@ Happy contributing!
 
 -->
 
+####  Checklist
+
+- [ ] Commit Messages follow the [Conventional Commits](https://conventionalcommits.org/) pattern
+  - A feature commit message is prefixed "feat:"
+  - A bugfix commit message is prefixed "fix:"
+- [ ] Tests for the changes have been added
+- [ ] CI has been passed. (GitHub actions all turns green)
+- [ ] CLA has been signed
+
 #### References to other Issues or PRs
 
 <!-- If this pull request fixes an issue, write "Fixes #NNNN" in that exact
