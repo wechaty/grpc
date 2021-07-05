@@ -9,7 +9,7 @@ Happy contributing!
 
 -->
 
-####  Checklist
+#### Checklist
 
 - [ ] Commit Messages follow the [Conventional Commits](https://conventionalcommits.org/) pattern
   - A feature commit message is prefixed "feat:"
@@ -31,3 +31,14 @@ open. -->
 #### Brief description of what is fixed or changed
 
 #### Other comments
+
+<!--
+    Don't forget about CHANGELOG!
+
+    Changelog entry format:
+    - [#<PR-id>](<PR-URL>) Wechaty gRPC <Component> ...
+
+    <PR-id> Id of your pull request.
+    <PR-URL> URL of your PR such as https://github.com/wechaty/grpc/pull/<PR-id>
+    <Component> Component affected by your changes such as csharp, go, java, etc.
+-->
