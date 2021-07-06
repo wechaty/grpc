@@ -27,7 +27,7 @@ message RoomPayloadResponse {
 message RoomAddRequest {
   string id = 1;
   string contact_id = 2;
-  string force_invite = 3;
+  bool   force_invite = 3;
 }
 message RoomAddResponse {}
 
