@@ -50,7 +50,7 @@ gRPC Service & Protocol Buffers for Wechaty Puppet
 <li><a href="#Resources">Resources</a></li>
 <li><a href="#Contributing">Contributing</a></li>
 <li><a href="#Maintainer">Maintainer</a></li>
-<li><a href="#Copyright-&-License">Copyright & License</a></li>
+<li><a href="#Copyright--License">Copyright & License</a></li>
 </ol>
 
 ## About
