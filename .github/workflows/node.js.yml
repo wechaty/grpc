@@ -5,9 +5,9 @@ name: Node.js
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   build:
@@ -18,35 +18,35 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-    - uses: actions/checkout@master
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@master
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: Set up Go
-      uses: actions/setup-go@master
-      id: go
+      - uses: actions/checkout@master
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@master
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Set up Go
+        uses: actions/setup-go@master
+        id: go
 
-    - name: Install Protoc
-      uses: arduino/setup-protoc@master
-      with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install Protoc
+        uses: arduino/setup-protoc@master
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
 
-    - uses: actions/cache@master
-      with:
-        path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
-    - name: Install Dependencies
-      run: |
-        npm install
-        npm run install:protoc
+      - uses: actions/cache@master
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Install Dependencies
+        run: |
+          npm install
+          npm run install:protoc
 
-    - name: Generate gRPC Stubs
-      run: npm run generate
+      - name: Generate gRPC Stubs
+        run: npm run generate
 
-    - name: Test
-      run: npm test
-      env:
-        CI: true
+      - name: Test
+        run: npm test
+        env:
+          CI: true

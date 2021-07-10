@@ -11,33 +11,33 @@ jobs:
 
     runs-on: ${{ matrix.os }}
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v1
-      with:
-        python-version: 3.9
-    - uses: actions/cache@master
-      with:
-        path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('python/requirements.txt') }}
-        restore-keys: |
-          ${{ runner.os }}-pip-
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.9
+      - uses: actions/cache@master
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('python/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
 
-    - name: Install Protoc
-      uses: arduino/setup-protoc@master
-    - name: Install Protoc 3rd party protos
-      run: scripts/install-protoc.sh
+      - name: Install Protoc
+        uses: arduino/setup-protoc@master
+      - name: Install Protoc 3rd party protos
+        run: scripts/install-protoc.sh
 
-    - name: Install dependencies
-      run: |
-        cd python
-        python -m pip install --upgrade pip
-        make install
-    - name: Test
-      run: |
-        cd python
-        make generate
-        make test
+      - name: Install dependencies
+        run: |
+          cd python
+          python -m pip install --upgrade pip
+          make install
+      - name: Test
+        run: |
+          cd python
+          make generate
+          make test
 
   pack:
     name: Pack
@@ -83,7 +83,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v1
         with:
-          python-version: '3.9'
+          python-version: "3.9"
       - uses: actions/cache@master
         with:
           path: ~/.cache/pip
