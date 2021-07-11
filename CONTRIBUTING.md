@@ -11,6 +11,8 @@ Thank you for your time on Wechaty gRPC. Wechaty gRPC is gRPC Service & Protocol
 - Review [pull requests](https://github.com/wechaty/grpc/pulls)
 - Start [hacking on Wechaty](https://github.com/wechaty/grpc/blob/master/CONTRIBUTING.md)
 
+**Note:** You can also refer to this for [General Wechaty blog post guidelines](https://github.com/wechaty/wechaty.js.org).
+
 ### Why contribute
 
 As an open-source product, Wechaty thrives on the contributions of community members. Whatever your skillset is, there is a lot you can do to help us make Wechaty better!
