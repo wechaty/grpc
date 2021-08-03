@@ -210,6 +210,12 @@ See also: [AIP-4222 - Routing headers](https://google.aip.dev/client-libraries/4
 
 Check out [RESOURCES.md](RESOURCES.md) file for learning resources.
 
+## Guidelines
+
+- [Google Protocol Buffers Style Guide](https://developers.google.com/protocol-buffers/docs/style)
+- [Google Cloud API Naming Conventions](https://cloud.google.com/apis/design/naming_convention)
+- [Google Cloud Cloud API Design Guide](https://cloud.google.com/apis/design/)
+
 ## Contributing
 
 Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
