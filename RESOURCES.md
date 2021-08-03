@@ -70,12 +70,22 @@ Learning Resources
 
 - [gRPC-Web: Moving past REST+JSON towards type-safe Web APIs](https://improbable.io/blog/grpc-web-moving-past-restjson-towards-type-safe-web-apis)
 - [Library for making gRPC-Web requests intended for TypeScript from either a browser or Node.js.](https://github.com/improbable-eng/grpc-web/tree/master/ts)
+- [gRPC-Web: Moving past REST+JSON towards type-safe Web APIs](https://improbable.io/blog/grpc-web-moving-past-restjson-towards-type-safe-web-apis)
+- [Library for making gRPC-Web requests intended for TypeScript from either a browser or Node.js.](https://github.com/improbable-eng/grpc-web/tree/master/ts)
 
 ## TypeScript Generator
 
 - [A Typescript definition file generator for gRPC services](https://github.com/anfema/grpc-code-generator)
 - [gRPC Web TypeScript Code Generation](https://github.com/improbable-eng/grpc-web/blob/master/ts/docs/code-generation.md)
 - [Protocol Buffers Compiler (protoc) plugin for TypeScript and gRPC-Web.](https://github.com/improbable-eng/ts-protoc-gen)
+
+## gRPC with XDS (Universal Data Plane API) and Service Mesh
+
+- [Traffic Director with proxyless gRPC services overview](https://cloud.google.com/traffic-director/docs/proxyless-overview)
+- [Build Your Own Envoy Control Plane - Steve Sloka, VMware](https://www.youtube.com/watch?v=qAuq4cKEG_E)
+- [Service mesh data plane vs. control plane](https://blog.envoyproxy.io/service-mesh-data-plane-vs-control-plane-2774e720f7fc)
+- [gRPC xDS Loadbalancing](https://salmaan-rashid.medium.com/grpc-xds-loadbalancing-a05f8bd754b8)
+- [Envoy Dynamic configuration (control plane)](https://www.envoyproxy.io/docs/envoy/latest/start/sandboxes/dynamic-configuration-control-plane)
 
 #### More TypeScript
 
@@ -120,7 +130,6 @@ Learning Resources
 ## Miscellaneous Documentation
 
 - [Protocol Buffers Language Guide (proto3)](https://developers.google.com/protocol-buffers/docs/proto3)
-- [Google Protocol Buffers Style Guide](https://developers.google.com/protocol-buffers/docs/style)
 - [Protocol Buffers for TypeScript with Decorators](https://github.com/protobufjs/protobuf.js#using-decorators)
 - [Troubleshooting gRPC](https://github.com/grpc/grpc/blob/master/TROUBLESHOOTING.md)
 - [gRPC environment variables](https://github.com/grpc/grpc/blob/master/doc/environment_variables.md)
