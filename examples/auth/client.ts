@@ -1,3 +1,4 @@
+import { Certificate } from '@grpc/grpc-js/build/src/channel-credentials'
 import fs from 'fs'
 
 import {
@@ -22,13 +23,13 @@ export async function testDing (client: PuppetClient) {
 }
 
 async function main () {
-  // const TOKEN = '__token__'
+  const TOKEN = '__token__'
 
-  // const headerCreds = grpc.credentials.createFromMetadataGenerator((_callMetaOptoins, callback) => {
-  //   const metadata = new grpc.Metadata()
-  //   metadata.add('authorization', `Wechaty ${TOKEN}`)
-  //   callback(null, metadata)
-  // })
+  const headerCreds = grpc.credentials.createFromMetadataGenerator((_callMetaOptoins, callback) => {
+    const metadata = new grpc.Metadata()
+    metadata.add('authorization', `Wechaty ${TOKEN}`)
+    callback(null, metadata)
+  })
 
   const certChain  = fs.readFileSync('client.crt')
   const privateKey = fs.readFileSync('client.key')
@@ -42,18 +43,24 @@ async function main () {
 
   const creds = grpc.credentials.combineChannelCredentials(
     // grpc.credentials.createInsecure(),
-    grpc.credentials.createSsl(rootCerts, privateKey, certChain),
-    // grpc.credentials.createSsl(rootCerts),
-    // headerCreds,
+    // grpc.credentials.createSsl(rootCerts, privateKey, certChain),
+    grpc.credentials.createSsl(rootCerts, null, null, {
+      checkServerIdentity: (hostname: string, _cert: Certificate) => {
+        console.info('hostname', hostname)
+        // console.info('cert', cert.raw.toString())
+        return undefined
+      },
+    }),
+    headerCreds,
   )
 
   // const creds = grpc.credentials.createInsecure()
 
   const client = new PuppetClient(
-    'localhost:8788',
+    '127.0.0.1:8788',
     creds,
     {
-      'grpc.default_authority': 'puppet_token',
+      // 'grpc.default_authority': 'puppet_token',
     },
   )
 
