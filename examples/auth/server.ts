@@ -13,17 +13,43 @@ import {
 import {
   puppetServerImpl,
 }                     from '../../tests/puppet-server-impl'
-import { StatusBuilder } from '@grpc/grpc-js'
+import {
+  StatusBuilder,
+  Metadata,
+}                     from '@grpc/grpc-js'
+// import { Http2SecureServer } from 'http2'
 
-const puppetServerExample: IPuppetServer = {
+import http2 from 'http2'
+
+const origFunc = Metadata.fromHttp2Headers
+Metadata.fromHttp2Headers = function (headers: http2.IncomingHttpHeaders): Metadata {
+  const metadata = origFunc.call(Metadata, headers)
+  console.info('metadata.get', metadata.get('authorization'))
+  const authorizationList = metadata.get('authorization')
+  if (authorizationList.length <= 0) {
+    Object.keys(headers).forEach((key) => {
+      if (key === ':authority') {
+        const authority = headers[key]
+        const authorization = `Wechaty ${authority}`
+        metadata.set('authorization', authorization)
+      }
+    })
+  }
+  return metadata
+}
+
+const puppetServerExample: (server: grpc.Server) => IPuppetServer = server => ({
   ...puppetServerImpl,
 
   ding: (call, callback) => {
-    const data = call.request.getData()
-    console.info(`ding(${data})`)
+    // const data = call.request.getData()
+    // console.info(`ding(${data})`)
     console.info('metadata:', call.metadata.getMap())
-    console.info('getPeer:', call.getPeer())
-    console.info('getDeadLine:', call.getDeadline())
+    // console.info('getPeer:', call.getPeer())
+    // console.info('getDeadLine:', call.getDeadline())
+
+    void server
+    // console.info('server', (server as any))
 
     const error = new StatusBuilder()
       .withCode(GrpcServerStatus.UNAUTHENTICATED)
@@ -37,13 +63,13 @@ const puppetServerExample: IPuppetServer = {
     // console.info('getDeadLine:', call.)
     // callback(error, new DingResponse())
   },
-}
+})
 
 async function main () {
   const server = new grpc.Server()
   server.addService(
     PuppetService,
-    puppetServerExample,
+    puppetServerExample(server),
   )
 
   const serverBindPromise = util.promisify(
@@ -52,12 +78,11 @@ async function main () {
 
   void fs
 
-  const rootCerts: null | Buffer = null // fs.readFileSync('ca.crt')
-  const keyCertPairs: grpc.KeyCertPair[] = []
-  // [{
-  //   cert_chain  : fs.readFileSync('server.crt'),
-  //   private_key : fs.readFileSync('server.key'),
-  // }]
+  const rootCerts: null | Buffer = fs.readFileSync('root-ca.crt')
+  const keyCertPairs: grpc.KeyCertPair[] = [{
+    cert_chain  : fs.readFileSync('server.crt'),
+    private_key : fs.readFileSync('server.key'),
+  }]
   const checkClientCertificate = false
 
   const port = await serverBindPromise(
