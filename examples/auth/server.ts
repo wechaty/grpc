@@ -64,11 +64,15 @@ type ServiceHandler = ServiceHandlerCb | ServiceHandlerEmit
  *  - handleClientStreamingCall
  *  - handleServerStreamingCall
  *  - handleBidiStreamingCall
+ *
+ * See:
+ *  https://grpc.io/docs/guides/auth/#with-server-authentication-ssltls-and-a-custom-header-with-token
  */
-function wrapAuthHandler (
-  handler: UntypedHandleCall,
+function authHandler (
+  validToken : string,
+  handler    : UntypedHandleCall,
 ): ServiceHandler {
-  console.info('wrapAuthHandler')
+  console.info('wrapAuthHandler', handler.name)
   return function (
     call: ServerUnaryCall<any, any>,
     cb?: sendUnaryData<any>,
@@ -77,14 +81,27 @@ function wrapAuthHandler (
 
     const authorization = call.metadata.get('authorization')[0]
     // console.info('authorization', authorization)
+
+    let errMsg = ''
     if (typeof authorization === 'string') {
-      const [wechaty, token] = authorization.split(/\s+/)
-      if (wechaty === 'Wechaty' && token) {
-        handler(
-          call as any,
-          cb as any,
-        )
+      if (authorization.startsWith('Wechaty ')) {
+        const token = authorization.substring(8 /* 'Wechaty '.length */)
+        if (token === validToken) {
+
+          return handler(
+            call as any,
+            cb as any,
+          )
+
+        } else {
+          errMsg = `Invalid Wechaty TOKEN "${token}"`
+        }
+      } else {
+        const type = authorization.split(/\s+/)[0]
+        errMsg = `Invalid authorization type: "${type}"`
       }
+    } else {
+      errMsg = 'No Authorization found.'
     }
 
     /**
@@ -92,7 +109,7 @@ function wrapAuthHandler (
      */
     const error = new StatusBuilder()
       .withCode(GrpcServerStatus.UNAUTHENTICATED)
-      .withDetails('The server need "Authorization: Wechaty TOKEN" to accept the request')
+      .withDetails(errMsg)
       .withMetadata(call.metadata)
       .build()
 
@@ -106,11 +123,11 @@ function wrapAuthHandler (
   }
 }
 
-function guardWechatyTokenAuthorization (
+const wechatyAuthToken = (validToken: string) => (
   puppetServer: IPuppetServer,
-): IPuppetServer {
+) => {
   for (const [key, val] of Object.entries(puppetServer)) {
-    puppetServer[key] = wrapAuthHandler(val)
+    puppetServer[key] = authHandler(validToken, val)
   }
   return puppetServer
 }
@@ -124,31 +141,17 @@ const puppetServerExample: IPuppetServer = {
     const data = call.request.getData()
     console.info(`ding(${data})`)
     console.info('authorization:', call.metadata.getMap()['authorization'])
-    // console.info('getPeer:', call.getPeer())
-    // console.info('getDeadLine:', call.getDeadline())
-
-    // void server
-    // console.info('server', (server as any))
-
-    const error = new StatusBuilder()
-      .withCode(GrpcServerStatus.UNAUTHENTICATED)
-      .withDetails('The server need "Authorization: Wechaty TOKEN" to accept the request')
-      .withMetadata(call.metadata)
-      .build()
-
-    void error
     callback(null, new DingResponse())
-
-    // console.info('getDeadLine:', call.)
-    // callback(error, new DingResponse())
   },
 }
 
 async function main () {
+  const puppetServerExampleWithAuth = wechatyAuthToken('__token__')(puppetServerExample)
+
   const server = new grpc.Server()
   server.addService(
     PuppetService,
-    guardWechatyTokenAuthorization(puppetServerExample),
+    puppetServerExampleWithAuth,
   )
 
   const serverBindPromise = util.promisify(
@@ -158,17 +161,17 @@ async function main () {
   void fs
 
   const rootCerts: null | Buffer = fs.readFileSync('root-ca.crt')
+  void rootCerts
   const keyCertPairs: grpc.KeyCertPair[] = [{
     cert_chain  : fs.readFileSync('server.crt'),
     private_key : fs.readFileSync('server.key'),
   }]
-  const checkClientCertificate = false
+  // const checkClientCertificate = false
 
   const port = await serverBindPromise(
-    '127.0.0.1:8788',
+    '0.0.0.0:8788',
     // grpc.ServerCredentials.createInsecure(),
-    grpc.ServerCredentials.createSsl(rootCerts, keyCertPairs, checkClientCertificate),
-
+    grpc.ServerCredentials.createSsl(null, keyCertPairs) //, checkClientCertificate),
   )
   console.info('Listen on port:', port)
   server.start()

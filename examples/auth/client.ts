@@ -1,4 +1,4 @@
-import { Certificate } from '@grpc/grpc-js/build/src/channel-credentials'
+import { CallMetadataGenerator } from '@grpc/grpc-js/build/src/call-credentials'
 import fs from 'fs'
 
 import {
@@ -24,43 +24,30 @@ export async function testDing (client: PuppetClient) {
 
 async function main () {
   const TOKEN = '__token__'
+  void TOKEN
 
-  const headerCreds = grpc.credentials.createFromMetadataGenerator((_callMetaOptoins, callback) => {
-    const metadata = new grpc.Metadata()
-    metadata.add('authorization', `Wechaty ${TOKEN}`)
-    callback(null, metadata)
-  })
-
-  const certChain  = fs.readFileSync('client.crt')
-  const privateKey = fs.readFileSync('client.key')
   const rootCerts  = fs.readFileSync('root-ca.crt')
-  void fs
-  void [
-    certChain,
-    privateKey,
-    rootCerts,
-  ]
 
-  const creds = grpc.credentials.combineChannelCredentials(
-    // grpc.credentials.createInsecure(),
-    // grpc.credentials.createSsl(rootCerts, privateKey, certChain),
-    grpc.credentials.createSsl(rootCerts, null, null, {
-      checkServerIdentity: (hostname: string, _cert: Certificate) => {
-        console.info('hostname', hostname)
-        // console.info('cert', cert.raw.toString())
-        return undefined
-      },
-    }),
-    headerCreds,
-  )
+  /**
+   * With server authentication SSL/TLS and a custom header with token
+   *  https://grpc.io/docs/guides/auth/#with-server-authentication-ssltls-and-a-custom-header-with-token-1
+   */
+  const metaCallback: CallMetadataGenerator = (_params, callback) => {
+    const meta = new grpc.Metadata()
+    // metadata.add('authorization', `Wechaty ${TOKEN}`)
+    callback(null, meta)
+  }
 
-  // const creds = grpc.credentials.createInsecure()
+  const channelCred = grpc.credentials.createSsl(rootCerts)
+  const callCred    = grpc.credentials.createFromMetadataGenerator(metaCallback)
+  const combCreds   = grpc.credentials.combineChannelCredentials(channelCred, callCred)
 
   const client = new PuppetClient(
-    '127.0.0.1:8788',
-    creds,
+    'localhost:8788',
+    combCreds,
     {
-      // 'grpc.default_authority': 'puppet_token',
+      'grpc.default_authority': '__token__',
+      'grpc.ssl_target_name_override': 'wechaty-puppet-service',
     },
   )
 
