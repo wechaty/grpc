@@ -8,11 +8,11 @@ import {
   IPuppetServer,
   PuppetService,
   DingResponse,
-}                       from '../../src/mod'
+}                       from '../../src/mod.js'
 
 import {
   puppetServerImpl,
-}                     from '../../tests/puppet-server-impl'
+}                     from '../../tests/puppet-server-impl.js'
 import {
   StatusBuilder,
   Metadata,

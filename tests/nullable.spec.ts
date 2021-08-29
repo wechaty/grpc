@@ -10,9 +10,9 @@ import {
   ContactAliasResponse,
   PuppetService,
   PuppetClient,
-}                             from '../src/mod'
+}                             from '../src/mod.js'
 
-import { puppetServerImpl } from './puppet-server-impl'
+import { puppetServerImpl } from './puppet-server-impl.js'
 
 import { StringValue } from 'google-protobuf/google/protobuf/wrappers_pb'
 
@@ -50,7 +50,7 @@ const contactAlias: grpc.handleUnaryCall<
   }
 }
 
-test('use StringValue to support nullable values', async (t) => {
+test('use StringValue to support nullable values', async t => {
 
   const puppetServerImplTest = {
     ...puppetServerImpl,

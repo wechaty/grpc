@@ -5,9 +5,9 @@ import {
   grpc,
   PuppetClient,
   DingRequest,
-}                     from '../../src/mod'
+}                     from '../../src/mod.js'
 
-import { promisify }  from '../promisify'
+import { promisify }  from '../promisify.js'
 
 export async function testDing (client: PuppetClient) {
   const ding = promisify(client.ding.bind(client))

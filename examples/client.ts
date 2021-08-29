@@ -1,8 +1,3 @@
-// tslint:disable:no-console
-// tslint:disable:max-line-length
-// tslint:disable:no-shadowed-variable
-// tslint:disable:callable-types
-
 // import { Metadata } from '@grpc/grpc-js'
 import { StringValue } from 'google-protobuf/google/protobuf/wrappers_pb'
 
@@ -16,9 +11,9 @@ import {
   ContactAliasRequest,
   DingRequest,
   // EventType,
-}                     from '../src/mod'
+}                     from '../src/mod.js'
 
-import { promisify }  from './promisify'
+import { promisify }  from './promisify.js'
 
 export async function testAlias (client: PuppetClient) {
   const request = new ContactAliasRequest()

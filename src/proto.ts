@@ -5,7 +5,7 @@
 import path from 'path'
 import fs from 'fs'
 
-import { ApiStore } from './config'
+import { ApiStore } from './config.js'
 
 function getProtoPath (...paths: string[]): string {
   return path.join(__dirname, '..', 'proto', ...paths)

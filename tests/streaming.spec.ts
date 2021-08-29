@@ -2,6 +2,6 @@
 
 import { test }  from 'tstest'
 
-test('stream testing', async (t) => {
-  t.skip('to be writen')
+test('stream testing', async t => {
+  void t.skip('to be writen')
 })

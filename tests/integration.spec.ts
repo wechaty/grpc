@@ -1,4 +1,4 @@
-#!/usr/bin/env ts-node
+#!/usr/bin/env -S node --no-warnings --loader ts-node/esm
 
 import { test }  from 'tstest'
 
@@ -15,13 +15,13 @@ import {
   PuppetClient,
   DingRequest,
   EventRequest,
-}                       from '../src/mod'
+}                       from '../src/mod.js'
 
 import {
   puppetServerImpl,
-}                     from '../tests/puppet-server-impl'
+}                     from '../tests/puppet-server-impl.js'
 
-test('integration testing', async (t) => {
+test('integration testing', async t => {
   const ENDPOINT = 'localhost:18788'
 
   const DING_DATA_LIST  = ['data1', 'data2']

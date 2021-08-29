@@ -9,13 +9,13 @@ import {
   EventType,
   DingResponse,
   EventRequest,
-}                       from '../src/mod'
+}                       from '../src/mod.js'
 
 // import { StringValue } from 'google-protobuf/google/protobuf/wrappers_pb'
 
 import {
   puppetServerImpl,
-}                     from '../tests/puppet-server-impl'
+}                     from '../tests/puppet-server-impl.js'
 
 let eventStream: undefined | grpc.ServerWritableStream<EventRequest, EventResponse>
 
