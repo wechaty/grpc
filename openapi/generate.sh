@@ -11,6 +11,7 @@ GENERATED_DIR="${SCRIPTPATH}/../generated/"
 
 PACKAGE_JSON_FILE="${SCRIPTPATH}/../package.json"
 SWAGGER_JSON_FILE="${GENERATED_DIR}/wechaty/puppet.swagger.json"
+OPENAPI_YAML_FILE="${GENERATED_DIR}/wechaty/puppet.openapi.yaml"
 
 function generate_swagger () {
   PROTOC="protoc \
@@ -40,12 +41,21 @@ function update_version () {
           > "$tmpFile"
   mv "$tmpFile" "$SWAGGER_JSON_FILE"
 
-  echo "Swagger version synced with gRPC version $grpcVersion"
+  echo "Swagger version synced with gRPC version $grpcVersion for $SWAGGER_JSON_FILE"
+}
+
+function generate_yaml () {
+  [ -e "$SWAGGER_JSON_FILE" ] || {
+    echo "File not found: $SWAGGER_JSON_FILE"
+  }
+
+  npx js-yaml < "$SWAGGER_JSON_FILE" > "$OPENAPI_YAML_FILE"
 }
 
 function main () {
   generate_swagger
   update_version
+  generate_yaml
 }
 
 main

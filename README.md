@@ -151,6 +151,11 @@ protoc \
 
 > <https://github.com/improbable-eng/ts-protoc-gen>
 
+### Naming conventions & Style Guide
+
+1. [Google Cloud APIs - Naming conventions](https://cloud.google.com/apis/design/naming_convention)
+1. [Protocol Buffers - Developer Guide - Style Guide](https://developers.google.com/protocol-buffers/docs/style)
+
 ## OpenAPI
 
 Thanks for the ecosystem of gRPC, we can generate OpenAPI Specification from our gRPC proto definitions automatically.
@@ -163,7 +168,10 @@ We are using [gRPC to JSON proxy generator following the gRPC HTTP spec](https:/
 
 Learn more about the RESTful API service for Wechaty from [Wechaty OpenAPI](https://github.com/wechaty/openapi).
 
-See also: [AIP-4222 - Routing headers](https://google.aip.dev/client-libraries/4222)
+See also:
+
+- [AIP-4222 - Routing headers](https://google.aip.dev/client-libraries/4222)
+- [gRPC-Gateway Official Website](https://grpc-ecosystem.github.io/grpc-gateway/)
 
 ## gRPC Web
 
@@ -202,6 +210,7 @@ See also: [AIP-4222 - Routing headers](https://google.aip.dev/client-libraries/4
 - [Protocol Buffers for JavaScript (& TypeScript)](https://github.com/dcodeIO/protobuf.js)
 - [Missing value/null support for scalar value types in proto 3](https://github.com/protocolbuffers/protobuf/issues/1606)
 - [How to Make a Nullable Field in Proto3 for a HTTP Response?](https://stackoverflow.com/questions/57908389/how-to-make-a-nullable-field-in-proto3-for-a-http-response)
+- [Protobuf Field Masks](https://pinkiepractices.com/posts/protobuf-field-masks/)
 
 #### TypeScript Generator
 
@@ -251,7 +260,10 @@ TCP hole punching
 
 ## HISTORY
 
-### master
+### master v0.27
+
+- [ ] Rename `ENUM` from `CONTACT_GENDER_MALE` to `Male`
+- [ ] Fix typos
 
 ### v0.20 (Feb 21, 2021)
 
