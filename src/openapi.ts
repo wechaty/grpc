@@ -1,15 +1,13 @@
 import path from 'path'
-import fs from 'fs'
+import fs   from 'fs'
 
-import { ApiStore } from './config.js'
+import { codeRoot } from './code-root.js'
 
-import { fileURLToPath } from 'url'
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
+import type { ApiStore } from './config.js'
 
 function getOpenApiPath (...paths: string[]): string {
   return path.join(
-    __dirname,
-    '..',
+    codeRoot,
     'generated',
     ...paths,
   )

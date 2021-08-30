@@ -75,7 +75,7 @@ function gen_openapi () {
 # Huan(202108): make generated/ a CJS module
 #
 function gen_cjs_package_json () {
-  echo '{"type": "commonjs"}' > generated/wechaty/package.json
+  echo '{"type": "commonjs"}' > generated/package.json
 }
 
 function main () {

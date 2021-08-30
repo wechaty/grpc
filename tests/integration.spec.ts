@@ -6,15 +6,7 @@ import util from 'util'
 
 import {
   grpc,
-  EventResponse,
-  EventType,
-  DingResponse,
-  IPuppetServer,
-  PuppetService,
-
-  PuppetClient,
-  DingRequest,
-  EventRequest,
+  puppet,
 }                       from '../src/mod.js'
 
 import {
@@ -34,7 +26,7 @@ test('integration testing', async t => {
 
   const server = new grpc.Server()
   server.addService(
-    PuppetService,
+    puppet.PuppetService,
     testServer,
   )
   await util.promisify(server.bindAsync.bind(server))(
@@ -46,7 +38,7 @@ test('integration testing', async t => {
   /**
    * Create Client
    */
-  const client = new PuppetClient(
+  const client = new puppet.PuppetClient(
     ENDPOINT,
     grpc.credentials.createInsecure()
   )
@@ -54,11 +46,11 @@ test('integration testing', async t => {
   /**
    * gRPC: Stream
    */
-  const eventStream = client.event(new EventRequest())
+  const eventStream = client.event(new puppet.EventRequest())
 
   const future = new Promise<void>((resolve, reject) => {
     eventStream
-      .on('data', (chunk: EventResponse) => {
+      .on('data', (chunk: puppet.EventResponse) => {
         const payload = chunk.getPayload()
         EVENT_DATA_LIST.push(payload)
 
@@ -75,7 +67,7 @@ test('integration testing', async t => {
    * gRPC: Ding
    */
   for (const data of DING_DATA_LIST) {
-    const request = new DingRequest()
+    const request = new puppet.DingRequest()
     request.setData(data)
 
     console.info('ding() for ', data)
@@ -100,13 +92,13 @@ test('integration testing', async t => {
 
 function getTestServer () {
 
-  let eventStream: undefined | grpc.ServerWritableStream<EventRequest, EventResponse>
+  let eventStream: undefined | grpc.ServerWritableStream<puppet.EventRequest, puppet.EventResponse>
   const dataQueue = [] as string[]
 
   /**
    * Implements the SayHello RPC method.
    */
-  const puppetTestServer: IPuppetServer = {
+  const puppetTestServer: puppet.IPuppetServer = {
     ...puppetServerImpl,
 
     ding: (call, callback) => {
@@ -115,13 +107,13 @@ function getTestServer () {
       if (!eventStream) {
         dataQueue.push(data)
       } else {
-        const eventResponse = new EventResponse()
-        eventResponse.setType(EventType.EVENT_TYPE_DONG)
+        const eventResponse = new puppet.EventResponse()
+        eventResponse.setType(puppet.EventType.EVENT_TYPE_DONG)
         eventResponse.setPayload(data)
         eventStream.write(eventResponse)
       }
 
-      callback(null, new DingResponse())
+      callback(null, new puppet.DingResponse())
     },
 
     event: (streamingCall) => {
@@ -132,8 +124,8 @@ function getTestServer () {
       eventStream = streamingCall
       while (dataQueue.length > 0) {
         const data = dataQueue.shift()
-        const eventResponse = new EventResponse()
-        eventResponse.setType(EventType.EVENT_TYPE_DONG)
+        const eventResponse = new puppet.EventResponse()
+        eventResponse.setType(puppet.EventType.EVENT_TYPE_DONG)
         eventResponse.setPayload(data!)
         eventStream.write(eventResponse)
       }
