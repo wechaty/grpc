@@ -1,12 +1,10 @@
 import wrappers   from 'google-protobuf/google/protobuf/wrappers_pb.js'
 import * as grpc  from '@grpc/grpc-js'
 
-import * as puppet  from './generated.js'
-import * as proto   from './proto.js'
-import * as openApi from './openapi.js'
-import {
-  VERSION,
-}           from './config.js'
+import * as proto     from './proto.js'
+import * as openApi   from './openapi.js'
+import { puppet }     from './cjs.js'
+import { VERSION }    from './config.js'
 
 const {
   StringValue,

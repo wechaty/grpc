@@ -4,6 +4,6 @@ import { test } from 'tstest'
 
 import { codeRoot } from './code-root'
 
-test('codeRoot() @ CommonJS', async t => {
+test('CJS: codeRoot()', async t => {
   t.ok(codeRoot, 'should exist codeRoot')
 })

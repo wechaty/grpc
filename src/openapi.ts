@@ -1,7 +1,7 @@
 import path from 'path'
 import fs   from 'fs'
 
-import { codeRoot } from './code-root.js'
+import { codeRoot } from './cjs.js'
 
 import type { ApiStore } from './config.js'
 
