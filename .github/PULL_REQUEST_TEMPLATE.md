@@ -3,7 +3,7 @@ Thank you for sending the PR! We appreciate you spending the time to work on the
 
 Help us understand your motivation by explaining why you decided to make this change.
 
-You can learn more about contributing to Wechaty gRPC here: https://github.com/wechaty/grpc/blob/master/CONTRIBUTING.md
+You can learn more about contributing to Wechaty gRPC here: https://wechaty.js.org/docs/contributing/
 
 Happy contributing!
 
@@ -26,7 +26,7 @@ https://tinyurl.com/auto-closing for more information). Also, please
 write a comment on that issue linking back to this pull request once it is
 open. -->
 
-#### Have you read the [Contributing Guidelines](https://github.com/wechaty/grpc/blob/master/CONTRIBUTING.md)?
+#### Have you read the [Contributing Guidelines](https://wechaty.js.org/docs/contributing/)?
 
 #### Brief description of what is fixed or changed
 
