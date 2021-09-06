@@ -216,7 +216,38 @@ Check out [RESOURCES.md](RESOURCES.md) file for learning resources.
 - [Google Cloud API Naming Conventions](https://cloud.google.com/apis/design/naming_convention)
 - [Google Cloud Cloud API Design Guide](https://cloud.google.com/apis/design/)
 
-## Contributing
+## Changelog
+
+### master v0.27
+
+1. ES Modules support
+1. Export generated protocol buffers class as `puppet`
+
+### v0.20 (Feb 21, 2021)
+
+1. Rename NPM module name from `@chatie/grpc` to `wechaty-grpc`
+1. Add OpenAPI annotations & generators for supporting <https://github.com/wechaty/openapi>
+1. Code clean.
+
+### v0.18 (Oct 15, 2020)
+
+- Add new `MessageFileStream` and `MessageImageStream` to replace the `MessageFile` and `MessageImage` method to avoid blocking nodejs event loop when sending large files ([#88](https://github.com/Chatie/grpc/pull/88)) by [@windmemory](https://github.com/windmemory)
+- Add new `MessageSendFileStream` to replace the `MessageSendFile` method to avoid blocking nodejs event loop when sending large files ([#89](https://github.com/Chatie/grpc/pull/89)) by [@windmemory](https://github.com/windmemory)
+
+### v0.17 (Aug 5, 2020)
+
+- Add PHPH Support ([#76](https://github.com/Chatie/grpc/pull/76) [#78](https://github.com/Chatie/grpc/pull/78)) by [@zhangchunsheng](https://github.com/zhangchunsheng)
+- Publish PHP Module at <https://github.com/wechaty/php-grpc>
+
+### v0.13 (Apr 19, 2020)
+
+- Add Java Support ([#52](https://github.com/Chatie/grpc/issues/52) [#53](https://github.com/Chatie/grpc/issues/53) by [@diaozxin007](https://github.com/diaozxin007))
+- Publish Java Module at [Open Source Project Repository HostingOSSRH-56843 - Release the Chatie/grpc Java Client](https://issues.sonatype.org/browse/OSSRH-56843)
+
+### v0.11 (Apr 10, 2020)
+
+- Add Go Support ([#50](https://github.com/Chatie/grpc/issues/50) by [@dchaofei](https://github.com/dchaofei))
+- Publish Go Module at <github.com/wechaty/go-grpc>
 
 Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
