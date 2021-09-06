@@ -12,27 +12,27 @@ import "wechaty/puppet/file_box.proto";
 enum MessageType {
   MESSAGE_TYPE_UNSPECIFIED  = 0;
 
-  MESSAGE_TYPE_ATTACHMENT   = 1;
-  MESSAGE_TYPE_AUDIO        = 2;
-  MESSAGE_TYPE_CONTACT      = 3;
-  MESSAGE_TYPE_EMOTICON     = 4;
-  MESSAGE_TYPE_IMAGE        = 5;
-  MESSAGE_TYPE_TEXT         = 6;
-  MESSAGE_TYPE_VIDEO        = 7;
-  MESSAGE_TYPE_CHAT_HISTORY = 8;
-  MESSAGE_TYPE_LOCATION     = 9;
-  MESSAGE_TYPE_MINI_PROGRAM = 10;
-  MESSAGE_TYPE_TRANSFER     = 11;
-  MESSAGE_TYPE_RED_ENVELOPE = 12;
-  MESSAGE_TYPE_RECALLED     = 13;
-  MESSAGE_TYPE_URL          = 14;
+  ATTACHMENT   = 1;
+  AUDIO        = 2;
+  CONTACT      = 3;
+  EMOTICON     = 4;
+  IMAGE        = 5;
+  TEXT         = 6;
+  VIDEO        = 7;
+  CHAT_HISTORY = 8;
+  LOCATION     = 9;
+  MINI_PROGRAM = 10;
+  TRANSFER     = 11;
+  RED_ENVELOPE = 12;
+  RECALLED     = 13;
+  URL          = 14;
 }
 
 enum ImageType {
   IMAGE_TYPE_UNSPECIFIED = 0;
-  IMAGE_TYPE_THUMBNAIL   = 1;
-  IMAGE_TYPE_HD          = 2;
-  IMAGE_TYPE_ARTWORK     = 3;
+  THUMBNAIL   = 1;
+  HD          = 2;
+  ARTWORK     = 3;
 }
 
 message MessagePayloadRequest {
