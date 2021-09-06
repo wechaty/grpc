@@ -7,23 +7,19 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - name: Use Node.js 12
-        uses: actions/setup-node@master
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
         with:
-          node-version: 12
+          node-version: 16
+          cache: 'npm'
+          cache-dependency-path: package.json
+
       - name: Set up Go
         uses: actions/setup-go@master
         id: go
       - name: Install Protoc
         uses: arduino/setup-protoc@master
 
-      - uses: actions/cache@master
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
       - name: Install Dependencies
         run: |
           npm install
@@ -40,16 +36,12 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - uses: actions/setup-node@master
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
         with:
-          node-version: 12
-      - uses: actions/cache@master
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+          node-version: 16
+          cache: 'npm'
+          cache-dependency-path: package.json
       - name: Set up Go
         uses: actions/setup-go@master
         id: go
@@ -62,30 +54,25 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Generate Version
-        run: ./scripts/generate-version.sh
+      - name: Generate Package JSON
+        run: ./scripts/generate-package-json.sh
 
       - name: Pack Testing
         run: ./scripts/npm-pack-testing.sh
 
   publish:
-    if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/heads/v'))
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/v'))
     name: Publish
     needs: [build, pack]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - uses: actions/setup-node@master
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
         with:
-          node-version: 12
+          node-version: 16
           registry-url: https://registry.npmjs.org/
-      - uses: actions/cache@master
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
+          cache: 'npm'
+          cache-dependency-path: package.json
       - name: Install Protoc
         uses: arduino/setup-protoc@master
       - name: Install Protoc 3rd party protos
@@ -93,8 +80,8 @@ jobs:
 
       - name: Install Dependencies
         run: npm install
-      - name: Generate Version
-        run: ./scripts/generate-version.sh
+      - name: Generate Package JSON
+        run: ./scripts/generate-package-json.sh
       - name: Set Publish Config
         run: ./scripts/package-publish-config-tag.sh
       - run: npm run dist
@@ -102,7 +89,7 @@ jobs:
       - name: Check Branch
         id: check-branch
         run: |
-          if [[ ${{ github.ref }} =~ ^refs/heads/(master|v[0-9]+\.[0-9]+.*)$ ]]; then
+          if [[ ${{ github.ref }} =~ ^refs/heads/(main|v[0-9]+\.[0-9]+.*)$ ]]; then
               echo ::set-output name=match::true
           fi  # See: https://stackoverflow.com/a/58869470/1123955
       - name: Is A Publish Branch
