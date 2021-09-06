@@ -39,15 +39,16 @@ message MessagePayloadRequest {
   string id = 1;
 }
 message MessagePayloadResponse {
-  string      id                 = 1;
-  string      filename           = 2;
-  string      text               = 3;
-  uint64      timestamp          = 4;
-  MessageType type               = 5;
-  string      from_id            = 6;
-  string      room_id            = 7;
-  string      to_id              = 8;
-  repeated    string mention_ids = 9;
+  string id       = 1;
+  string filename = 2;
+  string text     = 3;
+  // https://cloud.google.com/apis/design/naming_convention#method_names
+  uint64      receive_time_millis = 4;
+  MessageType type                = 5;
+  string      from_id             = 6;
+  string      room_id             = 7;
+  string      to_id               = 8;
+  repeated     string mention_ids  = 9;
 }
 
 message MessageImageRequest {
