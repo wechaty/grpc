@@ -5,6 +5,11 @@ option go_package="github.com/wechaty/go-grpc/wechaty/puppet";
 option java_package="io.github.wechaty.grpc.puppet";
 option csharp_namespace = "github.wechaty.grpc.puppet";
 
+/**
+ * @deprecated
+ *  Huan(202109): will be removed after Dec 31, 2022
+ *    https://cloud.google.com/apis/design/design_patterns#optional_primitive_fields
+ */
 import "google/protobuf/wrappers.proto";
 
 import "wechaty/puppet/file_box.proto";
@@ -42,12 +47,17 @@ message MessagePayloadResponse {
   string      id                 = 1;
   string      filename           = 2;
   string      text               = 3;
+  /**
+   * @deprecated will be removed after Dec 31, 2022
+   *  Huan(202109): use receive_time(10) instead
+   */
   uint64      timestamp          = 4;
   MessageType type               = 5;
   string      from_id            = 6;
   string      room_id            = 7;
   string      to_id              = 8;
   repeated    string mention_ids = 9;
+  google.protobuf.Timestamp receive_time = 10;
 }
 
 message MessageImageRequest {
@@ -114,8 +124,13 @@ message MessageSendContactRequest {
   string contact_id = 2;
 }
 message MessageSendContactResponse {
-  // nullable
-  google.protobuf.StringValue id = 1;
+  /**
+   * @deprecated:
+   *  Huan(202109): Wrapper types must not be used going forward.
+   *    https://cloud.google.com/apis/design/design_patterns#optional_primitive_fields
+   */
+  google.protobuf.StringValue wrapped_id = 1; // @deprecated
+  optional string id = 2;
 }
 
 message MessageSendFileRequest {
@@ -123,7 +138,13 @@ message MessageSendFileRequest {
   string filebox = 2;
 }
 message MessageSendFileResponse {
-  google.protobuf.StringValue id = 1;
+  /**
+   * @deprecated:
+   *  Huan(202109): Wrapper types must not be used going forward.
+   *    https://cloud.google.com/apis/design/design_patterns#optional_primitive_fields
+   */
+  google.protobuf.StringValue wrapped_id = 1; // @deprecated
+  optional string id = 2;
 }
 
 message MessageSendFileStreamRequest {
@@ -133,7 +154,13 @@ message MessageSendFileStreamRequest {
   };
 }
 message MessageSendFileStreamResponse {
-  google.protobuf.StringValue id = 1;
+  /**
+   * @deprecated:
+   *  Huan(202109): Wrapper types must not be used going forward.
+   *    https://cloud.google.com/apis/design/design_patterns#optional_primitive_fields
+   */
+  google.protobuf.StringValue wrapped_id = 1; // @deprecated
+  optional string id = 2;
 }
 
 message MessageSendTextRequest {
@@ -142,10 +169,16 @@ message MessageSendTextRequest {
 
   // Huan(202011) FIXME: Issue #99
   // https://github.com/wechaty/grpc/issues/99
-  repeated string mentonal_ids = 3;
+  repeated string mentional_ids = 3;
 }
 message MessageSendTextResponse {
-  google.protobuf.StringValue id = 1;
+  /**
+   * @deprecated:
+   *  Huan(202109): Wrapper types must not be used going forward.
+   *    https://cloud.google.com/apis/design/design_patterns#optional_primitive_fields
+   */
+  google.protobuf.StringValue wrapped_id = 1; // @deprecated
+  optional string id = 2;
 }
 
 message MessageSendMiniProgramRequest {
@@ -153,7 +186,13 @@ message MessageSendMiniProgramRequest {
   string mini_program = 2;
 }
 message MessageSendMiniProgramResponse {
-  google.protobuf.StringValue id = 1;
+  /**
+   * @deprecated:
+   *  Huan(202109): Wrapper types must not be used going forward.
+   *    https://cloud.google.com/apis/design/design_patterns#optional_primitive_fields
+   */
+  google.protobuf.StringValue wrapped_id = 1;  // @depreated
+  optional string id = 2;
 }
 
 message MessageSendUrlRequest {
@@ -161,7 +200,13 @@ message MessageSendUrlRequest {
   string url_link = 2;
 }
 message MessageSendUrlResponse {
-  google.protobuf.StringValue id = 1;
+  /**
+   * @deprecated:
+   *  Huan(202109): Wrapper types must not be used going forward.
+   *    https://cloud.google.com/apis/design/design_patterns#optional_primitive_fields
+   */
+  google.protobuf.StringValue wrapped_id = 1; // @deprecated
+  optional string id = 2;
 }
 
 message MessageRecallRequest {
@@ -175,5 +220,11 @@ message MessageForwardRequest{
   string conversation_id = 2;
 }
 message MessageForwardResponse {
-  google.protobuf.StringValue id = 1;
+  /**
+   * @deprecated: use payload instead.
+   *  Huan(202109): Wrapper types must not be used going forward.
+   *    https://cloud.google.com/apis/design/design_patterns#optional_primitive_fields
+   */
+  google.protobuf.StringValue wrapped_id = 1; // @deprecated
+  optional string id = 2;
 }
