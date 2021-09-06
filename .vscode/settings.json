@@ -71,7 +71,10 @@
   },
   "editor.formatOnSave": false,
   "python.pythonPath": "python3",
-  "eslint.validate": ["javascript", "typescript"],
+  "eslint.validate": [
+    "javascript",
+    "typescript",
+  ],
   "cSpell.words": ["PYPI", "bdist", "proto", "sdist", "setuptools"],
   "python.linting.pylintEnabled": true
 }
