@@ -73,14 +73,14 @@
   "python.pythonPath": "python3",
   "eslint.validate": [
     "javascript",
-    "typescript",
+    "typescript"
   ],
   "cSpell.words": [
     "PYPI",
     "bdist",
     "proto",
     "sdist",
-    "setuptools",
+    "setuptools"
   ],
   "python.linting.pylintEnabled": true
 }
