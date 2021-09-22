@@ -1,7 +1,7 @@
 <!-- markdownlint-disable MD033 MD041 -->
 
 <div align="center">
-<img src="assets/images/wechaty-grpc-logo.svg" width="400" />
+<img src="docs/images/wechaty-grpc-logo.svg" width="400" />
 <br />
 <h1>Wechaty gRPC</h1>
 <p>
@@ -12,6 +12,7 @@ gRPC Service & Protocol Buffers for Wechaty Puppet
 <a href="https://github.com/wechaty/grpc/network/members"><img src="https://img.shields.io/github/forks/wechaty/grpc?style=flat-square" /></a>
 <a href="https://github.com/wechaty/grpc/stargazers"><img src="https://img.shields.io/github/stars/wechaty/grpc?style=flat-square" /></a>
 <a href="https://github.com/wechaty/grpc/blob/master/LICENSE"><img src="https://img.shields.io/github/license/wechaty/grpc?style=flat-square" /></a>
+<a href="https://github.com/Chatie/tsconfig/issues/16"><img src="https://img.shields.io/badge/ES-Modules-brightgreen" /></a>
 </div>
 
 <div align="center">
