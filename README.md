@@ -230,7 +230,7 @@ Check out [RESOURCES.md](RESOURCES.md) file for learning resources.
 
 ### master v0.29
 
-- [ ] Rename `ENUM` from `CONTACT_GENDER_MALE` to `Male`
+- [ ] Rename `ENUM` from `CONTACT_GENDER_MALE` to `MALE`
 - [ ] Fix typos
 
 ### master v0.27
