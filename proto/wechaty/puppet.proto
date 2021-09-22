@@ -165,7 +165,7 @@ service Puppet {
       responses: {
         key: "200"
           value: {
-          description: "OK";
+          description: "Contact payload";
         }
       }
     };
