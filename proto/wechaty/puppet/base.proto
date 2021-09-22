@@ -7,11 +7,11 @@ option csharp_namespace = "github.wechaty.grpc.puppet";
 
 enum PayloadType {
   PAYLOAD_TYPE_UNSPECIFIED = 0;
-  MESSAGE     = 1;
-  CONTACT     = 2;
-  ROOM        = 3;
-  ROOM_MEMBER = 4;
-  FRIENDSHIP  = 5;
+  PAYLOAD_TYPE_MESSAGE     = 1;
+  PAYLOAD_TYPE_CONTACT     = 2;
+  PAYLOAD_TYPE_ROOM        = 3;
+  PAYLOAD_TYPE_ROOM_MEMBER = 4;
+  PAYLOAD_TYPE_FRIENDSHIP  = 5;
 }
 
 message StartRequest {}

@@ -9,15 +9,15 @@ import "google/protobuf/wrappers.proto";
 
 enum ContactGender {
   CONTACT_GENDER_UNSPECIFIED = 0;
-  MALE        = 1;
-  FEMALE      = 2;
+  CONTACT_GENDER_MALE        = 1;
+  CONTACT_GENDER_FEMALE      = 2;
 }
 
 enum ContactType {
   CONTACT_TYPE_UNSPECIFIED = 0;
-  PERSONAL    = 1;
-  OFFICIAL    = 2;
-  CORPORATION = 3;
+  CONTACT_TYPE_PERSONAL    = 1;
+  CONTACT_TYPE_OFFICIAL    = 2;
+  CONTACT_TYPE_CORPORATION = 3;
 }
 
 message ContactListRequest {}
