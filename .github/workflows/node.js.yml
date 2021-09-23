@@ -5,9 +5,11 @@ name: Node.js
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   build:
@@ -23,31 +25,31 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-    - uses: actions/checkout@master
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-        cache-dependency-path: package.json
-    - name: Set up Go
-      uses: actions/setup-go@master
-      id: go
+      - uses: actions/checkout@master
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+          cache-dependency-path: package.json
+      - name: Set up Go
+        uses: actions/setup-go@master
+        id: go
 
-    - name: Install Protoc
-      uses: arduino/setup-protoc@master
-      with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install Protoc
+        uses: arduino/setup-protoc@master
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Install Dependencies
-      run: |
-        npm install
-        npm run install:protoc
+      - name: Install Dependencies
+        run: |
+          npm install
+          npm run install:protoc
 
-    - name: Generate gRPC Stubs
-      run: npm run generate
+      - name: Generate gRPC Stubs
+        run: npm run generate
 
-    - name: Test
-      run: npm test
-      env:
-        CI: true
+      - name: Test
+        run: npm test
+        env:
+          CI: true

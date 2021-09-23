@@ -20,21 +20,21 @@ jobs:
       key: cache-v3
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Setup PHP with extensions and custom config
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: ${{ matrix.php-versions }}
-        extensions: ${{ env.extensions }}
-        ini-values: post_max_size=256M, short_open_tag=On, date.timezone=Asia/Shanghai
-        tools: protoc, grpc_php_plugin
-    - name: Testing PHP version
-      run: |
-        php -v
-        php -r "if(strpos(phpversion(), '${{ matrix.php-versions }}') === false) {throw new Exception('Wrong PHP version Installed');}"
-    - name: Test grpc_php_plugin and protoc
-      run: |
-        protoc --version
-        cd php
-        make generate
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup PHP with extensions and custom config
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          extensions: ${{ env.extensions }}
+          ini-values: post_max_size=256M, short_open_tag=On, date.timezone=Asia/Shanghai
+          tools: protoc, grpc_php_plugin
+      - name: Testing PHP version
+        run: |
+          php -v
+          php -r "if(strpos(phpversion(), '${{ matrix.php-versions }}') === false) {throw new Exception('Wrong PHP version Installed');}"
+      - name: Test grpc_php_plugin and protoc
+        run: |
+          protoc --version
+          cd php
+          make generate
