@@ -312,6 +312,11 @@ service Puppet {
       }
     };
   }
+  rpc MessageLocation (puppet.MessageLocationRequest) returns (puppet.MessageLocationResponse) {
+    option (google.api.http) = {
+      get: "/message/{id}/location"
+    };
+  }
 
   rpc MessageSendContact (puppet.MessageSendContactRequest) returns (puppet.MessageSendContactResponse) {
     option (google.api.http) = {
@@ -344,6 +349,12 @@ service Puppet {
   rpc MessageSendUrl (puppet.MessageSendUrlRequest) returns (puppet.MessageSendUrlResponse) {
     option (google.api.http) = {
       post: "/conversations/{conversation_id}/url-link"
+      body: "*"
+    };
+  }
+  rpc MessageSendLocation (puppet.MessageSendLocationRequest) returns (puppet.MessageSendLocationResponse) {
+    option (google.api.http) = {
+      post: "/conversations/{conversation_id}/location"
       body: "*"
     };
   }

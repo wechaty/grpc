@@ -177,3 +177,18 @@ message MessageForwardRequest{
 message MessageForwardResponse {
   google.protobuf.StringValue id = 1;
 }
+
+message MessageLocationRequest{
+  string id = 1;
+}
+message MessageLocationResponse {
+  string location = 1;
+}
+
+message MessageSendLocationRequest {
+  string conversation_id = 1;
+  string location = 2;
+}
+message MessageSendLocationResponse {
+  google.protobuf.StringValue id = 1;
+}
