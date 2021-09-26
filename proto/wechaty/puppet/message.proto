@@ -9,6 +9,8 @@ import "google/protobuf/wrappers.proto";
 
 import "wechaty/puppet/file_box.proto";
 import "wechaty/puppet/location.proto";
+import "wechaty/puppet/mini_program.proto";
+import "wechaty/puppet/url_link.proto";
 
 enum MessageType {
   MESSAGE_TYPE_UNSPECIFIED  = 0;
@@ -100,14 +102,14 @@ message MessageMiniProgramRequest {
   string id = 1;
 }
 message MessageMiniProgramResponse {
-  string mini_program = 1;
+  MiniProgramPayload mini_program = 1;
 }
 
 message MessageUrlRequest {
   string id = 1;
 }
 message MessageUrlResponse {
-  string url_link = 1;
+  UrlLinkPayload url_link = 1;
 }
 
 message MessageSendContactRequest {
@@ -151,7 +153,7 @@ message MessageSendTextResponse {
 
 message MessageSendMiniProgramRequest {
   string conversation_id = 1;
-  string mini_program = 2;
+  MiniProgramPayload mini_program = 2;
 }
 message MessageSendMiniProgramResponse {
   google.protobuf.StringValue id = 1;
@@ -159,7 +161,7 @@ message MessageSendMiniProgramResponse {
 
 message MessageSendUrlRequest {
   string conversation_id = 1;
-  string url_link = 2;
+  UrlLinkPayload url_link = 2;
 }
 message MessageSendUrlResponse {
   google.protobuf.StringValue id = 1;

@@ -1,0 +1,18 @@
+syntax = "proto3";
+package wechaty.puppet;
+
+option go_package       = "github.com/wechaty/go-grpc/wechaty/puppet";
+option java_package     = "io.github.wechaty.grpc.puppet";
+option csharp_namespace = "github.wechaty.grpc.puppet";
+
+message MiniProgramPayload {
+  google.protobuf.StringValue appid = 1;
+  google.protobuf.StringValue description = 2;
+  google.protobuf.StringValue pagePath = 3;
+  google.protobuf.StringValue iconUrl = 4;
+  google.protobuf.StringValue shareId = 5;
+  google.protobuf.StringValue thumbUrl = 6;
+  google.protobuf.StringValue title = 7;
+  google.protobuf.StringValue username = 8;
+  google.protobuf.StringValue thumbKey = 9;
+}
