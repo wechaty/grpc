@@ -5,9 +5,11 @@ option go_package       = "github.com/wechaty/go-grpc/wechaty/puppet";
 option java_package     = "io.github.wechaty.grpc.puppet";
 option csharp_namespace = "github.wechaty.grpc.puppet";
 
+import "google/protobuf/wrappers.proto";
+
 message UrlLinkPayload {
   google.protobuf.StringValue description = 1;
-  google.protobuf.StringValue thumbnailUrl = 2;
+  google.protobuf.StringValue thumbnail_url = 2;
   string title = 3;
   string url = 4;
 }
