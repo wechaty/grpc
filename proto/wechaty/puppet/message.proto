@@ -8,6 +8,7 @@ option csharp_namespace = "github.wechaty.grpc.puppet";
 import "google/protobuf/wrappers.proto";
 
 import "wechaty/puppet/file_box.proto";
+import "wechaty/puppet/location.proto";
 
 enum MessageType {
   MESSAGE_TYPE_UNSPECIFIED  = 0;
@@ -182,12 +183,12 @@ message MessageLocationRequest{
   string id = 1;
 }
 message MessageLocationResponse {
-  string location = 1;
+  LocationPayload location = 1;
 }
 
 message MessageSendLocationRequest {
   string conversation_id = 1;
-  string location = 2;
+  LocationPayload location = 2;
 }
 message MessageSendLocationResponse {
   google.protobuf.StringValue id = 1;
