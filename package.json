@@ -33,7 +33,7 @@
     "install:protoc": "bash -x scripts/install-protoc.sh",
     "test": "npm-run-all lint test:unit test:commonjs",
     "test:pack": "bash -x scripts/npm-pack-testing.sh",
-    "test:unit": "tap --node-arg=--loader=ts-node/esm --node-arg=--no-warnings \"src/**/*.spec.ts\" \"tests/**/*.spec.ts\"",
+    "test:unit": "cross-env NODE_OPTIONS=\"--no-warnings --loader=ts-node/esm\" tap \"src/**/*.spec.ts\" \"tests/**/*.spec.ts\"",
     "test:commonjs": "cross-env TS_NODE_PROJECT=tsconfig.cjs.json NODE_OPTIONS=--require=ts-node/register tap \"commonjs/**/*.spec.ts\""
   },
   "repository": {
