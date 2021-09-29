@@ -17,6 +17,8 @@ fi
 
 protoc --version
 
+cd $PROTO_BASE_DIR
+
 protoc \
   -I $PROTO_PUPPET_DIR \
   --plugin=protoc-gen-grpc-java \
