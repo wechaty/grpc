@@ -18,6 +18,11 @@ fi
 protoc --version
 
 protoc \
+  -I $PROTO_PUPPET_DIR \
+  --plugin=protoc-gen-grpc-java \
+  --grpc-java_out="$OUT_PUPPET_DIR" $PROTO_PUPPET_DIR/*.proto
+
+protoc \
   -I $PROTO_WECHATY_DIR \
   -I $PROTO_PUPPET_DIR \
   --plugin=protoc-gen-grpc-java \
