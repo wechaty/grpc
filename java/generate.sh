@@ -9,7 +9,7 @@ PROTO_WECHATY_DIR=$PROTO_BASE_DIR/wechaty
 
 # /usr/local/include
 
-OUT_WECHATY_DIR=./generated/wechaty
+OUT_WECHATY_DIR=./src/main/java
 OUT_PUPPET_DIR=$OUT_WECHATY_DIR
 
 if [ ! -d "$PUPPET_GEN_DIR" ]; then
