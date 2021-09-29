@@ -23,7 +23,7 @@ protoc \
   -I $THIRD_PARTY_DIR \
   --plugin=protoc-gen-grpc-java=/usr/local/bin/protoc-gen-grpc-java-1.37.1-linux-x86_64.exe \
   --java_out=$OUT_PUPPET_DIR \
-  --grpc_out=$OUT_PUPPET_DIR \
+  --grpc-java_out=$OUT_PUPPET_DIR \
   $PROTO_PUPPET_DIR/*.proto
 
 protoc \
@@ -31,5 +31,5 @@ protoc \
   -I $THIRD_PARTY_DIR \
   --plugin=protoc-gen-grpc-java=/usr/local/bin/protoc-gen-grpc-java-1.37.1-linux-x86_64.exe \
   --java_out=$OUT_PUPPET_DIR \
-  --grpc_out=$OUT_PUPPET_DIR \
+  --grpc-java_out=$OUT_PUPPET_DIR \
   $PROTO_WECHATY_DIR/*.proto
