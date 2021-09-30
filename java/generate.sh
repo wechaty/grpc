@@ -9,7 +9,7 @@ PROTO_WECHATY_DIR=$PROTO_BASE_DIR/wechaty
 
 # /usr/local/include
 
-OUT_WECHATY_DIR=./generated/wechaty
+OUT_WECHATY_DIR=./src/main/java
 OUT_PUPPET_DIR=$OUT_WECHATY_DIR
 
 if [ ! -d "$PUPPET_GEN_DIR" ]; then
@@ -21,15 +21,15 @@ protoc --version
 protoc \
   -I $PROTO_BASE_DIR \
   -I $THIRD_PARTY_DIR \
-  --php_out=$OUT_PUPPET_DIR \
-  --grpc_out=$OUT_PUPPET_DIR \
-  --plugin=protoc-gen-grpc=/usr/local/bin/grpc_php_plugin \
+  --plugin=protoc-gen-grpc-java=/usr/local/bin/protoc-gen-grpc-java-1.37.1-linux-x86_64.exe \
+  --java_out=$OUT_PUPPET_DIR \
+  --grpc-java_out=$OUT_PUPPET_DIR \
   $PROTO_PUPPET_DIR/*.proto
 
 protoc \
   -I $PROTO_BASE_DIR \
   -I $THIRD_PARTY_DIR \
-  --php_out=$OUT_WECHATY_DIR \
-  --grpc_out=$OUT_WECHATY_DIR \
-  --plugin=protoc-gen-grpc=/usr/local/bin/grpc_php_plugin \
+  --plugin=protoc-gen-grpc-java=/usr/local/bin/protoc-gen-grpc-java-1.37.1-linux-x86_64.exe \
+  --java_out=$OUT_PUPPET_DIR \
+  --grpc-java_out=$OUT_PUPPET_DIR \
   $PROTO_WECHATY_DIR/*.proto
