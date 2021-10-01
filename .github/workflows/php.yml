@@ -38,4 +38,5 @@ jobs:
       run: |
         protoc --version
         cd php
+        cp /home/linuxbrew/.linuxbrew/bin/grpc_php_plugin /usr/local/bin/grpc_php_plugin
         make generate
