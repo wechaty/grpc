@@ -33,7 +33,6 @@ jobs:
       run: |
         php -v
         php -r "if(strpos(phpversion(), '${{ matrix.php-versions }}') === false) {throw new Exception('Wrong PHP version Installed');}"
-        find / -name "grpc_php_plugin"
     - name: Test grpc_php_plugin and protoc
       run: |
         protoc --version
