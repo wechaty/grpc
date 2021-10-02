@@ -15,7 +15,7 @@ jobs:
       matrix:
         operating-system:
           - ubuntu-latest
-        php-versions:
+        php-version:
           - 7.4
         node-version:
           - 16
@@ -29,14 +29,14 @@ jobs:
     - name: Setup PHP with extensions and custom config
       uses: shivammathur/setup-php@v2
       with:
-        php-version: ${{ matrix.php-versions }}
+        php-version: ${{ matrix.php-version }}
         extensions: ${{ env.extensions }}
         ini-values: post_max_size=256M, short_open_tag=On, date.timezone=Asia/Shanghai
         tools: protoc, grpc_php_plugin
     - name: Testing PHP version
       run: |
         php -v
-        php -r "if(strpos(phpversion(), '${{ matrix.php-versions }}') === false) {throw new Exception('Wrong PHP version Installed');}"
+        php -r "if(strpos(phpversion(), '${{ matrix.php-version }}') === false) {throw new Exception('Wrong PHP version Installed');}"
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
       with:
