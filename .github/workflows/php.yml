@@ -13,10 +13,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        operating-system: [ubuntu-20.04]
-        php-versions: ['7.4']
+        operating-system:
+          - ubuntu-latest
+        php-versions:
+          - 7.4
         node-version:
-          - 14
           - 16
     env:
       extensions: xml, opcache, xdebug, pcov, grpc-1.30.0, protobuf-3.12.2
