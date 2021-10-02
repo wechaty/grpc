@@ -17,8 +17,6 @@ fi
 
 protoc --version
 
-pushd $PROTO_BASE_DIR
-
 protoc \
   -I $PROTO_BASE_DIR \
   -I $ROOT/third-party \
@@ -26,6 +24,5 @@ protoc \
   --go_opt=paths=source_relative \
   --go-grpc_out=$OUT_DIR \
   --go-grpc_opt=paths=source_relative \
-  wechaty/**/*.proto
-
-popd
+  "$PROTO_BASE_DIR"/wechaty/**/*.proto \
+  "$ROOT"/third-party/**/*.proto
