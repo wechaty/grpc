@@ -102,14 +102,24 @@ message MessageMiniProgramRequest {
   string id = 1;
 }
 message MessageMiniProgramResponse {
-  MiniProgramPayload mini_program = 1;
+  /**
+   * Huan(202110): We should use payload instead of JSON.stringify string
+   *  The compatible code will be removed after Dec 31, 2022
+   */
+  string mini_program_deprecated = 1 [@deprecated = true];
+  MiniProgramPayload mini_program = 2;
 }
 
 message MessageUrlRequest {
   string id = 1;
 }
 message MessageUrlResponse {
-  UrlLinkPayload url_link = 1;
+  /**
+   * Huan(202110): We should use payload instead of JSON.stringify string
+   *  The compatible code will be removed after Dec 31, 2022
+   */
+  string url_link_deprecated = 1 [@deprecated = true];
+  UrlLinkPayload url_link = 2;
 }
 
 message MessageSendContactRequest {
@@ -153,7 +163,12 @@ message MessageSendTextResponse {
 
 message MessageSendMiniProgramRequest {
   string conversation_id = 1;
-  MiniProgramPayload mini_program = 2;
+  /**
+   * Huan(202110): We should use payload instead of JSON.stringify string
+   *  The compatible code will be removed after Dec 31, 2022
+   */
+  string mini_program_deprecated = 2 [@deprecated = true];
+  MiniProgramPayload mini_program = 3;
 }
 message MessageSendMiniProgramResponse {
   google.protobuf.StringValue id = 1;
@@ -161,7 +176,12 @@ message MessageSendMiniProgramResponse {
 
 message MessageSendUrlRequest {
   string conversation_id = 1;
-  UrlLinkPayload url_link = 2;
+  /**
+   * Huan(202110): We should use payload instead of JSON.stringify string
+   *  The compatible code will be removed after Dec 31, 2022
+   */
+  string url_link_deprecated = 2 [@deprecated = true];
+  UrlLinkPayload url_link = 3;
 }
 message MessageSendUrlResponse {
   google.protobuf.StringValue id = 1;
