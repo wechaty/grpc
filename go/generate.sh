@@ -2,30 +2,30 @@
 
 set -eo pipefail
 
+# Huan(202110): enable `**/*.proto` to include all files
+# https://stackoverflow.com/a/28199633/1123955
+shopt -s globstar
+
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 PROTO_BASE_DIR=$ROOT/proto
-PROTO_PUPPET_DIR=$PROTO_BASE_DIR/wechaty/puppet
-PROTO_WECHATY_DIR=$PROTO_BASE_DIR/wechaty
+OUT_DIR=$ROOT/go/generated
 
-OUT_WECHATY_DIR=$ROOT/go/generated/wechaty
-OUT_PUPPET_DIR=$OUT_WECHATY_DIR
-
-if [ ! -d "$PUPPET_GEN_DIR" ]; then
-  mkdir -p $OUT_PUPPET_DIR
+if [ ! -d "$OUT_DIR" ]; then
+  mkdir -p $OUT_DIR
 fi
 
 protoc --version
 
-cd $PROTO_WECHATY_DIR && protoc \
-  -I $PROTO_WECHATY_DIR \
-  --go_out=plugins=grpc:$OUT_PUPPET_DIR \
-  --go_opt=paths=source_relative \
-  puppet/*.proto
+pushd $PROTO_BASE_DIR
 
 protoc \
-  -I $PROTO_WECHATY_DIR \
-  -I $PROTO_PUPPET_DIR \
-  --go_out=plugins=grpc:$OUT_WECHATY_DIR \
+  -I $PROTO_BASE_DIR \
+  -I $ROOT/third-party \
+  --go_out=$OUT_DIR \
   --go_opt=paths=source_relative \
-  $PROTO_WECHATY_DIR/*.proto
+  --go-grpc_out=$OUT_DIR \
+  --go-grpc_opt=paths=source_relative \
+  wechaty/**/*.proto
+
+popd
