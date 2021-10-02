@@ -13,8 +13,7 @@ clean:
 
 .PHONY: install
 install:
-	go get -u github.com/golang/protobuf/protoc-gen-go
-	go get -v -t -d ./...
+	go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 	bash -x ../scripts/install-protoc.sh
 
 .PHONY: test
