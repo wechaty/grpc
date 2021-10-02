@@ -6,9 +6,9 @@ option java_package     = "io.github.wechaty.grpc.puppet";
 option csharp_namespace = "github.wechaty.grpc.puppet";
 
 message LocationPayload {
-  uint32 accuracy = 1;
-  string address = 2;
-  uint32 latitude = 3;
-  uint32 longitude = 4;
-  string name = 5;
+  int32  accuracy  = 1;
+  string address   = 2;
+  int32  latitude  = 3;
+  int32  longitude = 4;
+  string name      = 5;
 }
