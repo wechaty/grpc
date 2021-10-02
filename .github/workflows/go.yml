@@ -12,7 +12,6 @@ jobs:
     - name: Set up Go 1.17
       uses: actions/setup-go@v2
       with:
-        stable: false
         go-version: 1.17
       id: go
     - name: Install Protoc
@@ -43,7 +42,6 @@ jobs:
     - name: Set up Go 1.17
       uses: actions/setup-go@v2
       with:
-        stable: false
         go-version: 1.17
       id: go
     - name: Install Protoc

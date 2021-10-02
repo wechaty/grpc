@@ -15,10 +15,12 @@ jobs:
           cache-dependency-path: package.json
 
       - name: Set up Go
-        uses: actions/setup-go@master
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.17
         id: go
       - name: Install Protoc
-        uses: arduino/setup-protoc@master
+        uses: arduino/setup-protoc@v1
 
       - name: Install Dependencies
         run: |
@@ -43,11 +45,13 @@ jobs:
           cache: npm
           cache-dependency-path: package.json
       - name: Set up Go
-        uses: actions/setup-go@master
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.17
         id: go
 
       - name: Install Protoc
-        uses: arduino/setup-protoc@master
+        uses: arduino/setup-protoc@v1
       - name: Install Protoc 3rd party protos
         run: npm run install:protoc
 
@@ -74,7 +78,7 @@ jobs:
           cache: npm
           cache-dependency-path: package.json
       - name: Install Protoc
-        uses: arduino/setup-protoc@master
+        uses: arduino/setup-protoc@v1
       - name: Install Protoc 3rd party protos
         run: npm run install:protoc
 
