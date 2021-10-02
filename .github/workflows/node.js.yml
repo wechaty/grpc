@@ -15,10 +15,9 @@ jobs:
       matrix:
         os:
           - macos-latest
-          - windows-latest
+          # - windows-latest
           - ubuntu-latest
         node-version:
-          - 14
           - 16
     runs-on: ${{ matrix.os }}
 
@@ -28,7 +27,7 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
+        cache: npm
         cache-dependency-path: package.json
     - name: Set up Go
       uses: actions/setup-go@master
