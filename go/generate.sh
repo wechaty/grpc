@@ -7,22 +7,20 @@ set -eo pipefail
 shopt -s globstar
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-
-PROTO_BASE_DIR=$ROOT/proto
-OUT_DIR=$ROOT/go/generated
+OUT_DIR="$ROOT/go/generated"
 
 if [ ! -d "$OUT_DIR" ]; then
-  mkdir -p $OUT_DIR
+  mkdir -p "$OUT_DIR"
 fi
 
 protoc --version
 
 protoc \
-  -I $PROTO_BASE_DIR \
-  -I $ROOT/third-party \
+  -I "$ROOT/proto" \
+  -I "$ROOT/third-party" \
   --go_out=$OUT_DIR \
   --go_opt=paths=source_relative \
   --go-grpc_out=$OUT_DIR \
   --go-grpc_opt=paths=source_relative \
-  "$PROTO_BASE_DIR"/wechaty/**/*.proto \
-  "$ROOT"/third-party/**/*.proto
+  "$ROOT/proto/wechaty"/**/*.proto \
+  "$ROOT/third-party"/**/*.proto
