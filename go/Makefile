@@ -15,6 +15,7 @@ clean:
 install:
 	go get -u github.com/golang/protobuf/protoc-gen-go
 	go get -v -t -d ./...
+	bash -x ../scripts/install-protoc.sh
 
 .PHONY: test
 test:
