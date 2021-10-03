@@ -23,5 +23,5 @@ protoc \
   --go-grpc_out=$OUT_DIR \
   --go-grpc_opt=paths=source_relative \
   "$ROOT/proto/wechaty"/puppet.proto \
-  "$ROOT/proto/wechaty"/puppet/*.proto \
+  "$ROOT/proto/wechaty"/**/*.proto \
   "$ROOT/third-party"/**/*.proto
