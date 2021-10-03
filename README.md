@@ -231,7 +231,7 @@ Check out [RESOURCES.md](RESOURCES.md) file for learning resources.
 
 ### master v0.29
 
-- [ ] Rename `ENUM` from `CONTACT_GENDER_MALE` to `MALE`
+- ~~[ ] Rename `ENUM` from `CONTACT_GENDER_MALE` to `MALE` ([#110](https://github.com/wechaty/grpc/issues/110))~~
 - [ ] Fix typos
 
 ### master v0.27
