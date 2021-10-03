@@ -7,7 +7,7 @@ set -eo pipefail
 shopt -s globstar
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-OUT_DIR="$ROOT/go/generated"
+OUT_DIR="$ROOT/go/out"
 
 if [ ! -d "$OUT_DIR" ]; then
   mkdir -p "$OUT_DIR"
