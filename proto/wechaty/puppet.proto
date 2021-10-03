@@ -301,7 +301,6 @@ service Puppet {
   rpc MessageRecall (puppet.MessageRecallRequest) returns (puppet.MessageRecallResponse) {
     option (google.api.http) = {
       put: "/message/{id}/recall"
-      body: "*"
     };
   }
   rpc MessageForward (puppet.MessageForwardRequest) returns (puppet.MessageForwardResponse) {

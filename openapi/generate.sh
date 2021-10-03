@@ -4,24 +4,27 @@ set -e
 set -o pipefail
 
 # https://stackoverflow.com/a/4774063/1123955
-SCRIPTPATH="$( cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 ; pwd -P )"
+REPO_DIR="$( cd "$(dirname "${BASH_SOURCE[0]}"/../)" >/dev/null 2>&1 ; pwd -P )"
+WORK_DIR="$REPO_DIR/openapi/"
+OUT_DIR="$WORK_DIR/out/"
 
-THIRD_PARTY_DIR="${SCRIPTPATH}/../third-party/"
-GENERATED_DIR="${SCRIPTPATH}/../generated/"
+PACKAGE_JSON_FILE="$REPO_DIR/package.json"
+if [ ! -f "$PACKAGE_JSON_FILE" ]; then
+  echo "package.json not found"
+  exit 1
+fi
 
-PACKAGE_JSON_FILE="${SCRIPTPATH}/../package.json"
-SWAGGER_JSON_FILE="${GENERATED_DIR}/wechaty/puppet.swagger.json"
+SWAGGER_JSON_FILE="$OUT_DIR/wechaty/puppet.swagger.json"
 
 function generate_swagger () {
   PROTOC="protoc \
-    -I ../proto/ \
-    -I ../proto/wechaty/ \
-    -I ${THIRD_PARTY_DIR} \
-    ../proto/wechaty/puppet.proto \
+    -I $REPO_DIR/proto/ \
+    -I $REPO_DIR/third-party/ \
+    $REPO_DIR/proto/wechaty/puppet.proto \
   "
 
   ${PROTOC} \
-    --openapiv2_out ${GENERATED_DIR} \
+    --openapiv2_out ${OUT_DIR} \
     --openapiv2_opt logtostderr=true \
     --openapiv2_opt generate_unbound_methods=true
 }
