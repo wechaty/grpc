@@ -4,19 +4,25 @@ set -e
 set -o pipefail
 
 # https://stackoverflow.com/a/4774063/1123955
-REPO_DIR="$( cd "$(dirname "${BASH_SOURCE[0]}"/../)" >/dev/null 2>&1 ; pwd -P )"
-WORK_DIR="$REPO_DIR/openapi/"
+WORK_DIR="$( cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 ; pwd -P )"
+REPO_DIR="$( cd "$WORK_DIR/../" >/dev/null 2>&1 ; pwd -P )"
 OUT_DIR="$WORK_DIR/out/"
 
 PACKAGE_JSON_FILE="$REPO_DIR/package.json"
-if [ ! -f "$PACKAGE_JSON_FILE" ]; then
-  echo "package.json not found"
-  exit 1
-fi
-
 SWAGGER_JSON_FILE="$OUT_DIR/wechaty/puppet.swagger.json"
 
+function check_package_json () {
+  if [ ! -f "$PACKAGE_JSON_FILE" ]; then
+    echo "$PACKAGE_JSON_FILE not found"
+    exit 1
+  fi
+}
+
 function generate_swagger () {
+  if [ ! -e "$OUT_DIR" ]; then
+    mkdir "$OUT_DIR"
+  fi
+
   PROTOC="protoc \
     -I $REPO_DIR/proto/ \
     -I $REPO_DIR/third-party/ \
@@ -47,6 +53,7 @@ function update_version () {
 }
 
 function main () {
+  check_package_json
   generate_swagger
   update_version
 }
