@@ -16,6 +16,9 @@ cd go-grpc
 cp -Rav "$OUT_DIR"/wechaty .
 echo "$VERSION" > VERSION
 
+# build test
+go build -v wechaty/puppet.pb.go
+
 if [ -z "$(git status --porcelain)" ]; then
   echo
   echo "[Publish] There's no new generated code found"
