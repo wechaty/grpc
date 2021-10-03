@@ -2,7 +2,7 @@
 
 set -eo pipefail
 
-GENERATED_DIR="$(pwd)/generated"
+OUT_DIR="$(pwd)/out"
 
 VERSION=$(jq -r .version ../package.json)
 DEPLOY_DIR="wechaty-go-grpc.$$"
@@ -13,7 +13,7 @@ pushd "$DEPLOY_DIR"
 
 git clone git@github.com:wechaty/go-grpc.git
 cd go-grpc
-cp -Rav "$GENERATED_DIR"/wechaty .
+cp -Rav "$OUT_DIR"/wechaty .
 echo "$VERSION" > VERSION
 
 if [ -z "$(git status --porcelain)" ]; then
@@ -22,6 +22,8 @@ if [ -z "$(git status --porcelain)" ]; then
   echo
   exit 0
 fi
+
+git add .
 
 git \
   -c "user.name=Mike BO" \
