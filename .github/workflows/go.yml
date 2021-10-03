@@ -34,10 +34,7 @@ jobs:
         [ -e "$WECHATY_GRPC" ] || mkdir -p "$WECHATY_GRPC"
         ln -s "$(pwd)/out/wechaty/" "$WECHATY_GRPC/wechaty"
 
-        cd $WECHATY_GRPC
-        #go build -v wechaty/puppet.pb.go
-        echo $pwd
-        echo $GO111MODULE
+        go build -v out/wechaty/puppet.pb.go
 
   publish:
     if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/v'))
