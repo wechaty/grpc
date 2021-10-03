@@ -7,10 +7,10 @@ option csharp_namespace = "github.wechaty.grpc.puppet";
 
 import "google/protobuf/wrappers.proto";
 
-import "wechaty/puppet/file_box.proto";
+import "wechaty/puppet/file-box.proto";
 import "wechaty/puppet/location.proto";
-import "wechaty/puppet/mini_program.proto";
-import "wechaty/puppet/url_link.proto";
+import "wechaty/puppet/mini-program.proto";
+import "wechaty/puppet/url-link.proto";
 
 enum MessageType {
   MESSAGE_TYPE_UNSPECIFIED  = 0;
@@ -213,5 +213,12 @@ message MessageSendLocationRequest {
   LocationPayload location = 2;
 }
 message MessageSendLocationResponse {
-  google.protobuf.StringValue id = 1;
+  /**
+   * Huan(202110): we will not use wrappers any more by following the Google Style Guide:
+   *  Wrapper types must not be used going forward. (If not using optional would add complexity or ambiguity, then use optional primitive fields)
+   *    — Optional Primitive Fields (https://cloud.google.com/apis/design/design_patterns.md#optional-primitive-fields)
+   *
+   *  if `id` has not been set, then it means return the `void` return type
+   */
+  string id = 1;
 }
