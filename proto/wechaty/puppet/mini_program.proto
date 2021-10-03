@@ -5,16 +5,14 @@ option go_package       = "github.com/wechaty/go-grpc/wechaty/puppet";
 option java_package     = "io.github.wechaty.grpc.puppet";
 option csharp_namespace = "github.wechaty.grpc.puppet";
 
-import "google/protobuf/wrappers.proto";
-
 message MiniProgramPayload {
-  google.protobuf.StringValue appid = 1;
-  google.protobuf.StringValue description = 2;
-  google.protobuf.StringValue page_path = 3;
-  google.protobuf.StringValue icon_url = 4;
-  google.protobuf.StringValue share_id = 5;
-  google.protobuf.StringValue thumb_url = 6;
-  google.protobuf.StringValue title = 7;
-  google.protobuf.StringValue username = 8;
-  google.protobuf.StringValue thumb_key = 9;
+  string appid       = 1;
+  string description = 2;
+  string page_path   = 3;
+  string icon_url    = 4;
+  string share_id    = 5;
+  string thumb_url   = 6;
+  string title       = 7;
+  string username    = 8;
+  string thumb_key   = 9;
 }
