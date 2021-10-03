@@ -215,10 +215,9 @@ message MessageSendLocationRequest {
 message MessageSendLocationResponse {
   /**
    * Huan(202110): we will not use wrappers any more by following the Google Style Guide:
-   *  Wrapper types must not be used going forward. (If not using optional would add complexity or ambiguity, then use optional primitive fields)
-   *    — Optional Primitive Fields (https://cloud.google.com/apis/design/design_patterns.md#optional-primitive-fields)
-   *
-   *  if `id` has not been set, then it means return the `void` return type
+   *  If not using optional would add complexity or ambiguity, then use optional primitive fields,
+   *  Wrapper types must not be used going forward.
+   *  — Optional Primitive Fields (https://cloud.google.com/apis/design/design_patterns.md#optional-primitive-fields)
    */
   string id = 1;
 }
