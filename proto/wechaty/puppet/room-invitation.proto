@@ -28,9 +28,9 @@ message RoomInvitationPayloadResponse {
    *  Huan(202109): use receive_time(10) instead
    */
   uint64   timestamp_deprecated = 6 [deprecated = true]; // deprecated
-  string   avatar              = 7;
-  string   invitation          = 8;
-  string   receiver_id         = 9;
+  string   avatar            = 7;
+  string   invitation        = 8;
+  string   receiver_id       = 9;
   google.protobuf.Timestamp receive_time = 10;
 }
 
