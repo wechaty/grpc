@@ -51,10 +51,10 @@ message MessagePayloadResponse {
    *  Huan(202109): use receive_time(10) instead
    */
   uint64      timestamp_deprecated = 4 [deprecated = true];
-  MessageType type               = 5;
-  string      from_id            = 6;
-  string      room_id            = 7;
-  string      to_id              = 8;
+  MessageType type             = 5;
+  string      from_id          = 6;
+  string      room_id          = 7;
+  string      to_id            = 8;
   repeated    string mention_ids = 9;
   google.protobuf.Timestamp receive_time = 10;
 }
