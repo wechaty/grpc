@@ -10,10 +10,7 @@ shopt -s globstar
 WORK_DIR="$( cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 ; pwd -P )"
 REPO_DIR="$( cd "$WORK_DIR/../../" >/dev/null 2>&1 ; pwd -P )"
 OUT_DIR="$(  cd "$WORK_DIR/out/" >/dev/null 2>&1 ; pwd -P )"
-
-if [ ! -d "$OUT_DIR" ]; then
-  mkdir -p "$OUT_DIR"
-fi
+[ -d "$OUT_DIR" ] || mkdir -p $OUT_DIR
 
 protoc --version
 
