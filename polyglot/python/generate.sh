@@ -10,14 +10,11 @@ shopt -s globstar
 #   https://stackoverflow.com/q/16245106/1123955
 #
 
-# Huan(202110): enable `**/*.proto` to include all files
-# https://stackoverflow.com/a/28199633/1123955
-shopt -s globstar
-
 # https://stackoverflow.com/a/4774063/1123955
 WORK_DIR="$( cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 ; pwd -P )"
 REPO_DIR="$( cd "$WORK_DIR/../../" >/dev/null 2>&1 ; pwd -P )"
-OUT_DIR="$(  cd "$WORK_DIR/src/wechaty_grpc/" >/dev/null 2>&1 ; pwd -P )"
+
+OUT_DIR="$WORK_DIR/src/wechaty_grpc/"
 [ -d "$OUT_DIR" ] || mkdir -p $OUT_DIR
 
 function generate_proto_stub () {

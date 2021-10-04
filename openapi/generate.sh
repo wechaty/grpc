@@ -6,6 +6,7 @@ set -o pipefail
 # https://stackoverflow.com/a/4774063/1123955
 WORK_DIR="$( cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 ; pwd -P )"
 REPO_DIR="$( cd "$WORK_DIR/../" >/dev/null 2>&1 ; pwd -P )"
+
 OUT_DIR="$REPO_DIR/out/"
 [ -d "$OUT_DIR" ] || mkdir -p $OUT_DIR
 

@@ -9,7 +9,8 @@ shopt -s globstar
 # https://stackoverflow.com/a/4774063/1123955
 WORK_DIR="$( cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 ; pwd -P )"
 REPO_DIR="$( cd "$WORK_DIR/../../" >/dev/null 2>&1 ; pwd -P )"
-OUT_DIR="$(  cd "$WORK_DIR/src/main/java/" >/dev/null 2>&1 ; pwd -P )"
+
+OUT_DIR="$WORK_DIR/src/main/java/"
 [ -d "$OUT_DIR" ] || mkdir -p $OUT_DIR
 
 

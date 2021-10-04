@@ -9,7 +9,8 @@ shopt -s globstar
 # https://stackoverflow.com/a/4774063/1123955
 WORK_DIR="$( cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 ; pwd -P )"
 REPO_DIR="$( cd "$WORK_DIR/../../" >/dev/null 2>&1 ; pwd -P )"
-OUT_DIR="$(  cd "$WORK_DIR/out/wechaty/" >/dev/null 2>&1 ; pwd -P )"
+
+OUT_DIR="$WORK_DIR/out/wechaty/"
 [ -d "$OUT_DIR" ] || mkdir -p $OUT_DIR
 
 protoc --version
