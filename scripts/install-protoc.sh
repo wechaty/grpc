@@ -85,7 +85,7 @@ function install_protoc_gen_doc () {
     echo "install skipped: $(command -v protoc-gen-doc) exists"
     return 0
   fi
-  go install github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc
+  go install github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc@latest
 }
 
 function main () {
