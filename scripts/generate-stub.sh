@@ -16,6 +16,7 @@ OUT_DIR="$REPO_DIR/out/"
 PROTOC_CMD="protoc \
   -I $REPO_DIR/third-party/ \
   -I $REPO_DIR/proto/ \
+  $REPO_DIR/third-party/**/*.proto \
   $REPO_DIR/proto/**/*.proto \
 "
 
