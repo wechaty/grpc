@@ -26,7 +26,7 @@ message RoomInvitationPayloadRequest {
    *    https://cloud.google.com/apis/design/design_patterns#optional_primitive_fields
    */
   google.protobuf.StringValue wrapped_payload = 2;  // @deprecated
-  optional string payload = 3;
+  string payload = 3;
 }
 message RoomInvitationPayloadResponse {
   string   id                = 1;

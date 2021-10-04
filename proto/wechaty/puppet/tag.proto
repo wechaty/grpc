@@ -36,7 +36,7 @@ message TagContactListRequest {
    *    https://cloud.google.com/apis/design/design_patterns#optional_primitive_fields
    */
   google.protobuf.StringValue wrapped_contact_id = 1; // @deprecated
-  optional string contact_id = 2;
+  string contact_id = 2;
 }
 message TagContactListResponse {
   repeated string ids = 1;
