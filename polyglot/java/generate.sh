@@ -2,34 +2,25 @@
 
 set -eo pipefail
 
-PROTO_BASE_DIR=../proto
-THIRD_PARTY_DIR=../third-party
-PROTO_PUPPET_DIR=$PROTO_BASE_DIR/wechaty/puppet
-PROTO_WECHATY_DIR=$PROTO_BASE_DIR/wechaty
+# Huan(202110): enable `**/*.proto` to include all files
+# https://stackoverflow.com/a/28199633/1123955
+shopt -s globstar
 
-# /usr/local/include
+# https://stackoverflow.com/a/4774063/1123955
+WORK_DIR="$( cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 ; pwd -P )"
+REPO_DIR="$( cd "$WORK_DIR/../../" >/dev/null 2>&1 ; pwd -P )"
+OUT_DIR="$(  cd "$WORK_DIR/src/main/java/" >/dev/null 2>&1 ; pwd -P )"
 
-OUT_WECHATY_DIR=./src/main/java
-OUT_PUPPET_DIR=$OUT_WECHATY_DIR
-
-if [ ! -d "$PUPPET_GEN_DIR" ]; then
-  mkdir -p $OUT_PUPPET_DIR
+if [ ! -d "$OUT_DIR" ]; then
+  mkdir -p $OUT_DIR
 fi
 
 protoc --version
 
 protoc \
-  -I $PROTO_BASE_DIR \
-  -I $THIRD_PARTY_DIR \
+  -I $REPO_DIR/proto \
+  -I $REPO_DIR/third-party \
   --plugin=protoc-gen-grpc-java=/usr/local/bin/protoc-gen-grpc-java-1.37.1-linux-x86_64.exe \
-  --java_out=$OUT_PUPPET_DIR \
-  --grpc-java_out=$OUT_PUPPET_DIR \
-  $PROTO_PUPPET_DIR/*.proto
-
-protoc \
-  -I $PROTO_BASE_DIR \
-  -I $THIRD_PARTY_DIR \
-  --plugin=protoc-gen-grpc-java=/usr/local/bin/protoc-gen-grpc-java-1.37.1-linux-x86_64.exe \
-  --java_out=$OUT_PUPPET_DIR \
-  --grpc-java_out=$OUT_PUPPET_DIR \
-  $PROTO_WECHATY_DIR/*.proto
+  --java_out=$OUT_DIR \
+  --grpc-java_out=$OUT_DIR \
+  $REPO_DIR/proto/**/*.proto
