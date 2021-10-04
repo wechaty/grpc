@@ -6,8 +6,10 @@ set -eo pipefail
 # https://stackoverflow.com/a/28199633/1123955
 shopt -s globstar
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-OUT_DIR="$ROOT/go/out"
+# https://stackoverflow.com/a/4774063/1123955
+WORK_DIR="$( cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 ; pwd -P )"
+REPO_DIR="$( cd "$WORK_DIR/../../" >/dev/null 2>&1 ; pwd -P )"
+OUT_DIR="$(  cd "$WORK_DIR/out/" >/dev/null 2>&1 ; pwd -P )"
 
 if [ ! -d "$OUT_DIR" ]; then
   mkdir -p "$OUT_DIR"
@@ -16,11 +18,11 @@ fi
 protoc --version
 
 protoc \
-  -I "$ROOT/proto" \
-  -I "$ROOT/third-party" \
+  -I "$REPO_DIR/proto" \
+  -I "$REPO_DIR/third-party" \
   --go_out=$OUT_DIR \
   --go_opt=paths=source_relative \
   --go-grpc_out=$OUT_DIR \
   --go-grpc_opt=paths=source_relative \
-  "$ROOT/proto/wechaty"/**/*.proto \
-  "$ROOT/third-party"/**/*.proto
+  "$REPO_DIR/proto/wechaty"/**/*.proto \
+  "$REPO_DIR/third-party"/**/*.proto
