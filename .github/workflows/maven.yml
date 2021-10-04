@@ -21,7 +21,7 @@ jobs:
       with:
         java-version: 1.8
     - name: Build with Maven
-      run: mvn -B package --file java/pom.xml
+      run: mvn -B package --file polyglot/java/pom.xml
 
   publish:
     if: github.event_name == 'release' && github.event.action == 'released'
@@ -39,7 +39,7 @@ jobs:
         settings-path: ${{ github.workspace }} # location for the settings.xml file
 
     - name: Build with Maven
-      run: mvn -B package --file java/pom.xml
+      run: mvn -B package --file polyglot/java/pom.xml
 
     - name: Publish to GitHub Packages Apache Maven
       run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
