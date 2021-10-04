@@ -5,6 +5,8 @@ option go_package="github.com/wechaty/go-grpc/wechaty/puppet";
 option java_package="io.github.wechaty.grpc.puppet";
 option csharp_namespace = "github.wechaty.grpc.puppet";
 
+import "google/protobuf/timestamp.proto";
+
 /**
  * @deprecated
  *  Huan(202109): will be removed after Dec 31, 2022
@@ -12,7 +14,10 @@ option csharp_namespace = "github.wechaty.grpc.puppet";
  */
 import "google/protobuf/wrappers.proto";
 
-import "wechaty/puppet/file_box.proto";
+import "wechaty/puppet/file-box.proto";
+import "wechaty/puppet/location.proto";
+import "wechaty/puppet/mini-program.proto";
+import "wechaty/puppet/url-link.proto";
 
 enum MessageType {
   MESSAGE_TYPE_UNSPECIFIED  = 0;
@@ -51,7 +56,7 @@ message MessagePayloadResponse {
    * @deprecated will be removed after Dec 31, 2022
    *  Huan(202109): use receive_time(10) instead
    */
-  uint64      timestamp          = 4;
+  uint64      timestamp_deprecated = 4 [deprecated = true];
   MessageType type               = 5;
   string      from_id            = 6;
   string      room_id            = 7;
@@ -95,7 +100,7 @@ message MessageFileResponse {
   /**
    * Huan(202011) deprecated: use MessageFileStreamResponse instead
    */
-   string filebox = 1;
+   string filebox = 1 [deprecated = true];
 }
 
 message MessageFileStreamRequest {
@@ -109,14 +114,24 @@ message MessageMiniProgramRequest {
   string id = 1;
 }
 message MessageMiniProgramResponse {
-  string mini_program = 1;
+  /**
+   * Huan(202110): We should use payload instead of JSON.stringify string
+   *  The compatible code will be removed after Dec 31, 2022
+   */
+  string mini_program_deprecated = 1 [deprecated = true]; // deprecated after Sep 31, 2021, remove compatible code after Dec 31, 2022
+  MiniProgramPayload mini_program = 2;
 }
 
 message MessageUrlRequest {
   string id = 1;
 }
 message MessageUrlResponse {
-  string url_link = 1;
+  /**
+   * Huan(202110): We should use payload instead of JSON.stringify string
+   *  The compatible code will be removed after Dec 31, 2022
+   */
+  string url_link_deprecated = 1 [deprecated = true]; // deprecated after Sep 31, 2021, remove compatible code after Dec 31, 2022
+  UrlLinkPayload url_link = 2;
 }
 
 message MessageSendContactRequest {
@@ -183,7 +198,12 @@ message MessageSendTextResponse {
 
 message MessageSendMiniProgramRequest {
   string conversation_id = 1;
-  string mini_program = 2;
+  /**
+   * Huan(202110): We should use payload instead of JSON.stringify string
+   *  The compatible code will be removed after Dec 31, 2022
+   */
+  string mini_program_deprecated = 2 [deprecated = true]; // deprecated after Sep 31, 2021, remove compatible code after Dec 31, 2022
+  MiniProgramPayload mini_program = 3;
 }
 message MessageSendMiniProgramResponse {
   /**
@@ -197,7 +217,12 @@ message MessageSendMiniProgramResponse {
 
 message MessageSendUrlRequest {
   string conversation_id = 1;
-  string url_link = 2;
+  /**
+   * Huan(202110): We should use payload instead of JSON.stringify string
+   *  The compatible code will be removed after Dec 31, 2022
+   */
+  string url_link_deprecated = 2 [deprecated = true]; // deprecated after Sep 31, 2021, remove compatible code after Dec 31, 2022
+  UrlLinkPayload url_link = 3;
 }
 message MessageSendUrlResponse {
   /**
@@ -227,4 +252,25 @@ message MessageForwardResponse {
    */
   google.protobuf.StringValue wrapped_id = 1; // @deprecated
   optional string id = 2;
+}
+
+message MessageLocationRequest{
+  string id = 1;
+}
+message MessageLocationResponse {
+  LocationPayload location = 1;
+}
+
+message MessageSendLocationRequest {
+  string conversation_id = 1;
+  LocationPayload location = 2;
+}
+message MessageSendLocationResponse {
+  /**
+   * Huan(202110): we will not use wrappers any more by following the Google Style Guide:
+   *  If not using optional would add complexity or ambiguity, then use optional primitive fields,
+   *  Wrapper types must not be used going forward.
+   *  — Optional Primitive Fields (https://cloud.google.com/apis/design/design_patterns.md#optional-primitive-fields)
+   */
+  string id = 1;
 }

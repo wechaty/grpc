@@ -1,4 +1,4 @@
-name: PyPI
+name: Python PyPI
 
 on: [push, pull_request]
 
@@ -16,6 +16,10 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: 3.9
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.17
     - uses: actions/cache@master
       with:
         path: ~/.cache/pip
@@ -24,18 +28,18 @@ jobs:
           ${{ runner.os }}-pip-
 
     - name: Install Protoc
-      uses: arduino/setup-protoc@master
+      uses: arduino/setup-protoc@v1
     - name: Install Protoc 3rd party protos
       run: scripts/install-protoc.sh
 
     - name: Install dependencies
       run: |
-        cd python
+        cd polyglot/python
         python -m pip install --upgrade pip
         make install
     - name: Test
       run: |
-        cd python
+        cd polyglot/python
         make generate
         make test
 
@@ -48,6 +52,11 @@ jobs:
       - uses: actions/setup-python@v1
         with:
           python-version: 3.9
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.17
+
       - uses: actions/cache@master
         with:
           path: ~/.cache/pip
@@ -56,25 +65,25 @@ jobs:
             ${{ runner.os }}-pip-
 
       - name: Install Protoc
-        uses: arduino/setup-protoc@master
+        uses: arduino/setup-protoc@v1
       - name: Install Protoc 3rd party protos
         run: scripts/install-protoc.sh
 
       - name: Install dependencies
         run: |
-          cd python
+          cd polyglot/python
           python -m pip install --upgrade pip
           pip install setuptools wheel twine
           make install
       - name: Pack Testing
         run: |
-          cd python
+          cd polyglot/python
           make generate
           make dist
           echo "To be add: pack testing"
 
   deploy:
-    if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/heads/v'))
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/v'))
     name: Deploy
     needs: [build, pack]
     runs-on: ubuntu-latest
@@ -84,6 +93,11 @@ jobs:
         uses: actions/setup-python@v1
         with:
           python-version: '3.9'
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.17
+
       - uses: actions/cache@master
         with:
           path: ~/.cache/pip
@@ -92,20 +106,20 @@ jobs:
             ${{ runner.os }}-pip-
 
       - name: Install Protoc
-        uses: arduino/setup-protoc@master
+        uses: arduino/setup-protoc@v1
       - name: Install Protoc 3rd party protos
         run: scripts/install-protoc.sh
 
       - name: Install dependencies
         run: |
-          cd python
+          cd polyglot/python
           python -m pip install --upgrade pip
           pip3 install setuptools wheel twine
 
       - name: Check Branch
         id: check-branch
         run: |
-          if [[ ${{ github.ref }} =~ ^refs/heads/(master|v[0-9]+\.[0-9]+.*)$ ]]; then
+          if [[ ${{ github.ref }} =~ ^refs/heads/(main|v[0-9]+\.[0-9]+.*)$ ]]; then
               echo ::set-output name=match::true
           fi  # See: https://stackoverflow.com/a/58869470/1123955
 
@@ -115,7 +129,7 @@ jobs:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
         run: |
-          cd python
+          cd polyglot/python
           make install
           make generate
           make dist
