@@ -3,9 +3,10 @@ set -e
 set -o pipefail
 
 # https://stackoverflow.com/a/4774063/1123955
-SCRIPTPATH="$( cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 ; pwd -P )"
+WORK_DIR="$( cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 ; pwd -P )"
+REPO_DIR="$( cd "$WORK_DIR/../" >/dev/null 2>&1 ; pwd -P )"
 
-THIRD_PARTY_DIR="${SCRIPTPATH}/../third-party/"
+THIRD_PARTY_DIR="$REPO_DIR/third-party/"
 
 function install_protoc () {
   if command -v protoc > /dev/null; then
@@ -37,8 +38,8 @@ function check_protoc_version () {
   }
 
   # https://github.com/wechaty/grpc/issues/109
-  (($minorVer >= 15)) || {
-    echo "protoc minor version must >= 15 (the installed version is $protocVersion)"
+  (($minorVer >= 18)) || {
+    echo "protoc minor version must >= 18 (the installed version is $protocVersion)"
     exit 1
   }
 
@@ -62,7 +63,7 @@ function install_proto_google_api () {
 }
 
 function install_protoc_gen_openapiv2 () {
-  pushd "${SCRIPTPATH}/../openapi"
+  pushd "$REPO_DIR/openapi"
   make install
   popd
 }
