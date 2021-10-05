@@ -8,6 +8,10 @@ syntax = "proto3";
 
 package wechaty.puppet;
 
+option csharp_namespace = "github.wechaty.grpc.puppet";
+option go_package       = "github.com/wechaty/go-grpc/wechaty";
+option java_package     = "io.github.wechaty.grpc";
+
 enum ServingStatus {
   SERVING_STATUS_UNSPECIFIC = 0;
   SERVING_STATUS_SERVING = 1;
