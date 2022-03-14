@@ -69,6 +69,13 @@ message FriendshipSearchWeixinResponse {
   string contact_id = 2;
 }
 
+message FriendshipSearchHandleRequest {
+  string handle = 1;
+}
+message FriendshipSearchHandleResponse {
+  string contact_id = 1;
+}
+
 message FriendshipAddRequest {
   string contact_id = 1;
   string hello = 2;

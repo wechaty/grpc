@@ -246,6 +246,11 @@ service Puppet {
       get: "/friendship/search/weixin/{weixin}"
     };
   }
+    rpc FriendshipSearchHandle (puppet.FriendshipSearchHandleRequest) returns (puppet.FriendshipSearchHandleResponse) {
+    option (google.api.http) = {
+      get: "/friendship/search/handle/{handle}"
+    };
+  }
 
   rpc FriendshipAdd (puppet.FriendshipAddRequest) returns (puppet.FriendshipAddResponse) {
     option (google.api.http) = {
