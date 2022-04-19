@@ -1,29 +1,27 @@
 /* eslint-disable sort-keys */
-
-import grpc from 'grpc'
+import util from 'util'
 
 import {
-  IPuppetServer,
-  PuppetService,
-  EventResponse,
-  EventType,
-  DingResponse,
-  EventRequest,
-}                       from '../src/index'
-
-// import { StringValue } from 'google-protobuf/google/protobuf/wrappers_pb'
+  grpc,
+  puppet,
+}                       from '../src/mod.js'
 
 import {
   puppetServerImpl,
-}                     from '../tests/puppet-server-impl'
+}                     from '../tests/puppet-server-impl.js'
 
-let eventStream: undefined | grpc.ServerWritableStream<EventRequest>
+let eventStream: undefined | grpc.ServerWritableStream<puppet.EventRequest, puppet.EventResponse>
+
+/**
+ * Huan(202003): gRPC Wait for Ready Semantics
+ *  https://github.com/grpc/grpc/blob/master/doc/wait-for-ready.md
+ */
 const dingQueue = [] as string[]
 
 /**
  * Implements the SayHello RPC method.
  */
-const puppetServerExample: IPuppetServer = {
+const puppetServerExample: puppet.IPuppetServer = {
   ...puppetServerImpl,
 
   event: (streammingCall) => {
@@ -38,8 +36,8 @@ const puppetServerExample: IPuppetServer = {
     eventStream = streammingCall
     while (dingQueue.length > 0) {
       const data = dingQueue.shift()
-      const eventResponse = new EventResponse()
-      eventResponse.setType(EventType.EVENT_TYPE_DONG)
+      const eventResponse = new puppet.EventResponse()
+      eventResponse.setType(puppet.EventType.EVENT_TYPE_DONG)
       eventResponse.setPayload(data!)
       eventStream.write(eventResponse)
     }
@@ -57,17 +55,20 @@ const puppetServerExample: IPuppetServer = {
   ding: (call, callback) => {
     const data = call.request.getData()
     console.info(`ding(${data})`)
-
+    console.info('metadata:', call.metadata.getMap())
+    console.info('getPeer:', call.getPeer())
+    console.info('getDeadLine:', call.getDeadline())
+    // console.info('getDeadLine:', call.)
     if (!eventStream) {
       dingQueue.push(data)
     } else {
-      const eventResponse = new EventResponse()
-      eventResponse.setType(EventType.EVENT_TYPE_DONG)
+      const eventResponse = new puppet.EventResponse()
+      eventResponse.setType(puppet.EventType.EVENT_TYPE_DONG)
       eventResponse.setPayload(data)
       eventStream.write(eventResponse)
     }
 
-    callback(null, new DingResponse())
+    callback(null, new puppet.DingResponse())
   },
 }
 
@@ -78,16 +79,23 @@ const puppetServerExample: IPuppetServer = {
 async function main () {
   const server = new grpc.Server()
   server.addService(
-    PuppetService,
+    puppet.PuppetService,
     puppetServerExample,
   )
-  server.bind('127.0.0.1:8788', grpc.ServerCredentials.createInsecure())
+  const serverBindPromise = util.promisify(
+    server.bindAsync.bind(server)
+  )
+
+  const port = await serverBindPromise(
+    '127.0.0.1:8788',
+    grpc.ServerCredentials.createInsecure(),
+  )
+  console.info('Listen on port:', port)
   server.start()
   return 0
 }
 
 main()
-  // .then(process.exit)
   .catch(e => {
     console.error(e)
     process.exit(1)

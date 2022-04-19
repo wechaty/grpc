@@ -1,6 +1,9 @@
-import {
-  IPuppetServer,
-}                       from '../src/'
+/* eslint-disable sort-keys */
+import type {
+  puppet,
+}                       from '../src/mod.js'
+
+type IPuppetServer = puppet.IPuppetServer
 
 /**
  * Implements the SayHello RPC method.
@@ -115,6 +118,12 @@ export const puppetServerImpl: IPuppetServer = {
     throw new Error('not implemented.')
   },
 
+  friendshipSearchHandle: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
   logout: (call, callback) => {
     void call
     void callback
@@ -138,6 +147,12 @@ export const puppetServerImpl: IPuppetServer = {
     throw new Error('not implemented.')
   },
 
+  messageForward: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
   messageImage: (call, callback) => {
     void call
     void callback
@@ -146,6 +161,12 @@ export const puppetServerImpl: IPuppetServer = {
 
   messageImageStream: (call) => {
     void call
+    throw new Error('not implemented.')
+  },
+
+  messageLocation: (call, callback) => {
+    void call
+    void callback
     throw new Error('not implemented.')
   },
 
@@ -180,6 +201,12 @@ export const puppetServerImpl: IPuppetServer = {
   },
 
   messageSendFileStream: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  messageSendLocation: (call, callback) => {
     void call
     void callback
     throw new Error('not implemented.')
@@ -330,6 +357,17 @@ export const puppetServerImpl: IPuppetServer = {
   },
 
   version: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  download: (call) => {
+    void call
+    throw new Error('not implemented.')
+  },
+
+  upload: (call, callback) => {
     void call
     void callback
     throw new Error('not implemented.')

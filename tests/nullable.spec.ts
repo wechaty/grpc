@@ -1,57 +1,47 @@
-#!/usr/bin/env ts-node
+#!/usr/bin/env -S node --no-warnings --loader ts-node/esm
 
 import { test }  from 'tstest'
 
 import util from 'util'
 
-import grpc from 'grpc'
-
 import {
-  ContactAliasRequest,
-  ContactAliasResponse,
-  PuppetService,
-  PuppetClient,
-}                             from '../src/'
+  grpc,
+  puppet,
+}               from '../src/mod.js'
 
-import { puppetServerImpl } from './puppet-server-impl'
-
-import { StringValue } from 'google-protobuf/google/protobuf/wrappers_pb'
+import { puppetServerImpl } from './puppet-server-impl.js'
 
 const SERVER_ENDPOINT = '127.0.0.1:8788'
 const ID    = 'test-id'
 const ALIAS = 'test-alias'
 
 const contactAlias: grpc.handleUnaryCall<
-  ContactAliasRequest,
-  ContactAliasResponse
+  puppet.ContactAliasRequest,
+  puppet.ContactAliasResponse
 > = (call, callback) => {
   const id = call.request.getId()
-  let aliasWrapper = call.request.getAlias()
 
-  if (aliasWrapper) {
+  if (call.request.hasAlias()) {
     /**
      * Set alias, return void
      */
-    const alias = aliasWrapper.getValue()
+    const alias = call.request.getAlias()
     if (alias !== ALIAS) {
       throw new Error(`alias argument value error: ${alias} not equal to ${ALIAS}`)
     }
-    callback(null, new ContactAliasResponse())
+    callback(null, new puppet.ContactAliasResponse())
 
   } else {
     /**
      * Get alias, return alias
      */
-    aliasWrapper = new StringValue()
-    aliasWrapper.setValue(id + ALIAS)
-
-    const response = new ContactAliasResponse()
-    response.setAlias(aliasWrapper)
+    const response = new puppet.ContactAliasResponse()
+    response.setAlias(id + ALIAS)
     callback(null, response)
   }
 }
 
-test('use StringValue to support nullable values', async (t) => {
+test('use StringValue to support nullable values', async t => {
 
   const puppetServerImplTest = {
     ...puppetServerImpl,
@@ -60,22 +50,37 @@ test('use StringValue to support nullable values', async (t) => {
 
   const server = new grpc.Server()
   server.addService(
-    PuppetService,
+    puppet.PuppetService,
     puppetServerImplTest,
   )
 
-  // FIXME: Huan(202002) if the port has been used by another grpc server, this will still bind with succeed!
-  // The result will be one port binded by two grpc server, and they are all working well...
-  const success = server.bind(SERVER_ENDPOINT, grpc.ServerCredentials.createInsecure())
-
-  if (!success) {
-    t.fail(`server bind to ${SERVER_ENDPOINT} failed.`)
-    return
+  try {
+    // FIXME: Huan(202002) if the port has been used by another grpc server, this will still bind with succeed!
+    // The result will be one port binded by two grpc server, and they are all working well...
+    const port = await util.promisify(server.bindAsync.bind(server))(
+      SERVER_ENDPOINT,
+      grpc.ServerCredentials.createInsecure(),
+    )
+    // console.info('port:', port)
+    if (port <= 0) {
+      t.fail(`server bind to ${SERVER_ENDPOINT} failed, port get ${port}.`)
+      return
+    }
+  } catch (e) {
+    /**
+      * Run gRPC server failed
+      *   https://medium.com/@yuanchaodu/run-grpc-server-failed-289172dbe6e
+      *
+      * No address added out of total 1 resolved
+      *  The above error message means the port is in use.
+      */
+    t.fail('server bindAsync fail.')
+    console.error(e)
   }
 
   server.start()
 
-  const client = new PuppetClient(
+  const client = new puppet.PuppetClient(
     SERVER_ENDPOINT,
     grpc.credentials.createInsecure()
   )
@@ -86,42 +91,29 @@ test('use StringValue to support nullable values', async (t) => {
    * Get alias
    */
   {
-    const request = new ContactAliasRequest()
+    const request = new puppet.ContactAliasRequest()
     request.setId(ID)
 
-    const response = await contactAliasPromise(request) as ContactAliasResponse
+    const response = await contactAliasPromise(request) as puppet.ContactAliasResponse
 
-    const aliasWrapper = response.getAlias()
-    t.ok(aliasWrapper, 'Should return an aliasWrapper')
-
-    if (aliasWrapper) {
-      const alias = aliasWrapper.getValue()
-      t.equal(alias, ID + ALIAS, 'should get the right alias value')
-    } else {
-      t.fail('can not get alias value')
-    }
+    const alias = response.getAlias()
+    t.equal(alias, ID + ALIAS, 'should get the right alias value')
   }
 
   /**
    * Set alias
    */
   {
-    const aliasWrapper = new StringValue()
-    aliasWrapper.setValue(ALIAS)
-
-    const request = new ContactAliasRequest()
+    const request = new puppet.ContactAliasRequest()
     request.setId(ID)
-    request.setAlias(aliasWrapper)
+    request.setAlias(ALIAS)
 
-    const response = await contactAliasPromise(request) as ContactAliasResponse
+    const response = await contactAliasPromise(request) as puppet.ContactAliasResponse
 
-    const nullAliasWrapper = response.getAlias()
-    t.notOk(nullAliasWrapper, 'should return undefined for null value')
+    const alias = response.getAlias()
+    t.notOk(alias, 'should return empty for after set a value')
   }
 
-  const tryShutdown = util.promisify(server.tryShutdown.bind(server))
-  await tryShutdown()
-
-  const forceShutdown = util.promisify(server.forceShutdown.bind(server))
-  setImmediate(() => forceShutdown())
+  await new Promise(resolve => server.tryShutdown(resolve))
+  setImmediate(() => server.forceShutdown())
 })

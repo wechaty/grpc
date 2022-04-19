@@ -1,9 +1,0 @@
-syntax = "proto3";
-package wechaty.puppet;
-
-message FileBoxChunk {
-  oneof payload {
-    bytes data = 1;
-    string name = 2;
-  }
-}
