@@ -356,6 +356,24 @@ export const puppetServerImpl: IPuppetServer = {
     throw new Error('not implemented.')
   },
 
+  postPayload: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  postSearch: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  postPublish: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
   version: (call, callback) => {
     void call
     void callback
