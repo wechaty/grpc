@@ -67,7 +67,7 @@ message PostPublishResponse {
 
 message PostPayloadServer {
   string id = 1;
-  repeated string sayable_list = 2;
+  repeated string sayable = 2;
 
   optional string parentId = 3;
   optional string root_id = 4;
@@ -81,7 +81,7 @@ message PostPayloadServer {
 
 message PostPayloadClient {
   string id = 1;
-  repeated string sayable_list = 2;
+  repeated string sayable = 2;
 
   optional string parentId = 3;
   optional string root_id = 4;
