@@ -1,0 +1,91 @@
+syntax = "proto3";
+package wechaty.puppet;
+
+option go_package="github.com/wechaty/go-grpc/wechaty/puppet";
+option java_package="io.github.wechaty.grpc.puppet";
+option csharp_namespace = "github.wechaty.grpc.puppet";
+
+import "google/protobuf/timestamp.proto";
+
+/**
+ * @deprecated
+ *  Huan(202109): will be removed after Dec 31, 2022
+ *    https://cloud.google.com/apis/design/design_patterns#optional_primitive_fields
+ */
+import "google/protobuf/wrappers.proto";
+
+import "wechaty/puppet/tap.proto";
+import "wechaty/puppet/pagination.proto";
+
+enum PostType {
+  POST_TYPE_UNSPECIFIED  = 0;
+
+  POST_TYPE_MOMENT = 1;
+  POST_TYPE_CHANNEL = 2;
+  POST_TYPE_MESSAGE = 3;
+}
+
+message Counter {
+  optional int32 children = 1;
+  optional int32 descendant = 2;
+
+  Taps taps = 3;
+}
+
+message PostPayloadRequest {
+  string id = 1;
+}
+
+message PostPayloadResponse {
+  oneof PostPayload {
+    PostPayloadServer post_payload_server = 1;
+    PostPayloadClient post_payload_client = 2;
+  }
+}
+
+message PostSearchRequest {
+  PostQueryFilter filter = 1;
+  optional PaginationRequest pagination = 2;
+}
+
+message PostSearchResponse {
+  optional string next_page_token = 1;
+  repeated string response = 2;
+}
+
+message PostPublishRequest {
+  oneof PostPayload {
+    PostPayloadServer post_payload_server = 1;
+    PostPayloadClient post_payload_client = 2;
+  }
+}
+
+message PostPublishResponse {
+  optional string id = 1;
+}
+
+
+message PostPayloadServer {
+  string id = 1;
+  repeated string sayable_list = 2;
+
+  string contact_id = 3;
+  int32 timestamp = 4;
+
+  Counter counter = 5;
+}
+
+message PostPayloadClient {
+  string id = 1;
+  repeated string sayable_list = 2;
+}
+
+message PostQueryFilter {
+  optional string contact_id = 1;
+  optional string id = 2;
+  optional string orderBy = 3;
+  optional string parentId = 4;
+  optional string rootId = 5;
+  optional PostType type = 6;
+}
+
