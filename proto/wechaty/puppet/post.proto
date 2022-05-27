@@ -83,9 +83,9 @@ message PostPayloadClient {
 message PostQueryFilter {
   optional string contact_id = 1;
   optional string id = 2;
-  optional string orderBy = 3;
-  optional string parentId = 4;
-  optional string rootId = 5;
+  optional string order_by = 3;
+  optional string parent_id = 4;
+  optional string root_id = 5;
   optional PostType type = 6;
 }
 
