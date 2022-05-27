@@ -69,15 +69,23 @@ message PostPayloadServer {
   string id = 1;
   repeated string sayable_list = 2;
 
-  string contact_id = 3;
-  int32 timestamp = 4;
+  optional string parentId = 3;
+  optional string root_id = 4;
+  optional PostType type = 5;
 
-  Counter counter = 5;
+  string contact_id = 6;
+  int32 timestamp = 7;
+
+  Counter counter = 8;
 }
 
 message PostPayloadClient {
   string id = 1;
   repeated string sayable_list = 2;
+
+  optional string parentId = 3;
+  optional string root_id = 4;
+  optional PostType type = 5;
 }
 
 message PostQueryFilter {
