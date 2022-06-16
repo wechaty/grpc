@@ -1,0 +1,17 @@
+syntax = "proto3";
+package wechaty.puppet;
+
+option go_package       = "github.com/wechaty/go-grpc/wechaty/puppet";
+option java_package     = "io.github.wechaty.grpc.puppet";
+option csharp_namespace = "github.wechaty.grpc.puppet";
+
+message ChannelPayload {
+  string avatar    = 1;
+  string cover_url = 2;
+  string desc      = 3;
+  string extras    = 4;
+  int32  feed_type = 5;
+  string nickname  = 6;
+  string thumb_url = 7;
+  string url       = 8;
+}

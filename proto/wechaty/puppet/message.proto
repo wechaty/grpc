@@ -18,6 +18,8 @@ import "wechaty/puppet/image.proto";
 import "wechaty/puppet/location.proto";
 import "wechaty/puppet/mini-program.proto";
 import "wechaty/puppet/url-link.proto";
+import "wechaty/puppet/channel.proto";
+
 
 enum MessageType {
   MESSAGE_TYPE_UNSPECIFIED  = 0;
@@ -36,6 +38,7 @@ enum MessageType {
   MESSAGE_TYPE_RED_ENVELOPE = 12;
   MESSAGE_TYPE_RECALLED     = 13;
   MESSAGE_TYPE_URL          = 14;
+  MESSAGE_TYPE_CHANNEL      = 15;
 }
 
 message MessagePayloadRequest {
@@ -102,6 +105,13 @@ message MessageUrlResponse {
    */
   string url_link_deprecated = 1 [deprecated = true]; // deprecated after Sep 31, 2021, remove compatible code after Dec 31, 2022
   UrlLinkPayload url_link = 2;
+}
+
+message MessageChannelRequest {
+  string id = 1;
+}
+message MessageChannelResponse {
+  ChannelPayload channel = 1;
 }
 
 message MessageSendContactRequest {
@@ -228,3 +238,12 @@ message MessageSendLocationResponse {
    */
   string id = 1;
 }
+
+message MessageSendChannelRequest {
+  string conversation_id = 1;
+  ChannelPayload channel = 2;
+}
+message MessageSendChannelResponse {
+  string id = 1;
+}
+
