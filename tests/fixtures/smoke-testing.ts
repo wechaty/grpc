@@ -3,7 +3,7 @@
 import {
   puppet,
   VERSION,
-}                           from 'wechaty-grpc'
+}                           from '@juzi/wechaty-grpc'
 
 async function main () {
   const messagePayloadResponse = new puppet.MessagePayloadResponse()
