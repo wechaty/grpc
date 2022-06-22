@@ -145,10 +145,8 @@ message MessageSendFileResponse {
 message MessageSendTextRequest {
   string conversation_id = 1;
   string text = 2;
-
-  // Huan(202011) FIXME: Issue #99
-  // https://github.com/wechaty/grpc/issues/99
   repeated string mentional_ids = 3;
+  optional string quote_id = 4;
 }
 message MessageSendTextResponse {
   /**
