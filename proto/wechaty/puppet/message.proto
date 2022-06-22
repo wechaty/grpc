@@ -59,6 +59,7 @@ message MessagePayloadResponse {
   string      listener_id        = 8;
   repeated    string mention_ids = 9;
   google.protobuf.Timestamp receive_time = 10;
+  optional string quote_id       = 11;
 }
 
 message MessageImageRequest {
