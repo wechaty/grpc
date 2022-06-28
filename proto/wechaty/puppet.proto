@@ -371,6 +371,13 @@ service Puppet {
     };
   }
 
+  rpc MessagePreview (puppet.MessagePreviewRequest) returns (puppet.MessagePreviewResponse) {
+    option (google.api.http) = {
+      get: "/message/{id}/preview"
+    };
+  }
+
+
   /**
    *
    * Room
