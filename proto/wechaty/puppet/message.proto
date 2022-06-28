@@ -249,3 +249,10 @@ message MessageSendChannelResponse {
   string id = 1;
 }
 
+message MessagePreviewRequest {
+  string id = 1;
+}
+
+message MessagePreviewResponse {
+  string file_box = 1;
+}
