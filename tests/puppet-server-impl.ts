@@ -248,6 +248,12 @@ export const puppetServerImpl: IPuppetServer = {
     throw new Error('not implemented.')
   },
 
+  messagePreview: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
   roomAdd: (call, callback) => {
     void call
     void callback
