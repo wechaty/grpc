@@ -100,6 +100,11 @@ service Puppet {
       body: "*"
     };
   }
+  rpc CurrentUser (puppet.CurrentUserRequest) returns (puppet.CurrentUserResponse) {
+    option (google.api.http) = {
+      get: "/currentUser"
+    };
+  }
   rpc Version (puppet.VersionRequest)    returns (puppet.VersionResponse) {
     option (google.api.http) = {
       get: "/version"

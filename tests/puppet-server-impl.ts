@@ -76,6 +76,12 @@ export const puppetServerImpl: IPuppetServer = {
     throw new Error('not implemented.')
   },
 
+  currentUser: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
   dirtyPayload: (call, callback) => {
     void call
     void callback

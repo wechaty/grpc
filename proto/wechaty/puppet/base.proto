@@ -44,3 +44,10 @@ message DirtyPayloadRequest {
 }
 
 message DirtyPayloadResponse {}
+
+message CurrentUserRequest {
+}
+
+message CurrentUserResponse {
+  string user_id = 1;
+}
