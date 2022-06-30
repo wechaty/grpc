@@ -15,6 +15,7 @@ message RoomMemberPayloadResponse {
   string inviter_id = 3;
   string avatar     = 4;
   string name       = 5;
+  string additional_info = 6;
 }
 
 message RoomMemberListRequest {

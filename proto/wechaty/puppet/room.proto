@@ -23,6 +23,7 @@ message RoomPayloadResponse {
   repeated string admin_ids  = 5;
   repeated string member_ids = 6;
   string   handle           = 7;
+  string additional_info = 8;
 }
 
 message RoomAddRequest {

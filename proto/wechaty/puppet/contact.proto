@@ -58,6 +58,7 @@ message ContactPayloadResponse {
   string          description = 16;
   bool            coworker    = 17;
   repeated string  phones      = 18;
+  string additional_info = 19;;
 }
 
 message ContactSelfQRCodeRequest {}
