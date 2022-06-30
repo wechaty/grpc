@@ -16,13 +16,14 @@ message RoomPayloadRequest {
   string id = 1;
 }
 message RoomPayloadResponse {
-  string   id               = 1;
-  string   topic            = 2;
-  string   avatar           = 3;
-  string   owner_id         = 4;
+  string   id                = 1;
+  string   topic             = 2;
+  string   avatar            = 3;
+  string   owner_id          = 4;
   repeated string admin_ids  = 5;
   repeated string member_ids = 6;
-  string   handle           = 7;
+  string   handle            = 7;
+  string   additional_info   = 8;
 }
 
 message RoomAddRequest {
