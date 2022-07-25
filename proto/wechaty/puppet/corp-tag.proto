@@ -58,6 +58,14 @@ message CorpTagTagAddResponse {
   CorpTagPayload payload = 1;
 }
 
+message CorpTagTagDeleteRequest {
+  string corp_tag_group_id = 1;
+  string corp_tag_id       = 2;
+}
+
+message CorpTagTagDeleteResponse {
+}
+
 message CorpTagGroupListRequest {
 }
 
