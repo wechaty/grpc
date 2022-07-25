@@ -1,0 +1,82 @@
+syntax = "proto3";
+package wechaty.puppet;
+
+option go_package       = "github.com/wechaty/go-grpc/wechaty/puppet";
+option java_package     = "io.github.wechaty.grpc.puppet";
+option csharp_namespace = "github.wechaty.grpc.puppet";
+
+message CorpTagPayload {
+  string id       = 1;
+  string name     = 2;
+  string group_id = 3;
+}
+
+message CorpTagGroupPayload {
+  string id   = 1;
+  string name = 2;
+}
+
+message CorpTagContactTagAddRequest {
+  string corp_tag_group_id = 1;
+  string corp_tag_id       = 2;
+  string contact_id        = 3;
+}
+
+message CorpTagContactTagAddResponse {
+}
+
+message CorpTagContactTagRemoveRequest {
+  string corp_tag_group_id = 1;
+  string corp_tag_id       = 2;
+  string contact_id        = 3;
+}
+
+message CorpTagContactTagRemoveResponse {
+}
+
+message CorpTagGroupAddRequest {
+  string corp_tag_group_name = 1;
+}
+
+message CorpTagGroupAddResponse {
+  CorpTagGroupPayload payload = 1;
+}
+
+message CorpTagGroupDeleteRequest {
+  string corp_tag_group_id = 1;
+}
+
+message CorpTagGroupDeleteResponse {
+}
+
+message CorpTagTagAddRequest {
+  string corp_tag_group_id = 1;
+  string corp_tag_name     = 2;
+}
+
+message CorpTagTagAddResponse {
+  CorpTagPayload payload = 1;
+}
+
+message CorpTagGroupListRequest {
+}
+
+message CorpTagGroupListResponse {
+  repeated CorpTagGroupPayload payloads = 1;
+}
+
+message CorpTagTagListRequest {
+  string corp_tag_group_id = 1;
+}
+
+message CorpTagTagListResponse {
+  repeated CorpTagPayload payloads = 1;
+}
+
+message CorpTagContactTagListRequest {
+  string contact_id = 1;
+}
+
+message CorpTagContactTagListResponse {
+  repeated CorpTagPayload payloads = 1;
+}
