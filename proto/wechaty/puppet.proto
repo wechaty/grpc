@@ -29,6 +29,7 @@ import "wechaty/puppet/room-member.proto";
 import "wechaty/puppet/room.proto";
 import "wechaty/puppet/tag.proto";
 import "wechaty/puppet/channel.proto";
+import "wechaty/puppet/corp-tag.proto";
 
 
 option java_package="io.github.wechaty.grpc";
@@ -512,6 +513,65 @@ service Puppet {
     };
   }
 
+  /**
+   *
+   * Corp-Tag
+   *
+   */
+
+  rpc CorpTagContactTagAdd (puppet.CorpTagContactTagAddRequest) returns (puppet.CorpTagContactTagAddResponse) {
+    option (google.api.http) = {
+      put: "/contacts/{contact_id}/corp-tag/tags/{corp_tag_id}"
+    };
+  }
+
+  rpc CorpTagContactTagRemove (puppet.CorpTagContactTagRemoveRequest) returns (puppet.CorpTagContactTagRemoveResponse) {
+    option (google.api.http) = {
+      delete: "/contacts/{contact_id}/corp-tag/tags/{corp_tag_id}"
+    };
+  }
+
+  rpc CorpTagGroupAdd (puppet.CorpTagGroupAddRequest) returns (puppet.CorpTagGroupAddResponse) {
+    option (google.api.http) = {
+      put: "/corp-tags/groups/{corp_tag_group_name}"
+    };
+  }
+
+  rpc CorpTagGroupDelete (puppet.CorpTagGroupDeleteRequest) returns (puppet.CorpTagGroupDeleteResponse) {
+    option (google.api.http) = {
+      delete: "/corp-tags/groups/{corp_tag_group_id}"
+    };
+  }
+
+  rpc CorpTagTagAdd (puppet.CorpTagTagAddRequest) returns (puppet.CorpTagTagAddResponse) {
+    option (google.api.http) = {
+      put: "/corp-tags/groups/{corp_tag_group_id}/tags/{corp_tag_name}"
+    };
+  }
+
+  rpc CorpTagTagDelete (puppet.CorpTagTagDeleteRequest) returns (puppet.CorpTagTagDeleteResponse) {
+    option (google.api.http) = {
+      delete: "/corp-tags/groups/{corp_tag_group_id}/tags/{corp_tag_id}"
+    };
+  }
+
+  rpc CorpTagGroupList (puppet.CorpTagGroupListRequest) returns (puppet.CorpTagGroupListResponse) {
+    option (google.api.http) = {
+      get: "/corp-tag/groups"
+    };
+  }
+
+  rpc CorpTagTagList (puppet.CorpTagTagListRequest) returns (puppet.CorpTagTagListResponse) {
+    option (google.api.http) = {
+      get: "/corp-tag/groups/{corp_tag_group_id}"
+    };
+  }
+
+  rpc CorpTagContactTagList (puppet.CorpTagContactTagListRequest) returns (puppet.CorpTagContactTagListResponse) {
+    option (google.api.http) = {
+      get: "/contacts/{contact_id}/corp-tag/tags"
+    };
+  }
   /**
    * File/Blob download & upload
    */
