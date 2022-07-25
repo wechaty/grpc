@@ -380,6 +380,60 @@ export const puppetServerImpl: IPuppetServer = {
     throw new Error('not implemented.')
   },
 
+  corpTagContactTagAdd: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  corpTagContactTagRemove: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  corpTagGroupAdd: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  corpTagGroupDelete: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  corpTagTagAdd: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  corpTagTagDelete: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  corpTagGroupList: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  corpTagTagList: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  corpTagContactTagList: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
   version: (call, callback) => {
     void call
     void callback
