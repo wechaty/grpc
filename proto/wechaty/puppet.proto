@@ -557,7 +557,7 @@ service Puppet {
 
   rpc CorpTagGroupList (puppet.CorpTagGroupListRequest) returns (puppet.CorpTagGroupListResponse) {
     option (google.api.http) = {
-      get: "/corp-tag/groups/"
+      get: "/corp-tag/groups"
     };
   }
 
@@ -569,7 +569,7 @@ service Puppet {
 
   rpc CorpTagContactTagList (puppet.CorpTagContactTagListRequest) returns (puppet.CorpTagContactTagListResponse) {
     option (google.api.http) = {
-      get: "/contacts/${contact_id}/corp-tag/tags/"
+      get: "/contacts/${contact_id}/corp-tag/tags"
     };
   }
   /**
