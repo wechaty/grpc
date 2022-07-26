@@ -1,43 +1,112 @@
 syntax = "proto3";
 package wechaty.puppet;
 
-option go_package="github.com/wechaty/go-grpc/wechaty/puppet";
-option java_package="io.github.wechaty.grpc.puppet";
+option go_package       = "github.com/wechaty/go-grpc/wechaty/puppet";
+option java_package     = "io.github.wechaty.grpc.puppet";
 option csharp_namespace = "github.wechaty.grpc.puppet";
 
-/**
- * @deprecated
- *  Huan(202109): will be removed after Dec 31, 2022
- *    https://cloud.google.com/apis/design/design_patterns#optional_primitive_fields
- */
- import "google/protobuf/wrappers.proto";
-
-message TagContactAddRequest {
-  string id = 1;
-  string contact_id = 2;
+enum TagType {
+  PERSONAL    = 0;
+  CORPORATION = 1;
 }
-message TagContactAddResponse {}
 
-message TagContactRemoveRequest {
-  string id = 1;
-  string contact_id = 2;
+message TagPayload {
+  string  id       = 1;
+  string  name     = 2;
+  string  group_id = 3;
+  TagType type     = 4;
 }
-message TagContactRemoveResponse {}
 
-message TagContactDeleteRequest {
-  string id = 1;
+message TagGroupPayload {
+  string id   = 1;
+  string name = 2;
 }
-message TagContactDeleteResponse {}
 
-message TagContactListRequest {
-  /*
-   * @deprecated:
-   *  Huan(202109): Wrapper types must not be used going forward.
-   *    https://cloud.google.com/apis/design/design_patterns#optional_primitive_fields
-   */
-  google.protobuf.StringValue contact_id_string_value_deprecated = 1 [deprecated = true]; // Deprecated: will be removed after Dec 31, 2022
-  string contact_id = 2;
+message TagContactTagAddRequest {
+  string tag_group_id = 1;
+  string tag_id       = 2;
+  string contact_id        = 3;
 }
-message TagContactListResponse {
-  repeated string ids = 1;
+
+message TagContactTagAddResponse {
+}
+
+message TagContactTagRemoveRequest {
+  string tag_group_id = 1;
+  string tag_id       = 2;
+  string contact_id        = 3;
+}
+
+message TagContactTagRemoveResponse {
+}
+
+message TagGroupAddRequest {
+  string tag_group_name = 1;
+}
+
+message TagGroupAddResponse {
+  TagGroupPayload payload = 1;
+}
+
+message TagGroupDeleteRequest {
+  string tag_group_id = 1;
+}
+
+message TagGroupDeleteResponse {
+}
+
+message TagTagAddRequest {
+  string tag_group_id = 1;
+  string tag_name     = 2;
+}
+
+message TagTagAddResponse {
+  TagPayload payload = 1;
+}
+
+message TagTagDeleteRequest {
+  string tag_group_id = 1;
+  string tag_id       = 2;
+}
+
+message TagTagDeleteResponse {
+}
+
+message TagGroupListRequest {
+}
+
+message TagGroupListResponse {
+  repeated TagGroupPayload payloads = 1;
+}
+
+message TagGroupTagListRequest {
+  string tag_group_id = 1;
+}
+
+message TagGroupTagListResponse {
+  repeated TagPayload payloads = 1;
+}
+
+message TagTagListRequest {
+}
+
+message TagTagListResponse {
+  repeated TagPayload payloads = 1;
+}
+
+message TagContactTagListRequest {
+  string contact_id = 1;
+}
+
+message TagContactTagListResponse {
+  repeated TagPayload payloads = 1;
+}
+
+message TagTagContactListRequest {
+  string tag_group_id = 1;
+  string tag_id = 2;
+}
+
+message TagTagContactListResponse {
+  repeated string payloads = 1;
 }

@@ -29,7 +29,6 @@ import "wechaty/puppet/room-member.proto";
 import "wechaty/puppet/room.proto";
 import "wechaty/puppet/tag.proto";
 import "wechaty/puppet/channel.proto";
-import "wechaty/puppet/corp-tag.proto";
 
 
 option java_package="io.github.wechaty.grpc";
@@ -486,90 +485,70 @@ service Puppet {
    * Tag
    *
    */
-  rpc TagContactAdd (puppet.TagContactAddRequest) returns (puppet.TagContactAddResponse) {
+
+  rpc TagContactTagAdd (puppet.TagContactTagAddRequest) returns (puppet.TagContactTagAddResponse) {
     option (google.api.http) = {
-      put: "/contacts/{contact_id}/tags/{id}"
-    };
-  }
-  rpc TagContactRemove (puppet.TagContactRemoveRequest) returns (puppet.TagContactRemoveResponse) {
-    option (google.api.http) = {
-      delete: "/contacts/{contact_id}/tags/{id}"
+      put: "/contacts/{contact_id}/tag/tags/{tag_id}"
     };
   }
 
-  /**
-   * Operate Sub-Collections
-   *   https://cloud.google.com/apis/design/design_patterns#list_sub-collections
-   */
-  rpc TagContactDelete (puppet.TagContactDeleteRequest) returns (puppet.TagContactDeleteResponse) {
+  rpc TagContactTagRemove (puppet.TagContactTagRemoveRequest) returns (puppet.TagContactTagRemoveResponse) {
     option (google.api.http) = {
-      delete: "/contacts/-/tags/{id}"
+      delete: "/contacts/{contact_id}/tag/tags/{tag_id}"
     };
   }
 
-   rpc TagContactList (puppet.TagContactListRequest) returns (puppet.TagContactListResponse) {
+  rpc TagGroupAdd (puppet.TagGroupAddRequest) returns (puppet.TagGroupAddResponse) {
     option (google.api.http) = {
-      get: "/contacts/{contact_id}/tags"
+      put: "/tags/groups/{tag_group_name}"
     };
   }
 
-  /**
-   *
-   * Corp-Tag
-   *
-   */
-
-  rpc CorpTagContactTagAdd (puppet.CorpTagContactTagAddRequest) returns (puppet.CorpTagContactTagAddResponse) {
+  rpc TagGroupDelete (puppet.TagGroupDeleteRequest) returns (puppet.TagGroupDeleteResponse) {
     option (google.api.http) = {
-      put: "/contacts/{contact_id}/corp-tag/tags/{corp_tag_id}"
+      delete: "/tags/groups/{tag_group_id}"
     };
   }
 
-  rpc CorpTagContactTagRemove (puppet.CorpTagContactTagRemoveRequest) returns (puppet.CorpTagContactTagRemoveResponse) {
+  rpc TagTagAdd (puppet.TagTagAddRequest) returns (puppet.TagTagAddResponse) {
     option (google.api.http) = {
-      delete: "/contacts/{contact_id}/corp-tag/tags/{corp_tag_id}"
+      put: "/tags/groups/{tag_group_id}/tags/{tag_name}"
     };
   }
 
-  rpc CorpTagGroupAdd (puppet.CorpTagGroupAddRequest) returns (puppet.CorpTagGroupAddResponse) {
+  rpc TagTagDelete (puppet.TagTagDeleteRequest) returns (puppet.TagTagDeleteResponse) {
     option (google.api.http) = {
-      put: "/corp-tags/groups/{corp_tag_group_name}"
+      delete: "/tags/groups/{tag_group_id}/tags/{tag_id}"
     };
   }
 
-  rpc CorpTagGroupDelete (puppet.CorpTagGroupDeleteRequest) returns (puppet.CorpTagGroupDeleteResponse) {
+  rpc TagGroupList (puppet.TagGroupListRequest) returns (puppet.TagGroupListResponse) {
     option (google.api.http) = {
-      delete: "/corp-tags/groups/{corp_tag_group_id}"
+      get: "/tag/groups"
     };
   }
 
-  rpc CorpTagTagAdd (puppet.CorpTagTagAddRequest) returns (puppet.CorpTagTagAddResponse) {
+  rpc TagGroupTagList (puppet.TagGroupTagListRequest) returns (puppet.TagGroupTagListResponse) {
     option (google.api.http) = {
-      put: "/corp-tags/groups/{corp_tag_group_id}/tags/{corp_tag_name}"
+      get: "/tag/groups/{tag_group_id}/tags"
     };
   }
 
-  rpc CorpTagTagDelete (puppet.CorpTagTagDeleteRequest) returns (puppet.CorpTagTagDeleteResponse) {
+  rpc TagTagList (puppet.TagTagListRequest) returns (puppet.TagTagListResponse) {
     option (google.api.http) = {
-      delete: "/corp-tags/groups/{corp_tag_group_id}/tags/{corp_tag_id}"
+      get: "/tag/tags"
     };
   }
 
-  rpc CorpTagGroupList (puppet.CorpTagGroupListRequest) returns (puppet.CorpTagGroupListResponse) {
+  rpc TagContactTagList (puppet.TagContactTagListRequest) returns (puppet.TagContactTagListResponse) {
     option (google.api.http) = {
-      get: "/corp-tag/groups"
+      get: "/contacts/{contact_id}/tag/tags"
     };
   }
 
-  rpc CorpTagTagList (puppet.CorpTagTagListRequest) returns (puppet.CorpTagTagListResponse) {
+  rpc TagTagContactList (puppet.TagTagContactListRequest) returns (puppet.TagTagContactListResponse) {
     option (google.api.http) = {
-      get: "/corp-tag/groups/{corp_tag_group_id}"
-    };
-  }
-
-  rpc CorpTagContactTagList (puppet.CorpTagContactTagListRequest) returns (puppet.CorpTagContactTagListResponse) {
-    option (google.api.http) = {
-      get: "/contacts/{contact_id}/corp-tag/tags"
+      get: "/tag/{tag_group_id}/{tag_id}/contacts"
     };
   }
   /**

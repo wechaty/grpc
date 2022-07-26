@@ -38,7 +38,6 @@ export * from '../../out/wechaty/puppet/room-member_pb.js'
 export * from '../../out/wechaty/puppet/tag_pb.js'
 export * from '../../out/wechaty/puppet/url-link_pb.js'
 export * from '../../out/wechaty/puppet/channel_pb.js'
-export * from '../../out/wechaty/puppet/corp-tag_pb.js'
 
 export * from '../../out/wechaty/puppet_grpc_pb.js'
 export * from '../../out/wechaty/puppet_pb.js'
