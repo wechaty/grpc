@@ -356,79 +356,67 @@ export const puppetServerImpl: IPuppetServer = {
     throw new Error('not implemented.')
   },
 
-  tagContactAdd: (call, callback) => {
+  tagContactTagAdd: (call, callback) => {
     void call
     void callback
     throw new Error('not implemented.')
   },
 
-  tagContactDelete: (call, callback) => {
+  tagContactTagRemove: (call, callback) => {
     void call
     void callback
     throw new Error('not implemented.')
   },
 
-  tagContactList: (call, callback) => {
+  tagGroupAdd: (call, callback) => {
     void call
     void callback
     throw new Error('not implemented.')
   },
 
-  tagContactRemove: (call, callback) => {
+  tagGroupDelete: (call, callback) => {
     void call
     void callback
     throw new Error('not implemented.')
   },
 
-  corpTagContactTagAdd: (call, callback) => {
+  tagTagAdd: (call, callback) => {
     void call
     void callback
     throw new Error('not implemented.')
   },
 
-  corpTagContactTagRemove: (call, callback) => {
+  tagTagDelete: (call, callback) => {
     void call
     void callback
     throw new Error('not implemented.')
   },
 
-  corpTagGroupAdd: (call, callback) => {
+  tagGroupList: (call, callback) => {
     void call
     void callback
     throw new Error('not implemented.')
   },
 
-  corpTagGroupDelete: (call, callback) => {
+  tagGroupTagList: (call, callback) => {
     void call
     void callback
     throw new Error('not implemented.')
   },
 
-  corpTagTagAdd: (call, callback) => {
+  tagTagList: (call, callback) => {
     void call
     void callback
     throw new Error('not implemented.')
   },
 
-  corpTagTagDelete: (call, callback) => {
+  tagContactTagList: (call, callback) => {
     void call
     void callback
     throw new Error('not implemented.')
   },
 
-  corpTagGroupList: (call, callback) => {
-    void call
-    void callback
-    throw new Error('not implemented.')
-  },
-
-  corpTagTagList: (call, callback) => {
-    void call
-    void callback
-    throw new Error('not implemented.')
-  },
-
-  corpTagContactTagList: (call, callback) => {
+  tagTagContactList: (call, callback) => {
     void call
     void callback
     throw new Error('not implemented.')
