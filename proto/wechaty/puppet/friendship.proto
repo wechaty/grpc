@@ -13,6 +13,8 @@ enum FriendshipType {
   FRIENDSHIP_TYPE_CONFIRM     = 1;
   FRIENDSHIP_TYPE_RECEIVE     = 2;
   FRIENDSHIP_TYPE_VERIFY      = 3;
+  FRIENDSHIP_TYPE_DELETE      = 4;
+  FRIENDSHIP_TYPE_REMOVED     = 5;
 }
 
 enum FriendshipSceneType {
