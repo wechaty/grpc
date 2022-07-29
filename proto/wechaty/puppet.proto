@@ -488,43 +488,49 @@ service Puppet {
 
   rpc TagContactTagAdd (puppet.TagContactTagAddRequest) returns (puppet.TagContactTagAddResponse) {
     option (google.api.http) = {
-      put: "/contacts/{contact_id}/tag/tags/{tag_id}"
+      post: "/tag/addContactTag"
+      body: "*"
     };
   }
 
   rpc TagContactTagRemove (puppet.TagContactTagRemoveRequest) returns (puppet.TagContactTagRemoveResponse) {
     option (google.api.http) = {
-      delete: "/contacts/{contact_id}/tag/tags/{tag_id}"
+      post: "/tag/removeContactTag"
+      body: "*"
     };
   }
 
   rpc TagGroupAdd (puppet.TagGroupAddRequest) returns (puppet.TagGroupAddResponse) {
     option (google.api.http) = {
-      put: "/tags/groups/{tag_group_name}"
+      post: "/tagGroup/add"
+      body: "*"
     };
   }
 
   rpc TagGroupDelete (puppet.TagGroupDeleteRequest) returns (puppet.TagGroupDeleteResponse) {
     option (google.api.http) = {
-      delete: "/tags/groups/{tag_group_id}"
+      post: "/tagGroup/delete"
+      body: "*"
     };
   }
 
   rpc TagTagAdd (puppet.TagTagAddRequest) returns (puppet.TagTagAddResponse) {
     option (google.api.http) = {
-      put: "/tags/groups/{tag_group_id}/tags/{tag_name}"
+      post: "/tag/add"
+      body: "*"
     };
   }
 
   rpc TagTagDelete (puppet.TagTagDeleteRequest) returns (puppet.TagTagDeleteResponse) {
     option (google.api.http) = {
-      delete: "/tags/groups/{tag_group_id}/tags/{tag_id}"
+      post: "/tag/delete"
+      body: "*"
     };
   }
 
   rpc TagGroupList (puppet.TagGroupListRequest) returns (puppet.TagGroupListResponse) {
     option (google.api.http) = {
-      get: "/tag/groups"
+      get: "/tagGroup/list"
     };
   }
 
@@ -536,7 +542,7 @@ service Puppet {
 
   rpc TagTagList (puppet.TagTagListRequest) returns (puppet.TagTagListResponse) {
     option (google.api.http) = {
-      get: "/tag/tags"
+      get: "/tag/list"
     };
   }
 
@@ -548,7 +554,7 @@ service Puppet {
 
   rpc TagTagContactList (puppet.TagTagContactListRequest) returns (puppet.TagTagContactListResponse) {
     option (google.api.http) = {
-      get: "/tag/{tag_group_id}/{tag_id}/contacts"
+      get: "/tag/{tag.group_id}/{tag.id}/contacts"
     };
   }
   /**
