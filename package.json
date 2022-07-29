@@ -1,6 +1,6 @@
 {
   "name": "@juzi/wechaty-grpc",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "gRPC for Wechaty",
   "type": "module",
   "exports": {
