@@ -17,24 +17,27 @@ message TagPayload {
   TagType type     = 4;
 }
 
+message TagIdentifier {
+  string id       = 1;
+  string group_id = 2;
+}
+
 message TagGroupPayload {
   string id   = 1;
   string name = 2;
 }
 
 message TagContactTagAddRequest {
-  string tag_group_id = 1;
-  string tag_id       = 2;
-  string contact_id        = 3;
+  repeated TagIdentifier tags = 1;
+  repeated string contact_ids = 2;
 }
 
 message TagContactTagAddResponse {
 }
 
 message TagContactTagRemoveRequest {
-  string tag_group_id = 1;
-  string tag_id       = 2;
-  string contact_id        = 3;
+  repeated TagIdentifier tags = 1;
+  repeated string contact_ids = 2;
 }
 
 message TagContactTagRemoveResponse {
@@ -56,8 +59,8 @@ message TagGroupDeleteResponse {
 }
 
 message TagTagAddRequest {
-  string tag_group_id = 1;
-  string tag_name     = 2;
+  string tag_name     = 1;
+  string tag_group_id = 2;
 }
 
 message TagTagAddResponse {
@@ -65,8 +68,7 @@ message TagTagAddResponse {
 }
 
 message TagTagDeleteRequest {
-  string tag_group_id = 1;
-  string tag_id       = 2;
+  TagIdentifier tag = 1;
 }
 
 message TagTagDeleteResponse {
@@ -103,8 +105,7 @@ message TagContactTagListResponse {
 }
 
 message TagTagContactListRequest {
-  string tag_group_id = 1;
-  string tag_id = 2;
+  TagIdentifier tag = 1;
 }
 
 message TagTagContactListResponse {
