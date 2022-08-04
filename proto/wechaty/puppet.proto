@@ -535,7 +535,7 @@ service Puppet {
     };
   }
 
-  rpc TagPayload (puppet.TagPayloadRequest) returns (puppet.TagGroupResponse) {
+  rpc TagPayload (puppet.TagPayloadRequest) returns (puppet.TagPayloadResponse) {
     option (google.api.http) = {
       post: "/tag/payload"
       body: "*"
