@@ -422,13 +422,13 @@ export const puppetServerImpl: IPuppetServer = {
     throw new Error('not implemented.')
   },
 
-  TagPayload: (call, callback) => {
+  tagPayload: (call, callback) => {
     void call
     void callback
     throw new Error('not implemented.')
   },
 
-  TagGroupPayload: (call, callback) => {
+  tagGroupPayload: (call, callback) => {
     void call
     void callback
     throw new Error('not implemented.')
