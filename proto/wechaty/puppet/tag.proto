@@ -48,7 +48,7 @@ message TagGroupAddRequest {
 }
 
 message TagGroupAddResponse {
-  TagGroupPayload payload = 1;
+  string tag_group_id = 1;
 }
 
 message TagGroupDeleteRequest {
@@ -64,7 +64,7 @@ message TagTagAddRequest {
 }
 
 message TagTagAddResponse {
-  TagPayload payload = 1;
+  TagIdentifier tag = 1;
 }
 
 message TagTagDeleteRequest {
@@ -78,7 +78,7 @@ message TagGroupListRequest {
 }
 
 message TagGroupListResponse {
-  repeated TagGroupPayload payloads = 1;
+  repeated string tag_group_ids = 1;
 }
 
 message TagGroupTagListRequest {
@@ -86,14 +86,14 @@ message TagGroupTagListRequest {
 }
 
 message TagGroupTagListResponse {
-  repeated TagPayload payloads = 1;
+  repeated TagIdentifier tags = 1;
 }
 
 message TagTagListRequest {
 }
 
 message TagTagListResponse {
-  repeated TagPayload payloads = 1;
+  repeated TagIdentifier tags = 1;
 }
 
 message TagContactTagListRequest {
@@ -101,7 +101,7 @@ message TagContactTagListRequest {
 }
 
 message TagContactTagListResponse {
-  repeated TagPayload payloads = 1;
+  repeated TagIdentifier tags = 1;
 }
 
 message TagTagContactListRequest {
@@ -109,5 +109,21 @@ message TagTagContactListRequest {
 }
 
 message TagTagContactListResponse {
-  repeated string payloads = 1;
+  repeated string contact_ids = 1;
+}
+
+message TagGroupPayloadRequest {
+  string group_id = 1;
+}
+
+message TagGroupPayloadResponse {
+  TagGroupPayload payload = 1;
+}
+
+message TagPayloadRequest {
+  TagIdentifier tag = 1;
+}
+
+message TagPayloadResponse {
+  TagPayload payload = 1;
 }

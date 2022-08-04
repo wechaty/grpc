@@ -514,6 +514,13 @@ service Puppet {
     };
   }
 
+  rpc TagGroupPayload (puppet.TagGroupPayloadRequest) returns (puppet.TagGroupPayloadResponse) {
+    option (google.api.http) = {
+      post: "/tagGroup/payload"
+      body: "*"
+    };
+  }
+
   rpc TagTagAdd (puppet.TagTagAddRequest) returns (puppet.TagTagAddResponse) {
     option (google.api.http) = {
       post: "/tag/add"
@@ -524,6 +531,13 @@ service Puppet {
   rpc TagTagDelete (puppet.TagTagDeleteRequest) returns (puppet.TagTagDeleteResponse) {
     option (google.api.http) = {
       post: "/tag/delete"
+      body: "*"
+    };
+  }
+
+  rpc TagPayload (puppet.TagPayloadRequest) returns (puppet.TagGroupResponse) {
+    option (google.api.http) = {
+      post: "/tag/payload"
       body: "*"
     };
   }
