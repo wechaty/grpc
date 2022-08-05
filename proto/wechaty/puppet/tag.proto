@@ -23,8 +23,9 @@ message TagIdentifier {
 }
 
 message TagGroupPayload {
-  string id   = 1;
-  string name = 2;
+  string  id   = 1;
+  string  name = 2;
+  TagType type = 3;
 }
 
 message TagContactTagAddRequest {
