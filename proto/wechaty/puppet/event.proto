@@ -28,6 +28,7 @@ enum EventType {
   EVENT_TYPE_LOGOUT      = 26;
   EVENT_TYPE_DIRTY       = 27;
   EVENT_TYPE_TAG         = 28;
+  EVENT_TYPE_TAG_GROUP   = 29;
 }
 
 message EventRequest {}
