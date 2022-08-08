@@ -7,8 +7,6 @@ option csharp_namespace = "github.wechaty.grpc.puppet";
 
 import "google/protobuf/wrappers.proto";
 
-import "wechaty/puppet/tag.proto";
-
 enum ContactGender {
   CONTACT_GENDER_UNSPECIFIED = 0;
   CONTACT_GENDER_MALE        = 1;
@@ -62,7 +60,7 @@ message ContactPayloadResponse {
   repeated string phones   = 18;
   string   additional_info = 19;
 
-  repeated TagIdentifier tags = 20;
+  repeated string tag_ids = 20;
 }
 
 message ContactSelfQRCodeRequest {}

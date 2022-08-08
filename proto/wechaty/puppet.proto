@@ -568,7 +568,7 @@ service Puppet {
 
   rpc TagTagContactList (puppet.TagTagContactListRequest) returns (puppet.TagTagContactListResponse) {
     option (google.api.http) = {
-      get: "/tag/{tag.group_id}/{tag.id}/contacts"
+      get: "/tag/{tag_id}/contacts"
     };
   }
   /**
