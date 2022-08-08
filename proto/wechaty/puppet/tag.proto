@@ -6,8 +6,9 @@ option java_package     = "io.github.wechaty.grpc.puppet";
 option csharp_namespace = "github.wechaty.grpc.puppet";
 
 enum TagType {
-  PERSONAL    = 0;
-  CORPORATION = 1;
+  Unspecific  = 0;
+  PERSONAL    = 1;
+  CORPORATION = 2;
 }
 
 message TagPayload {
