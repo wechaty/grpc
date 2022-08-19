@@ -32,7 +32,7 @@ enum MessageType { // 消息类型
   MESSAGE_TYPE_TEXT         = 7; // 文本
   MESSAGE_TYPE_LOCATION     = 8; // 地址
   MESSAGE_TYPE_MINI_PROGRAM = 9; // 小程序
-  MESSAGE_TYPE_GROUP_NOTE   = 10;// 不明确，wxwork中没有
+  MESSAGE_TYPE_GROUP_NOTE   = 10;// 群接龙消息，wxwork中没有
   MESSAGE_TYPE_TRANSFER     = 11;// 转账，wxwork中没有
   MESSAGE_TYPE_RED_ENVELOPE = 12;// 红包，wxwork中没有
   MESSAGE_TYPE_RECALLED     = 13;// 撤回

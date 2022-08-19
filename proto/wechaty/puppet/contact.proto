@@ -15,9 +15,9 @@ enum ContactGender { // 性别枚举
 
 enum ContactType { // 类型枚举
   CONTACT_TYPE_UNSPECIFIED = 0; // 不明确
-  CONTACT_TYPE_PERSONAL    = 1; // 个人联系人
-  CONTACT_TYPE_OFFICIAL    = 2; // 官方号
-  CONTACT_TYPE_CORPORATION = 3; // 企业联系人
+  CONTACT_TYPE_PERSONAL    = 1; // 个微联系人
+  CONTACT_TYPE_OFFICIAL    = 2; // 公众号
+  CONTACT_TYPE_CORPORATION = 3; // 企微联系人
 }
 
 message ContactListRequest {}
