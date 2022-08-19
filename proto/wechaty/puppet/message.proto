@@ -20,28 +20,27 @@ import "wechaty/puppet/mini-program.proto";
 import "wechaty/puppet/url-link.proto";
 import "wechaty/puppet/channel.proto";
 
-
-enum MessageType {
+enum MessageType { // 消息类型
   MESSAGE_TYPE_UNSPECIFIED  = 0;
 
-  MESSAGE_TYPE_ATTACHMENT   = 1;
-  MESSAGE_TYPE_AUDIO        = 2;
-  MESSAGE_TYPE_CONTACT      = 3;
-  MESSAGE_TYPE_CHAT_HISTORY = 4;
-  MESSAGE_TYPE_EMOTCION     = 5;
-  MESSAGE_TYPE_IMAGE        = 6;
-  MESSAGE_TYPE_TEXT         = 7;
-  MESSAGE_TYPE_LOCATION     = 8;
-  MESSAGE_TYPE_MINI_PROGRAM = 9;
-  MESSAGE_TYPE_GROUP_NOTE   = 10;
-  MESSAGE_TYPE_TRANSFER     = 11;
-  MESSAGE_TYPE_RED_ENVELOPE = 12;
-  MESSAGE_TYPE_RECALLED     = 13;
-  MESSAGE_TYPE_URL          = 14;
-  MESSAGE_TYPE_VIDEO        = 15;
-  MESSAGE_TYPE_POST         = 16;
-  MESSAGE_TYPE_CHANNEL      = 17;
-  MESSAGE_TYPE_SYSTEM       = 18;
+  MESSAGE_TYPE_ATTACHMENT   = 1; // 文件消息
+  MESSAGE_TYPE_AUDIO        = 2; // 音频
+  MESSAGE_TYPE_CONTACT      = 3; // 名片
+  MESSAGE_TYPE_CHAT_HISTORY = 4; // 聊天记录，wxwork暂不支持
+  MESSAGE_TYPE_EMOTCION     = 5; // 表情
+  MESSAGE_TYPE_IMAGE        = 6; // 图片
+  MESSAGE_TYPE_TEXT         = 7; // 文本
+  MESSAGE_TYPE_LOCATION     = 8; // 地址
+  MESSAGE_TYPE_MINI_PROGRAM = 9; // 小程序
+  MESSAGE_TYPE_GROUP_NOTE   = 10;// 群接龙消息，wxwork中没有
+  MESSAGE_TYPE_TRANSFER     = 11;// 转账，wxwork中没有
+  MESSAGE_TYPE_RED_ENVELOPE = 12;// 红包，wxwork中没有
+  MESSAGE_TYPE_RECALLED     = 13;// 撤回
+  MESSAGE_TYPE_URL          = 14;// 链接
+  MESSAGE_TYPE_VIDEO        = 15;// 视频
+  MESSAGE_TYPE_POST         = 16;// 特殊的复合类型，wxwork中没有
+  MESSAGE_TYPE_CHANNEL      = 17;// 视频号
+  MESSAGE_TYPE_SYSTEM       = 18;// 系统消息
 }
 
 message MessagePayloadRequest {
@@ -49,25 +48,25 @@ message MessagePayloadRequest {
 }
 message MessagePayloadResponse {
   string      id                 = 1;
-  string      filename           = 2;
-  string      text               = 3;
+  string      filename           = 2; // 文件名
+  string      text               = 3; // 文本内容
   /**
    * @deprecated will be removed after Dec 31, 2022
    *  Huan(202109): use receive_time(10) instead
    */
   uint64      timestamp_deprecated = 4 [deprecated = true];
-  MessageType type               = 5;
-  string      talker_id          = 6;
-  string      room_id            = 7;
-  string      listener_id        = 8;
-  repeated    string mention_ids = 9;
-  google.protobuf.Timestamp receive_time = 10;
-  optional string quote_id       = 11;
+  MessageType type               = 5; // 类型
+  string      talker_id          = 6; // 发送者id
+  string      room_id            = 7; // 群聊id
+  string      listener_id        = 8; // 接受者id
+  repeated    string mention_ids = 9; // 群消息@人的id列表
+  google.protobuf.Timestamp receive_time = 10; // 收到消息时间
+  optional string quote_id       = 11; // 被引用的消息id
 }
 
 message MessageImageRequest {
   string    id   = 1;
-  ImageType type = 2;
+  ImageType type = 2; // 获取图片的类型（缩略图、原图）
 }
 message MessageImageResponse {
    string file_box = 1;
@@ -133,8 +132,8 @@ message MessageSendContactResponse {
 }
 
 message MessageSendFileRequest {
-  string conversation_id = 1;
-  string file_box = 2;
+  string conversation_id = 1; // 对话id
+  string file_box = 2; // 发送文件的fileBox.toJSON()
 }
 message MessageSendFileResponse {
   /**
@@ -146,11 +145,11 @@ message MessageSendFileResponse {
   string id = 2;
 }
 
-message MessageSendTextRequest {
-  string conversation_id = 1;
-  string text = 2;
-  repeated string mentional_ids = 3;
-  optional string quote_id = 4;
+message MessageSendTextRequest { // 发文本消息
+  string conversation_id = 1; // 对话id
+  string text = 2; // 文本内容
+  repeated string mentional_ids = 3; // @人id列表
+  optional string quote_id = 4; // 引用消息的id
 }
 message MessageSendTextResponse {
   /**
@@ -163,13 +162,13 @@ message MessageSendTextResponse {
 }
 
 message MessageSendMiniProgramRequest {
-  string conversation_id = 1;
+  string conversation_id = 1; // 对话id
   /**
    * Huan(202110): We should use payload instead of JSON.stringify string
    *  The compatible code will be removed after Dec 31, 2022
    */
   string mini_program_deprecated = 2 [deprecated = true]; // deprecated after Sep 31, 2021, remove compatible code after Dec 31, 2022
-  MiniProgramPayload mini_program = 3;
+  MiniProgramPayload mini_program = 3; // 小程序payload
 }
 message MessageSendMiniProgramResponse {
   /**
@@ -182,13 +181,13 @@ message MessageSendMiniProgramResponse {
 }
 
 message MessageSendUrlRequest {
-  string conversation_id = 1;
+  string conversation_id = 1; // 对话id
   /**
    * Huan(202110): We should use payload instead of JSON.stringify string
    *  The compatible code will be removed after Dec 31, 2022
    */
   string url_link_deprecated = 2 [deprecated = true]; // deprecated after Sep 31, 2021, remove compatible code after Dec 31, 2022
-  UrlLinkPayload url_link = 3;
+  UrlLinkPayload url_link = 3; // 链接payload
 }
 message MessageSendUrlResponse {
   /**
@@ -207,8 +206,8 @@ message MessageRecallResponse {
   bool success = 1;
 }
 message MessageForwardRequest{
-  string message_id = 1;
-  string conversation_id = 2;
+  string message_id = 1; // 要转发的消息id
+  string conversation_id = 2; // 对话id
 }
 message MessageForwardResponse {
   /**

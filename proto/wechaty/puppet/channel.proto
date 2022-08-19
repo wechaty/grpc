@@ -6,12 +6,12 @@ option java_package     = "io.github.wechaty.grpc.puppet";
 option csharp_namespace = "github.wechaty.grpc.puppet";
 
 message ChannelPayload {
-  string avatar    = 1;
-  string cover_url = 2;
-  string desc      = 3;
-  string extras    = 4;
-  int32  feed_type = 5;
-  string nickname  = 6;
-  string thumb_url = 7;
-  string url       = 8;
+  string avatar    = 1; // 头像
+  string cover_url = 2; // 封面地址
+  string desc      = 3; // 描述
+  string extras    = 4; // 额外信息，暂不明确含义，但传错会导致无法发出（红色感叹号）。应根据收到的视频号的extras字段填入。
+  int32  feed_type = 5; // 暂不明确含义，目前请固定传4
+  string nickname  = 6; // 用户名
+  string thumb_url = 7; // 缩略图地址
+  string url       = 8; // 视频号地址
 }

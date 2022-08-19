@@ -11,10 +11,10 @@ message RoomMemberPayloadRequest {
 }
 message RoomMemberPayloadResponse {
   string id              = 1;
-  string room_alias      = 2;
-  string inviter_id      = 3;
-  string avatar          = 4;
-  string name            = 5;
+  string room_alias      = 2; // 联系人在群内的别名（群备注）
+  string inviter_id      = 3; // 邀请者id
+  string avatar          = 4; // 头像
+  string name            = 5; // 名称
   string additional_info = 6;
 }
 

@@ -7,14 +7,14 @@ option csharp_namespace = "github.wechaty.grpc.puppet";
 
 enum TagType {
   Unspecific  = 0;
-  PERSONAL    = 1;
-  CORPORATION = 2;
+  PERSONAL    = 1; // 个人标签
+  CORPORATION = 2; // 企业标签
 }
 
 message TagPayload {
   string  id       = 1;
-  string  name     = 2;
-  string  group_id = 3;
+  string  name     = 2; // 标签名
+  string  group_id = 3; // 所属标签组的id，可为空
   TagType type     = 4;
 }
 
@@ -25,8 +25,8 @@ message TagGroupPayload {
 }
 
 message TagContactTagAddRequest {
-  repeated string tag_ids = 1;
-  repeated string contact_ids = 2;
+  repeated string tag_ids = 1; // 要打的标签的id列表
+  repeated string contact_ids = 2; // 要打标签的联系人id列表
 }
 
 message TagContactTagAddResponse {

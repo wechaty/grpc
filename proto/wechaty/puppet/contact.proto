@@ -7,17 +7,17 @@ option csharp_namespace = "github.wechaty.grpc.puppet";
 
 import "google/protobuf/wrappers.proto";
 
-enum ContactGender {
-  CONTACT_GENDER_UNSPECIFIED = 0;
-  CONTACT_GENDER_MALE        = 1;
-  CONTACT_GENDER_FEMALE      = 2;
+enum ContactGender { // 性别枚举
+  CONTACT_GENDER_UNSPECIFIED = 0; // 不明确
+  CONTACT_GENDER_MALE        = 1; // 男
+  CONTACT_GENDER_FEMALE      = 2; // 女
 }
 
-enum ContactType {
-  CONTACT_TYPE_UNSPECIFIED = 0;
-  CONTACT_TYPE_PERSONAL    = 1;
-  CONTACT_TYPE_OFFICIAL    = 2;
-  CONTACT_TYPE_CORPORATION = 3;
+enum ContactType { // 类型枚举
+  CONTACT_TYPE_UNSPECIFIED = 0; // 不明确
+  CONTACT_TYPE_PERSONAL    = 1; // 个微联系人
+  CONTACT_TYPE_OFFICIAL    = 2; // 公众号
+  CONTACT_TYPE_CORPORATION = 3; // 企微联系人
 }
 
 message ContactListRequest {}
@@ -30,17 +30,17 @@ message ContactPayloadRequest {
 }
 message ContactPayloadResponse {
   string        id        = 1;
-  ContactGender gender    = 2;
-  ContactType   type      = 3;
-  string        name      = 4;
-  string        avatar    = 5;
-  string        address   = 6;
-  string        alias     = 7;
-  string        city      = 8;
-  bool          friend    = 9;
-  string        province  = 10;
-  string        signature = 11;
-  bool          star      = 12;
+  ContactGender gender    = 2; // 性别
+  ContactType   type      = 3; // 类型
+  string        name      = 4; // 姓名
+  string        avatar    = 5; // 头像
+  string        address   = 6; // 地址
+  string        alias     = 7; // 别名，即备注
+  string        city      = 8; // 城市
+  bool          friend    = 9; // 是否为好友
+  string        province  = 10;// 省份
+  string        signature = 11;// 签名
+  bool          star      = 12;// 是否为特别好友
   /**
    * Huan(202203): in gRPC, we can freely rename the field name as long as the number keep consistent.
    *  so we can just rename `weixin` to `handle` here.
@@ -52,15 +52,15 @@ message ContactPayloadResponse {
    *
    * TODO: rename `weixin` to `handle` in v2.0.0
    */
-  string   weixin          = 13;
-  string   corporation     = 14;
-  string   title           = 15;
-  string   description     = 16;
-  bool     coworker        = 17;
-  repeated string phones   = 18;
-  string   additional_info = 19;
+  string   weixin          = 13;// IM专属id，在企微环境中特指weixinId
+  string   corporation     = 14;// 企业
+  string   title           = 15;// 头衔
+  string   description     = 16;// 描述
+  bool     coworker        = 17;// 是否为同事
+  repeated string phones   = 18;// 电话号码，企微中最多5个
+  string   additional_info = 19;// 额外信息，是由JS对象stringify得到的字符串，目前支持的内容包含addContactTime、corpId等。
 
-  repeated string tag_ids = 20;
+  repeated string tag_ids = 20; // 标签（的id）
 }
 
 message ContactSelfQRCodeRequest {}

@@ -17,19 +17,19 @@ message RoomPayloadRequest {
 }
 message RoomPayloadResponse {
   string   id                = 1;
-  string   topic             = 2;
-  string   avatar            = 3;
-  string   owner_id          = 4;
-  repeated string admin_ids  = 5;
-  repeated string member_ids = 6;
-  string   handle            = 7;
+  string   topic             = 2; // 群名称
+  string   avatar            = 3; // 群头像
+  string   owner_id          = 4; // 群主id
+  repeated string admin_ids  = 5; // 群管理员id列表
+  repeated string member_ids = 6; // 群成员id列表
+  string   handle            = 7; // IM内部id，企微中为群的chat_id
   string   additional_info   = 8;
 }
 
 message RoomAddRequest {
   string id          = 1;
-  string contact_id  = 2;
-  bool   invite_only = 3;
+  string contact_id  = 2; // 被邀请联系人id
+  bool   invite_only = 3; // 不明确，目前没见到使用这个的地方
 }
 message RoomAddResponse {}
 
@@ -41,8 +41,8 @@ message RoomAvatarResponse {
 }
 
 message RoomCreateRequest {
-  repeated string contact_ids = 1;
-  string   topic              = 2;
+  repeated string contact_ids = 1; // 初始群成员id
+  string   topic              = 2; // 群名称
 }
 message RoomCreateResponse {
   string id = 1;
@@ -77,7 +77,7 @@ message RoomQRCodeResponse {
   string qrcode = 1;
 }
 
-message RoomAnnounceRequest {
+message RoomAnnounceRequest { // 群公告
   string                      id                           = 1;
   google.protobuf.StringValue text_string_value_deprecated = 2 [deprecated = true];  // DEPRECATED, will be removed after Dec 31, 2022
   optional                    string text                  = 3;
