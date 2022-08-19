@@ -30,19 +30,19 @@ message RoomInvitationPayloadRequest {
 }
 message RoomInvitationPayloadResponse {
   string   id                = 1;
-  string   inviter_id        = 2;
-  string   topic             = 3;
-  int32    member_count      = 4;
-  repeated string member_ids = 5;
+  string   inviter_id        = 2; // 邀请者id
+  string   topic             = 3; // 群名称
+  int32    member_count      = 4; // 群成员数量
+  repeated string member_ids = 5; // 群成员id列表
   /**
    * @deprecated will be removed after Dec 31, 2022
    *  Huan(202109): use receive_time(10) instead
    */
   uint64   timestamp_uint64_deprecated = 6 [deprecated = true]; // Deprecated: will be removed after Dec 31, 2022
-  string   avatar            = 7;
-  string   invitation        = 8;
-  string   receiver_id       = 9;
-  google.protobuf.Timestamp receive_time = 10;
+  string   avatar            = 7; // 群头像
+  string   invitation        = 8; // 在企微中为群邀请的链接地址
+  string   receiver_id       = 9; // 收到群邀请的成员id
+  google.protobuf.Timestamp receive_time = 10; // 时间戳
 }
 
 message RoomInvitationAcceptRequest {

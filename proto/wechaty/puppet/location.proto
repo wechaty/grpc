@@ -6,9 +6,9 @@ option java_package     = "io.github.wechaty.grpc.puppet";
 option csharp_namespace = "github.wechaty.grpc.puppet";
 
 message LocationPayload {
-  float  accuracy  = 1;
-  string address   = 2;
-  double latitude  = 3;
-  double longitude = 4;
-  string name      = 5;
+  float  accuracy  = 1; // 精确度，默认为15
+  string address   = 2; // 地址，xx省xx市xx区xx路xx号
+  double latitude  = 3; // 纬度，北纬为正
+  double longitude = 4; // 经度，东经为正
+  string name      = 5; // 地址名，例如xx大厦
 }

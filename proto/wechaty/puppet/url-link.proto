@@ -6,8 +6,8 @@ option java_package     = "io.github.wechaty.grpc.puppet";
 option csharp_namespace = "github.wechaty.grpc.puppet";
 
 message UrlLinkPayload {
-  string description   = 1;
-  string thumbnail_url = 2;
-  string title         = 3;
-  string url           = 4;
+  string description   = 1; // 描述
+  string thumbnail_url = 2; // 缩略图地址
+  string title         = 3; // 标题
+  string url           = 4; // 文章地址
 }
