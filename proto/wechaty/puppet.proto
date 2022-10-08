@@ -29,6 +29,8 @@ import "wechaty/puppet/room-member.proto";
 import "wechaty/puppet/room.proto";
 import "wechaty/puppet/tag.proto";
 import "wechaty/puppet/channel.proto";
+import "wechaty/puppet/post.proto";
+import "wechaty/puppet/moment.proto";
 
 
 option java_package="io.github.wechaty.grpc";
@@ -571,6 +573,62 @@ service Puppet {
       get: "/tag/{tag_id}/contacts"
     };
   }
+
+  /**
+   *
+   * Moment
+   *
+   */
+
+  rpc momentPublish (puppet.MomentPublishRequest) returns (puppet.MomentPublishResponse) {
+    option (google.api.http) = {
+      post: "/moment/publish"
+      body: "*"
+    };
+  }
+
+  rpc momentComment (puppet.MomentCommentRequest) returns (puppet.MomentCommentResponse) {
+    option (google.api.http) = {
+      post: "/moment/comment"
+      body: "*"
+    };
+  }
+
+  rpc momentLike (puppet.MomentLikeRequest) returns (puppet.MomentLikeResponse) {
+    option (google.api.http) = {
+      post: "/moment/like"
+      body: "*"
+    };
+  }
+
+  rpc momentSignature (puppet.MomentSignatureRequest) returns (puppet.MomentSignatureResponse) {
+    option (google.api.http) = {
+      post: "/moment/signature"
+      body: "*"
+    };
+  }
+
+  rpc momentCoverage (puppet.MomentCoverageRequest) returns (puppet.MomentCoverageResponse) {
+    option (google.api.http) = {
+      post: "/moment/coverage"
+      body: "*"
+    };
+  }
+
+  rpc momentPayload (puppet.MomentPayloadRequest) returns (puppet.MomentPayloadResponse) {
+    option (google.api.http) = {
+      post: "/moment/payload"
+      body: "*"
+    };
+  }
+
+  rpc momentPayloadSayable (puppet.MomentPayloadSayableRequest) returns (puppet.MomentPayloadSayableResponse) {
+    option (google.api.http) = {
+      post: "/moment/sayable"
+      body: "*"
+    };
+  }
+
   /**
    * File/Blob download & upload
    */

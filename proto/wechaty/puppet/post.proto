@@ -1,0 +1,57 @@
+syntax = "proto3";
+package wechaty.puppet;
+
+option go_package       = "github.com/wechaty/go-grpc/wechaty/puppet";
+option java_package     = "io.github.wechaty.grpc.puppet";
+option csharp_namespace = "github.wechaty.grpc.puppet";
+
+import "google/protobuf/timestamp.proto";
+
+import "wechaty/puppet/url-link.proto";
+import "wechaty/puppet/channel.proto";
+
+enum PostType {
+  POST_TYPE_UNSPECIFIED = 0;
+  POST_TYPE_MOMENT = 1; // 朋友圈
+  POST_TYPE_CHANNEL = 2; // 视频号——原始设计走post，实际目前采用message
+  POST_TYPE_MESSAGE = 3; // 消息——富媒体消息
+}
+
+enum SayableType {
+  SAYABLE_TYPE_TEXT = 0;
+  SAYABLE_TYPE_FILE = 1;
+  SAYABLE_TYPE_URL = 2;
+  SAYABLE_TYPE_CHANNEL = 3;
+}
+
+message PostSayable {
+  SayableType type = 1;
+  oneof sayables {
+    string id = 2; // 服务器端获取的Post只传回id，异步进行获取
+    string text = 3;
+    string file_box = 4; // FileBox.toJSON()
+    UrlLinkPayload url_link = 5;
+    ChannelPayload cahnel = 6;
+  }
+}
+
+message PostPayloadClient {
+  string parent_id = 1; // 转发的上一级id，暂不需要
+  string root_id = 2; // 转发的根id，暂不需要
+  PostType type = 3;
+  repeated PostSayable sayable_list = 4;
+}
+
+message PostPayloadServer {
+  string parent_id = 1; // 转发的上一级id，暂不需要
+  string root_id = 2; // 转发的根id，暂不需要
+  PostType type = 3;
+  repeated PostSayable sayable_list = 4;
+  string contact_id = 5;
+  google.protobuf.Timestamp timestamp = 6;
+
+  // counters 计数器
+  int32 children = 7;
+  int32 descendant = 8;
+  int32 like = 9;
+}

@@ -1,6 +1,6 @@
 {
   "name": "@juzi/wechaty-grpc",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "description": "gRPC for Wechaty",
   "type": "module",
   "exports": {
@@ -85,7 +85,7 @@
   ],
   "publishConfig": {
     "access": "public",
-    "tag": "next"
+    "tag": "latest"
   },
   "tap": {
     "check-coverage": false
