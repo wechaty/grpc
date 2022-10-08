@@ -434,6 +434,48 @@ export const puppetServerImpl: IPuppetServer = {
     throw new Error('not implemented.')
   },
 
+  momentPublish: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  momentComment: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  momentLike: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  momentSignature: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  momentCoverage: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  momentPayload: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  momentPayloadSayable: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
   version: (call, callback) => {
     void call
     void callback
