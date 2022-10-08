@@ -85,7 +85,7 @@
   ],
   "publishConfig": {
     "access": "public",
-    "tag": "next"
+    "tag": "latest"
   },
   "tap": {
     "check-coverage": false

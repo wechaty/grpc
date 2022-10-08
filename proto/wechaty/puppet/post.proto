@@ -47,7 +47,7 @@ message PostPayloadServer {
   string root_id = 2; // 转发的根id，暂不需要
   PostType type = 3;
   repeated PostSayable sayable_list = 4;
-  string contactId = 5;
+  string contact_id = 5;
   google.protobuf.Timestamp timestamp = 6;
 
   // counters 计数器
