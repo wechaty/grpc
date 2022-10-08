@@ -576,7 +576,7 @@ service Puppet {
 
   /**
    *
-   * Moment
+   * Moment & Post
    *
    */
 
@@ -587,16 +587,16 @@ service Puppet {
     };
   }
 
-  rpc momentComment (puppet.MomentCommentRequest) returns (puppet.MomentCommentResponse) {
+  rpc postComment (puppet.PostCommentRequest) returns (puppet.PostCommentResponse) {
     option (google.api.http) = {
-      post: "/moment/comment"
+      post: "/post/comment"
       body: "*"
     };
   }
 
-  rpc momentLike (puppet.MomentLikeRequest) returns (puppet.MomentLikeResponse) {
+  rpc postLike (puppet.PostLikeRequest) returns (puppet.PostLikeResponse) {
     option (google.api.http) = {
-      post: "/moment/like"
+      post: "/post/like"
       body: "*"
     };
   }
@@ -615,16 +615,16 @@ service Puppet {
     };
   }
 
-  rpc momentPayload (puppet.MomentPayloadRequest) returns (puppet.MomentPayloadResponse) {
+  rpc postPayload (puppet.PostPayloadRequest) returns (puppet.PostPayloadResponse) {
     option (google.api.http) = {
-      post: "/moment/payload"
+      post: "/post/payload"
       body: "*"
     };
   }
 
-  rpc momentPayloadSayable (puppet.MomentPayloadSayableRequest) returns (puppet.MomentPayloadSayableResponse) {
+  rpc postPayloadSayable (puppet.PostPayloadSayableRequest) returns (puppet.PostPayloadSayableResponse) {
     option (google.api.http) = {
-      post: "/moment/sayable"
+      post: "/post/sayable"
       body: "*"
     };
   }
