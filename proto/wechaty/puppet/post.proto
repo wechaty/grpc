@@ -6,6 +6,7 @@ option java_package     = "io.github.wechaty.grpc.puppet";
 option csharp_namespace = "github.wechaty.grpc.puppet";
 
 import "wechaty/puppet/url-link.proto";
+import "wechaty/puppet/channel.proto";
 
 enum PostType {
   POST_TYPE_UNSPECIFIED = 0;
@@ -18,6 +19,7 @@ enum SayableType {
   SAYABLE_TYPE_TEXT = 0;
   SAYABLE_TYPE_FILE = 1;
   SAYABLE_TYPE_URL = 2;
+  SAYABLE_TYPE_CHANNEL = 3;
 }
 
 message PostSayable {
@@ -26,7 +28,8 @@ message PostSayable {
     string id = 2; // 服务器端获取的Post只传回id，异步进行获取
     string text = 3;
     string file_box = 4; // FileBox.toJSON()
-    UrlLinkPayload url_link = 5; // 目前只支持图片和链接类型的朋友圈
+    UrlLinkPayload url_link = 5;
+    ChannelPayload cahnel = 6;
   }
 }
 
