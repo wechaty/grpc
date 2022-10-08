@@ -440,13 +440,13 @@ export const puppetServerImpl: IPuppetServer = {
     throw new Error('not implemented.')
   },
 
-  momentComment: (call, callback) => {
+  postComment: (call, callback) => {
     void call
     void callback
     throw new Error('not implemented.')
   },
 
-  momentLike: (call, callback) => {
+  postLike: (call, callback) => {
     void call
     void callback
     throw new Error('not implemented.')
@@ -464,13 +464,13 @@ export const puppetServerImpl: IPuppetServer = {
     throw new Error('not implemented.')
   },
 
-  momentPayload: (call, callback) => {
+  postPayload: (call, callback) => {
     void call
     void callback
     throw new Error('not implemented.')
   },
 
-  momentPayloadSayable: (call, callback) => {
+  postPayloadSayable: (call, callback) => {
     void call
     void callback
     throw new Error('not implemented.')
