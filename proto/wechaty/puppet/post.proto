@@ -31,7 +31,7 @@ message PostSayable {
     string text = 3;
     string file_box = 4; // FileBox.toJSON()
     UrlLinkPayload url_link = 5;
-    ChannelPayload cahnel = 6;
+    ChannelPayload channel = 6;
   }
 }
 
