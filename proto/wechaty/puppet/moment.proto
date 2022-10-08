@@ -37,6 +37,7 @@ message MomentSignatureRequest {
 }
 
 message MomentSignatureResponse {
+  string text = 1;
 }
 
 message MomentCoverageRequest {
@@ -44,6 +45,7 @@ message MomentCoverageRequest {
 }
 
 message MomentCoverageResponse {
+  string file_box = 1;
 }
 
 message MomentPayloadRequest {
