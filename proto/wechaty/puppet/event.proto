@@ -29,6 +29,8 @@ enum EventType {
   EVENT_TYPE_DIRTY       = 27;
   EVENT_TYPE_TAG         = 28;
   EVENT_TYPE_TAG_GROUP   = 29;
+  EVENT_TYPE_POST_COMMENT= 30;
+  EVENT_TYPE_POST_TAP    = 31;
 }
 
 message EventRequest {}
