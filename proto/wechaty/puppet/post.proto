@@ -72,6 +72,7 @@ message PostLikeRequest {
 }
 
 message PostLikeResponse {
+  string tap_id = 1;
 }
 
 message PostPayloadRequest {
