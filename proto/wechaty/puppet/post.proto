@@ -26,13 +26,14 @@ enum SayableType {
 
 message PostSayable {
   SayableType type = 1;
-  oneof sayables {
-    string id = 2; // 服务器端获取的Post只传回id，异步进行获取
-    string text = 3;
-    string file_box = 4; // FileBox.toJSON()
-    UrlLinkPayload url_link = 5;
-    ChannelPayload channel = 6;
-  }
+
+  string id = 2; // 服务器端获取的Post只传回id，异步进行获取
+  string text = 3;
+  string file_box = 4; // FileBox.toJSON()
+  UrlLinkPayload url_link = 5;
+  ChannelPayload channel = 6;
+
+  repeated string mention_id_list = 13; // 文本类型的sayable可传，朋友圈暂不支持
 }
 
 message PostPayloadClient {
@@ -59,7 +60,7 @@ message PostPayloadServer {
 message PostCommentRequest {
   string post_id = 1;
   string text = 2;
-  repeated string mentional_id_list = 3;
+  repeated string mention_id_list = 3;
 }
 
 message PostCommentResponse {
