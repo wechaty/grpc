@@ -60,7 +60,7 @@ message PostPayloadServer {
 message PostCommentRequest {
   string post_id = 1;
   string text = 2;
-  repeated string mentiona_id_list = 3;
+  repeated string mention_id_list = 3;
 }
 
 message PostCommentResponse {
