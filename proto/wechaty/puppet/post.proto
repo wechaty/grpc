@@ -24,6 +24,11 @@ enum SayableType {
   SAYABLE_TYPE_CHANNEL = 3;
 }
 
+enum TapType {
+  TAP_TYPE_UNSPECIFIED = 0;
+  TAP_TYPE_LIKE = 1;
+}
+
 message PostSayable {
   SayableType type = 1;
 
@@ -37,15 +42,15 @@ message PostSayable {
 }
 
 message PostPayloadClient {
-  string parent_id = 1; // 转发的上一级id，暂不需要
-  string root_id = 2; // 转发的根id，暂不需要
+  string parent_id = 1; // 转发的上一级id,评论时如果是回复，则是回复的评论的id，否则是朋友圈的id
+  string root_id = 2; // 转发的根id，评论时应该是朋友圈的id
   PostType type = 3;
   repeated PostSayable sayable_list = 4;
 }
 
 message PostPayloadServer {
-  string parent_id = 1; // 转发的上一级id，暂不需要
-  string root_id = 2; // 转发的根id，暂不需要
+  string parent_id = 1; // 转发的上一级id
+  string root_id = 2; // 转发的根id
   PostType type = 3;
   repeated PostSayable sayable_list = 4;
   string contact_id = 5;
@@ -57,18 +62,14 @@ message PostPayloadServer {
   int32 like = 9;
 }
 
-message PostCommentRequest {
+message PostTapRequest {
   string post_id = 1;
-  string text = 2;
-  repeated string mention_id_list = 3;
+  TapType type = 2;
+  bool tap = 3; // 点赞还是取消
 }
 
-message PostCommentResponse {
-  string comment_id = 1;
-}
-
-message PostLikeRequest {
-  string post_id = 1;
+message PostTapResponse {
+  bool tap = 1;
 }
 
 message PostLikeResponse {
