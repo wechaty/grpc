@@ -440,13 +440,7 @@ export const puppetServerImpl: IPuppetServer = {
     throw new Error('not implemented.')
   },
 
-  postComment: (call, callback) => {
-    void call
-    void callback
-    throw new Error('not implemented.')
-  },
-
-  postLike: (call, callback) => {
+  postTap: (call, callback) => {
     void call
     void callback
     throw new Error('not implemented.')
