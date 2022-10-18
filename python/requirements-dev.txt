@@ -1,7 +1,0 @@
-betterproto[compiler]>=2.0.0b2
-grpcio-tools
-pyee
-pylint_quotes
-pytest
-pytype
-semver

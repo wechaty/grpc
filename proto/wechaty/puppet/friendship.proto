@@ -6,15 +6,18 @@ option java_package="io.github.wechaty.grpc.puppet";
 option csharp_namespace = "github.wechaty.grpc.puppet";
 
 import "google/protobuf/wrappers.proto";
+import "wechaty/puppet/referrer.proto";
 
-enum FriendshipType {
-  FRIENDSHIP_TYPE_UNSPECIFIED = 0;
-  FRIENDSHIP_TYPE_CONFIRM     = 1;
-  FRIENDSHIP_TYPE_RECEIVE     = 2;
-  FRIENDSHIP_TYPE_VERIFY      = 3;
+enum FriendshipType { // 事件类型
+  FRIENDSHIP_TYPE_UNSPECIFIED = 0; // 不明确
+  FRIENDSHIP_TYPE_CONFIRM     = 1; // 确认——双方互加后触发
+  FRIENDSHIP_TYPE_RECEIVE     = 2; // 收到——收到好友请求后触发
+  FRIENDSHIP_TYPE_VERIFY      = 3; // 验证——主动加他人为好友时触发，wxwork里暂无此事件
+  FRIENDSHIP_TYPE_DELETE      = 4; // 删除——主动删除好友时触发
+  FRIENDSHIP_TYPE_REMOVED     = 5; // 被删除——被他人删除好友时触发
 }
 
-enum FriendshipSceneType {
+enum FriendshipSceneType { // 事件场景 wxwork中未使用
   FRIENDSHIP_SCENE_TYPE_UNSPECIFIED = 0;
 
   FRIENDSHIP_SCENE_TYPE_QQ       = 1;
@@ -37,16 +40,17 @@ message FriendshipPayloadRequest {
    *  What's the reason we need belowing payload?
    *  We should remove it if possible.
    */
-  google.protobuf.StringValue payload = 2;
+  google.protobuf.StringValue payload_string_value_deprecated = 2 [deprecated = true];  // DEPRECATED, will be removed after Dec 31, 2022
+  string payload = 3;
 }
 message FriendshipPayloadResponse {
   string              id         = 1;
-  string              contact_id = 2;
-  string              hello      = 3;
-  FriendshipType      type       = 4;
-  string              stranger   = 5;
-  string              ticket     = 6;
-  FriendshipSceneType scene      = 7;
+  string              contact_id = 2; // 加好友的联系人id
+  string              hello      = 3; // 加好友的打招呼消息
+  FriendshipType      type       = 4; // 好友事件类型
+  string              stranger   = 5; // 不明确含义，wxwork中未使用
+  string              ticket     = 6; // 个微遗留字段，wxwork中会传corp_id
+  FriendshipSceneType scene      = 7; // 加好友的场景（例如通过名片添加、通过群添加等），wxwork未使用
 }
 
 message FriendshipSearchPhoneRequest {
@@ -54,22 +58,46 @@ message FriendshipSearchPhoneRequest {
 }
 message FriendshipSearchPhoneResponse {
   // nullable
-  google.protobuf.StringValue contact_id = 1;
+  google.protobuf.StringValue contact_id_string_value_deprecated = 1 [deprecated = true];  // DEPRECATED, will be removed after Dec 31, 2022
+  string contact_id = 2;
 }
 
-message FriendshipSearchWeixinRequest {
+/**
+ * Huan(202003): we just rename the payload message because gRPC only care about the message structure
+ *  (and as long as we keep consistent with the old structure).
+ *
+ *  @link https://github.com/wechaty/grpc/pull/173
+ *
+ * Rename:
+ *  1. `FriendshipSearchWeixinRequest`    -> `FriendshipSearchHandleRequest`
+ *  2. `FriendshipSearchWeixinReqsponse`  -> `FriendshipSearchHandleResponse`
+ */
+message FriendshipSearchHandleRequest {
+  /**
+   * Huan(202203): in gRPC, we can freely rename the field name as long as the number keep consistent.
+   *  so we can just rename `weixin` to `handle` here.
+   *
+   * (Huan(20220329): use `weixin` for now, until we upgrade to v2.0
+   *  the `wechaty-grpc@1.0.0` will use the latest v1.x automatically when running `npm install`
+   *    which will causing a breaking change.
+   *  @link https://github.com/wechaty/getting-started/issues/254
+   *
+   * TODO: rename `weixin` to `handle` in v2.0.0
+   */
   string weixin = 1;
 }
-message FriendshipSearchWeixinResponse {
+message FriendshipSearchHandleResponse {
   // nullable
-  google.protobuf.StringValue contact_id = 1;
+  google.protobuf.StringValue contact_id_string_value_deprecated = 1 [deprecated = true];  // DEPRECATED, will be removed after Dec 31, 2022
+  string contact_id = 2;
 }
 
 message FriendshipAddRequest {
   string contact_id = 1;
   string hello = 2;
-  google.protobuf.StringValue source_room_id = 3;
-  google.protobuf.StringValue source_contact_id = 4;
+  google.protobuf.StringValue source_room_id_string_value_deprecated = 3 [deprecated = true]; // Deprecated: will be removed after Dec 31, 2022
+  google.protobuf.StringValue source_contact_id_string_value_deprecated = 4 [deprecated = true];  // Deprecated: will be removed after Dec 31, 2022
+  Referrer referrer = 5;
 }
 
 message FriendshipAddResponse {}

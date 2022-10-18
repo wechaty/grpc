@@ -1,0 +1,33 @@
+syntax = "proto3";
+package wechaty.puppet;
+
+option go_package       = "github.com/wechaty/go-grpc/wechaty/puppet";
+option java_package     = "io.github.wechaty.grpc.puppet";
+option csharp_namespace = "github.wechaty.grpc.puppet";
+
+import "wechaty/puppet/post.proto";
+
+message MomentPublishRequest {
+  PostPayloadClient post = 1;
+}
+
+message MomentPublishResponse {
+  string moment_id = 1;
+}
+
+message MomentSignatureRequest {
+  string text = 1;
+}
+
+message MomentSignatureResponse {
+  string text = 1;
+}
+
+message MomentCoverageRequest {
+  string file_box = 1;
+}
+
+message MomentCoverageResponse {
+  string file_box = 1;
+}
+

@@ -11,8 +11,9 @@ enum EventType {
   EVENT_TYPE_HEARTBEAT = 1;
   EVENT_TYPE_MESSAGE   = 2;
   EVENT_TYPE_DONG      = 3;
+  EVENT_TYPE_POST      = 4;
 
-  reserved 4 to 15;
+  reserved 5 to 15;
 
   EVENT_TYPE_ERROR       = 16;
   EVENT_TYPE_FRIENDSHIP  = 17;
@@ -26,6 +27,10 @@ enum EventType {
   EVENT_TYPE_LOGIN       = 25;
   EVENT_TYPE_LOGOUT      = 26;
   EVENT_TYPE_DIRTY       = 27;
+  EVENT_TYPE_TAG         = 28;
+  EVENT_TYPE_TAG_GROUP   = 29;
+  EVENT_TYPE_POST_COMMENT= 30;
+  EVENT_TYPE_POST_TAP    = 31;
 }
 
 message EventRequest {}

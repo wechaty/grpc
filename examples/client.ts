@@ -1,46 +1,28 @@
-// tslint:disable:no-console
-// tslint:disable:max-line-length
-// tslint:disable:no-shadowed-variable
-// tslint:disable:callable-types
-
-import { StringValue } from 'google-protobuf/google/protobuf/wrappers_pb'
-
+// import { Metadata } from '@grpc/grpc-js'
 // import { CallMetadataGenerator } from '@grpc/grpc-js/build/src/call-credentials'
 
 import {
   grpc,
-  PuppetClient,
-  EventRequest,
-  EventResponse,
-  ContactAliasRequest,
-  DingRequest,
-  // EventType,
-}                     from '../src/mod'
+  puppet,
+}                     from '../src/mod.js'
 
-import { promisify }  from './promisify'
+import { promisify }  from './promisify.js'
 
-export async function testAlias (client: PuppetClient) {
-  const request = new ContactAliasRequest()
+export async function testAlias (client: puppet.PuppetClient) {
+  const request = new puppet.ContactAliasRequest()
 
   const contactAlias = promisify(client.contactAlias.bind(client))
 
   {
     const response = await contactAlias(request)
-    const aliasWrapper = response.getAlias()
-    let alias
-    if (aliasWrapper) {
-      alias = aliasWrapper.getValue()
-    }
+    const alias = response.getAlias()
     console.info('returned alias:', alias)
   }
 
   console.info('##############')
 
   {
-    const aliasWrapper = new StringValue()
-    aliasWrapper.setValue('test alias')
-
-    request.setAlias(aliasWrapper)
+    request.setAlias('test alias')
     const response = await contactAlias(request)
 
     const returnAliasWrapper = response.getAlias()
@@ -53,22 +35,24 @@ export async function testAlias (client: PuppetClient) {
   }
 }
 
-export async function testDing (client: PuppetClient) {
+export async function testDing (client: puppet.PuppetClient) {
   const ding = promisify(client.ding.bind(client))
-  const dingRequest = new DingRequest()
+  const dingRequest = new puppet.DingRequest()
   dingRequest.setData('dingdong')
   try {
-    await ding(dingRequest)
+    // const metadata = new Metadata()
+    // metadata.set('grpc.default_authority', 'puppet_token')
+    await ding(dingRequest/* metadata */)
   } catch (e) {
     console.error(e)
   }
 }
 
-export function testStream (client: PuppetClient) {
+export function testStream (client: puppet.PuppetClient) {
   // event(request: wechaty_puppet_event_pb.EventRequest, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<wechaty_puppet_event_pb.EventRequest>;
-  const eventStream = client.event(new EventRequest())
+  const eventStream = client.event(new puppet.EventRequest())
   eventStream
-    .on('data', (chunk: EventResponse) => {
+    .on('data', (chunk: puppet.EventResponse) => {
       // console.info('EventType:', EventType)
       // console.info('type:', chunk.getType(), EventType[chunk.getType()], EventType[23])
       console.info('payload:', chunk.getPayload())
@@ -93,7 +77,7 @@ async function main () {
   // )
   const creds = grpc.credentials.createInsecure()
 
-  const client = new PuppetClient(
+  const client = new puppet.PuppetClient(
     'localhost:8788',
     creds,
     {
@@ -103,7 +87,7 @@ async function main () {
 
   testStream(client)
   setInterval(() => testDing(client), 1000)
-  await testAlias(client)
+  // await testAlias(client)
 
   return 0
 }

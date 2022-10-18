@@ -13,19 +13,26 @@
 syntax = "proto3";
 package wechaty;
 
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+import "wechaty/deprecated/file-box.proto";
+
 import "wechaty/puppet/base.proto";
 import "wechaty/puppet/contact.proto";
+import "wechaty/puppet/download-upload.proto";
 import "wechaty/puppet/event.proto";
 import "wechaty/puppet/friendship.proto";
 import "wechaty/puppet/message.proto";
+import "wechaty/puppet/room-invitation.proto";
+import "wechaty/puppet/room-member.proto";
 import "wechaty/puppet/room.proto";
-import "wechaty/puppet/room_invitation.proto";
-import "wechaty/puppet/room_member.proto";
 import "wechaty/puppet/tag.proto";
 import "wechaty/puppet/conversation.proto";
+import "wechaty/puppet/channel.proto";
+import "wechaty/puppet/post.proto";
+import "wechaty/puppet/moment.proto";
 
-import "google/api/annotations.proto";
-import "protoc-gen-openapiv2/options/annotations.proto";
 
 option java_package="io.github.wechaty.grpc";
 option go_package="github.com/wechaty/go-grpc/wechaty";
@@ -63,6 +70,13 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
 
 service Puppet {
   /**
+   * Deprecated: will be removed after Dec 31, 2022
+   */
+  rpc MessageFileStream     (puppet.MessageFileStreamRequest)             returns (stream puppet.MessageFileStreamResponse)   {}
+  rpc MessageImageStream    (puppet.MessageImageStreamRequest)            returns (stream puppet.MessageImageStreamResponse)  {}
+  rpc MessageSendFileStream (stream puppet.MessageSendFileStreamRequest)  returns (puppet.MessageSendFileStreamResponse)      {}
+
+  /**
    *
    * Base
    *
@@ -87,6 +101,11 @@ service Puppet {
     option (google.api.http) = {
       post: "/ding"
       body: "*"
+    };
+  }
+  rpc CurrentUser (puppet.CurrentUserRequest) returns (puppet.CurrentUserResponse) {
+    option (google.api.http) = {
+      get: "/currentUser"
     };
   }
   rpc Version (puppet.VersionRequest)    returns (puppet.VersionResponse) {
@@ -158,6 +177,18 @@ service Puppet {
     option (google.api.http) = {
       get: "/contacts/{id}"
     };
+
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: 'Get a contact payload';
+      operation_id: 'contactPayload';
+      tags: "contact";
+      responses: {
+        key: "200"
+          value: {
+          description: "Contact payload";
+        }
+      }
+    };
   }
 
   rpc ContactAlias (puppet.ContactAliasRequest) returns (puppet.ContactAliasResponse) {
@@ -220,9 +251,22 @@ service Puppet {
       get: "/friendship/search/phone/{phone}"
     };
   }
-  rpc FriendshipSearchWeixin (puppet.FriendshipSearchWeixinRequest) returns (puppet.FriendshipSearchWeixinResponse) {
+  /**
+   * Huan(202203): https://github.com/wechaty/puppet/issues/181
+   * @deprecated use FriendshipSearchHandle instead, will be removed in v3.0
+   */
+  rpc FriendshipSearchWeixin (puppet.FriendshipSearchHandleRequest) returns (puppet.FriendshipSearchHandleResponse) {}
+  rpc FriendshipSearchHandle (puppet.FriendshipSearchHandleRequest) returns (puppet.FriendshipSearchHandleResponse) {
     option (google.api.http) = {
-      get: "/friendship/search/weixin/{weixin}"
+      /**
+       * (Huan(20220329): use `weixin` for now, until we upgrade to v2.0
+       *  the `wechaty-grpc@1.0.0` will use the latest v1.x automatically when running `npm install`
+       *    which will causing a breaking change.
+       *  @link https://github.com/wechaty/getting-started/issues/254
+       *
+       * TODO: rename `weixin` to `handle` in v2.0.0
+       */
+      get: "/friendship/search/handle/{weixin}"
     };
   }
 
@@ -256,28 +300,13 @@ service Puppet {
    *
    */
 
-  /**
-   * @deprecated: using MessageFileStream to transfer files
-   * Huan(202010): will be removed (replaced by MessageFileStream) after Dec 31, 2021
-   */
   rpc MessageFile (puppet.MessageFileRequest) returns (puppet.MessageFileResponse) {
-    option deprecated = true;
   }
 
-  /**
-   * @deprecated: using MessageImageStream to transfer images
-   * Huan(202010): will be removed (replaced by MessageImageStream) after Dec 31, 2021
-   */
   rpc MessageImage (puppet.MessageImageRequest) returns (puppet.MessageImageResponse) {
-    option deprecated = true;
   }
 
-  /**
-   * @deprecated: using MesageSendFileStream to transfer file message to server
-   * Huan(202010): will be removed (replaced by MessageSendFileStream) after Dec 31, 2021
-   */
   rpc MessageSendFile (puppet.MessageSendFileRequest) returns (puppet.MessageSendFileResponse) {
-    option deprecated = true;
   }
 
   rpc MessagePayload (puppet.MessagePayloadRequest)  returns (puppet.MessagePayloadResponse) {
@@ -291,16 +320,6 @@ service Puppet {
       get: "/message/{id}/contact"
     };
   }
-  rpc MessageFileStream (puppet.MessageFileStreamRequest) returns (stream puppet.MessageFileStreamResponse) {
-    option (google.api.http) = {
-      get: "/message/{id}/filebox"
-    };
-  }
-  rpc MessageImageStream (puppet.MessageImageStreamRequest) returns (stream puppet.MessageImageStreamResponse) {
-    option (google.api.http) = {
-      get: "/message/{id}/image/{type}"
-    };
-  }
   rpc MessageMiniProgram (puppet.MessageMiniProgramRequest) returns (puppet.MessageMiniProgramResponse) {
     option (google.api.http) = {
       get: "/message/{id}/mini-program"
@@ -311,10 +330,14 @@ service Puppet {
       get: "/message/{id}/url-link"
     };
   }
+  rpc MessageChannel (puppet.MessageChannelRequest) returns (puppet.MessageChannelResponse) {
+    option (google.api.http) = {
+      get: "/message/{id}/channel"
+    };
+  }
   rpc MessageRecall (puppet.MessageRecallRequest) returns (puppet.MessageRecallResponse) {
     option (google.api.http) = {
       put: "/message/{id}/recall"
-      body: "*"
     };
   }
   rpc MessageForward (puppet.MessageForwardRequest) returns (puppet.MessageForwardResponse) {
@@ -325,20 +348,15 @@ service Puppet {
       }
     };
   }
+  rpc MessageLocation (puppet.MessageLocationRequest) returns (puppet.MessageLocationResponse) {
+    option (google.api.http) = {
+      get: "/message/{id}/location"
+    };
+  }
 
   rpc MessageSendContact (puppet.MessageSendContactRequest) returns (puppet.MessageSendContactResponse) {
     option (google.api.http) = {
       post: "/conversations/{conversation_id}/contact"
-      body: "*"
-    };
-  }
-  rpc MessageSendFileStream (stream puppet.MessageSendFileStreamRequest) returns (puppet.MessageSendFileStreamResponse) {
-    /**
-      * TODO: Add support for client upload files
-      *   https://github.com/wechaty/openapi/issues/1
-      */
-    option (google.api.http) = {
-      post: "/conversations/-/filebox"
       body: "*"
     };
   }
@@ -360,6 +378,25 @@ service Puppet {
       body: "*"
     };
   }
+  rpc MessageSendLocation (puppet.MessageSendLocationRequest) returns (puppet.MessageSendLocationResponse) {
+    option (google.api.http) = {
+      post: "/conversations/{conversation_id}/location"
+      body: "*"
+    };
+  }
+  rpc MessageSendChannel (puppet.MessageSendChannelRequest) returns (puppet.MessageSendChannelResponse) {
+    option (google.api.http) = {
+      post: "/conversations/{conversation_id}/channel"
+      body: "*"
+    };
+  }
+
+  rpc MessagePreview (puppet.MessagePreviewRequest) returns (puppet.MessagePreviewResponse) {
+    option (google.api.http) = {
+      get: "/message/{id}/preview"
+    };
+  }
+
 
   /**
    *
@@ -407,7 +444,7 @@ service Puppet {
 
   rpc RoomTopic (puppet.RoomTopicRequest) returns (puppet.RoomTopicResponse) {
     option (google.api.http) = {
-      put: "/rooms/{id}/topic/{topic}"
+      get: "/rooms/{id}/topic"
     };
   }
   rpc RoomQRCode (puppet.RoomQRCodeRequest) returns (puppet.RoomQRCodeResponse) {
@@ -463,30 +500,153 @@ service Puppet {
    * Tag
    *
    */
-  rpc TagContactAdd (puppet.TagContactAddRequest) returns (puppet.TagContactAddResponse) {
+
+  rpc TagContactTagAdd (puppet.TagContactTagAddRequest) returns (puppet.TagContactTagAddResponse) {
     option (google.api.http) = {
-      put: "/contacts/{contact_id}/tags/{id}"
+      post: "/tag/addContactTag"
+      body: "*"
     };
   }
-  rpc TagContactRemove (puppet.TagContactRemoveRequest) returns (puppet.TagContactRemoveResponse) {
+
+  rpc TagContactTagRemove (puppet.TagContactTagRemoveRequest) returns (puppet.TagContactTagRemoveResponse) {
     option (google.api.http) = {
-      delete: "/contacts/{contact_id}/tags/{id}"
+      post: "/tag/removeContactTag"
+      body: "*"
+    };
+  }
+
+  rpc TagGroupAdd (puppet.TagGroupAddRequest) returns (puppet.TagGroupAddResponse) {
+    option (google.api.http) = {
+      post: "/tagGroup/add"
+      body: "*"
+    };
+  }
+
+  rpc TagGroupDelete (puppet.TagGroupDeleteRequest) returns (puppet.TagGroupDeleteResponse) {
+    option (google.api.http) = {
+      post: "/tagGroup/delete"
+      body: "*"
+    };
+  }
+
+  rpc TagGroupPayload (puppet.TagGroupPayloadRequest) returns (puppet.TagGroupPayloadResponse) {
+    option (google.api.http) = {
+      post: "/tagGroup/payload"
+      body: "*"
+    };
+  }
+
+  rpc TagTagAdd (puppet.TagTagAddRequest) returns (puppet.TagTagAddResponse) {
+    option (google.api.http) = {
+      post: "/tag/add"
+      body: "*"
+    };
+  }
+
+  rpc TagTagDelete (puppet.TagTagDeleteRequest) returns (puppet.TagTagDeleteResponse) {
+    option (google.api.http) = {
+      post: "/tag/delete"
+      body: "*"
+    };
+  }
+
+  rpc TagPayload (puppet.TagPayloadRequest) returns (puppet.TagPayloadResponse) {
+    option (google.api.http) = {
+      post: "/tag/payload"
+      body: "*"
+    };
+  }
+
+  rpc TagGroupList (puppet.TagGroupListRequest) returns (puppet.TagGroupListResponse) {
+    option (google.api.http) = {
+      get: "/tagGroup/list"
+    };
+  }
+
+  rpc TagGroupTagList (puppet.TagGroupTagListRequest) returns (puppet.TagGroupTagListResponse) {
+    option (google.api.http) = {
+      get: "/tag/groups/{tag_group_id}/tags"
+    };
+  }
+
+  rpc TagTagList (puppet.TagTagListRequest) returns (puppet.TagTagListResponse) {
+    option (google.api.http) = {
+      get: "/tag/list"
+    };
+  }
+
+  rpc TagContactTagList (puppet.TagContactTagListRequest) returns (puppet.TagContactTagListResponse) {
+    option (google.api.http) = {
+      get: "/contacts/{contact_id}/tag/tags"
+    };
+  }
+
+  rpc TagTagContactList (puppet.TagTagContactListRequest) returns (puppet.TagTagContactListResponse) {
+    option (google.api.http) = {
+      get: "/tag/{tag_id}/contacts"
     };
   }
 
   /**
-   * Operate Sub-Collections
-   *   https://cloud.google.com/apis/design/design_patterns#list_sub-collections
+   *
+   * Moment & Post
+   *
    */
-  rpc TagContactDelete (puppet.TagContactDeleteRequest) returns (puppet.TagContactDeleteResponse) {
+
+  rpc momentPublish (puppet.MomentPublishRequest) returns (puppet.MomentPublishResponse) {
     option (google.api.http) = {
-      delete: "/contacts/-/tags/{id}"
+      post: "/moment/publish"
+      body: "*"
     };
   }
 
-   rpc TagContactList (puppet.TagContactListRequest) returns (puppet.TagContactListResponse) {
+  rpc postTap (puppet.PostTapRequest) returns (puppet.PostTapResponse) {
     option (google.api.http) = {
-      get: "/contacts/{contact_id}/tags"
+      post: "/post/like"
+      body: "*"
+    };
+  }
+
+  rpc momentSignature (puppet.MomentSignatureRequest) returns (puppet.MomentSignatureResponse) {
+    option (google.api.http) = {
+      post: "/moment/signature"
+      body: "*"
+    };
+  }
+
+  rpc momentCoverage (puppet.MomentCoverageRequest) returns (puppet.MomentCoverageResponse) {
+    option (google.api.http) = {
+      post: "/moment/coverage"
+      body: "*"
+    };
+  }
+
+  rpc postPayload (puppet.PostPayloadRequest) returns (puppet.PostPayloadResponse) {
+    option (google.api.http) = {
+      post: "/post/payload"
+      body: "*"
+    };
+  }
+
+  rpc postPayloadSayable (puppet.PostPayloadSayableRequest) returns (puppet.PostPayloadSayableResponse) {
+    option (google.api.http) = {
+      post: "/post/sayable"
+      body: "*"
+    };
+  }
+
+  /**
+   * File/Blob download & upload
+   */
+  rpc Download (puppet.DownloadRequest) returns (stream puppet.DownloadResponse) {
+    option (google.api.http) = {
+      get: "/download/{id}"
+    };
+  }
+  rpc Upload (stream puppet.UploadRequest) returns (puppet.UploadResponse) {
+    option (google.api.http) = {
+      post: "/upload"
+      body: "*"
     };
   }
 

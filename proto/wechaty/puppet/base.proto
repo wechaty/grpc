@@ -6,12 +6,14 @@ option java_package     = "io.github.wechaty.grpc.puppet";
 option csharp_namespace = "github.wechaty.grpc.puppet";
 
 enum PayloadType {
-  PAYLOAD_TYPE_UNKNOWN     = 0;
+  PAYLOAD_TYPE_UNSPECIFIED = 0;
   PAYLOAD_TYPE_MESSAGE     = 1;
   PAYLOAD_TYPE_CONTACT     = 2;
   PAYLOAD_TYPE_ROOM        = 3;
   PAYLOAD_TYPE_ROOM_MEMBER = 4;
   PAYLOAD_TYPE_FRIENDSHIP  = 5;
+  PAYLOAD_TYPE_TAG         = 6;
+  PAYLOAD_TYPE_TAG_GROUP   = 7;
 }
 
 message StartRequest {}
@@ -44,3 +46,10 @@ message DirtyPayloadRequest {
 }
 
 message DirtyPayloadResponse {}
+
+message CurrentUserRequest {
+}
+
+message CurrentUserResponse {
+  string user_id = 1;
+}

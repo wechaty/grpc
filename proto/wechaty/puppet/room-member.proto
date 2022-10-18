@@ -1,0 +1,26 @@
+syntax = "proto3";
+package wechaty.puppet;
+
+option go_package="github.com/wechaty/go-grpc/wechaty/puppet";
+option java_package="io.github.wechaty.grpc.puppet";
+option csharp_namespace = "github.wechaty.grpc.puppet";
+
+message RoomMemberPayloadRequest {
+  string id = 1;
+  string member_id = 2;
+}
+message RoomMemberPayloadResponse {
+  string id              = 1;
+  string room_alias      = 2; // 联系人在群内的别名（群备注）
+  string inviter_id      = 3; // 邀请者id
+  string avatar          = 4; // 头像
+  string name            = 5; // 名称
+  string additional_info = 6;
+}
+
+message RoomMemberListRequest {
+  string id = 1;
+}
+message RoomMemberListResponse {
+  repeated string member_ids = 1;
+}

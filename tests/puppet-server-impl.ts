@@ -1,6 +1,9 @@
-import {
-  IPuppetServer,
-}                       from '../src/mod'
+/* eslint-disable sort-keys */
+import type {
+  puppet,
+}                       from '../src/mod.js'
+
+type IPuppetServer = puppet.IPuppetServer
 
 /**
  * Implements the SayHello RPC method.
@@ -79,6 +82,12 @@ export const puppetServerImpl: IPuppetServer = {
     throw new Error('not implemented.')
   },
 
+  currentUser: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
   dirtyPayload: (call, callback) => {
     void call
     void callback
@@ -116,6 +125,12 @@ export const puppetServerImpl: IPuppetServer = {
   },
 
   friendshipSearchWeixin: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  friendshipSearchHandle: (call, callback) => {
     void call
     void callback
     throw new Error('not implemented.')
@@ -161,6 +176,12 @@ export const puppetServerImpl: IPuppetServer = {
     throw new Error('not implemented.')
   },
 
+  messageLocation: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
   messageMiniProgram: (call, callback) => {
     void call
     void callback
@@ -197,6 +218,12 @@ export const puppetServerImpl: IPuppetServer = {
     throw new Error('not implemented.')
   },
 
+  messageSendLocation: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
   messageSendMiniProgram: (call, callback) => {
     void call
     void callback
@@ -216,6 +243,24 @@ export const puppetServerImpl: IPuppetServer = {
   },
 
   messageUrl: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  messageSendChannel: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  messageChannel: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  messagePreview: (call, callback) => {
     void call
     void callback
     throw new Error('not implemented.')
@@ -317,31 +362,132 @@ export const puppetServerImpl: IPuppetServer = {
     throw new Error('not implemented.')
   },
 
-  tagContactAdd: (call, callback) => {
+  tagContactTagAdd: (call, callback) => {
     void call
     void callback
     throw new Error('not implemented.')
   },
 
-  tagContactDelete: (call, callback) => {
+  tagContactTagRemove: (call, callback) => {
     void call
     void callback
     throw new Error('not implemented.')
   },
 
-  tagContactList: (call, callback) => {
+  tagGroupAdd: (call, callback) => {
     void call
     void callback
     throw new Error('not implemented.')
   },
 
-  tagContactRemove: (call, callback) => {
+  tagGroupDelete: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  tagTagAdd: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  tagTagDelete: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  tagGroupList: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  tagGroupTagList: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  tagTagList: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  tagContactTagList: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  tagTagContactList: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  tagPayload: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  tagGroupPayload: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  momentPublish: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  postTap: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  momentSignature: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  momentCoverage: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  postPayload: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  postPayloadSayable: (call, callback) => {
     void call
     void callback
     throw new Error('not implemented.')
   },
 
   version: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  download: (call) => {
+    void call
+    throw new Error('not implemented.')
+  },
+
+  upload: (call, callback) => {
     void call
     void callback
     throw new Error('not implemented.')

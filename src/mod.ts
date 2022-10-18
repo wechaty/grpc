@@ -1,16 +1,31 @@
-import * as proto from './proto'
-import * as openApi from './openapi'
+import * as grpc  from '@grpc/grpc-js'
+
+import * as proto     from './proto.js'
+import * as openApi   from './openapi.js'
+
 import {
-  VERSION,
-}           from './config'
+  google,
+  puppet,
+}                     from './cjs.js'
+import { VERSION }    from './config.js'
+import {
+  StringValue,
+  Timestamp,
+}                     from './google.js'
+import {
+  chunkEncoder,
+  chunkDecoder,
+}                     from './chunk-transformer.js'
 
 export {
-  proto,
+  chunkEncoder,
+  chunkDecoder,
+  google,
+  grpc,
   openApi,
+  proto,
+  puppet,
+  StringValue,
+  Timestamp,
   VERSION,
 }
-export * as grpc  from '@grpc/grpc-js'
-export *          from './generated'
-export {
-  StringValue,
-}                 from 'google-protobuf/google/protobuf/wrappers_pb'

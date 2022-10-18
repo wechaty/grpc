@@ -1,0 +1,18 @@
+syntax = "proto3";
+package wechaty.puppet;
+
+option go_package       = "github.com/wechaty/go-grpc/wechaty/puppet";
+option java_package     = "io.github.wechaty.grpc.puppet";
+option csharp_namespace = "github.wechaty.grpc.puppet";
+
+message MiniProgramPayload {
+  string appid       = 1; // appId，形式如wx4ff94de0d8038c25
+  string description = 2; // 描述(副标题)
+  string page_path   = 3; // 访问路径
+  string icon_url    = 4; // 图标路径
+  string share_id    = 5; // 发送小程序的用户id，可不填
+  string thumb_url   = 6; // 缩略图路径
+  string title       = 7; // 标题
+  string username    = 8; // 关联公众号id，形式gh_69105b80ea75@app
+  string thumb_key   = 9; // 缩略图的key，可不填
+}

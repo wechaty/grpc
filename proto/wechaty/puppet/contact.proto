@@ -7,17 +7,17 @@ option csharp_namespace = "github.wechaty.grpc.puppet";
 
 import "google/protobuf/wrappers.proto";
 
-enum ContactGender {
-  CONTACT_GENDER_UNSPECIFIED = 0;
-  CONTACT_GENDER_MALE        = 1;
-  CONTACT_GENDER_FEMALE      = 2;
+enum ContactGender { // 性别枚举
+  CONTACT_GENDER_UNSPECIFIED = 0; // 不明确
+  CONTACT_GENDER_MALE        = 1; // 男
+  CONTACT_GENDER_FEMALE      = 2; // 女
 }
 
-enum ContactType {
-  CONTACT_TYPE_UNSPECIFIED = 0;
-  CONTACT_TYPE_PERSONAL    = 1;
-  CONTACT_TYPE_OFFICIAL    = 2;
-  CONTACT_TYPE_CORPORATION = 3;
+enum ContactType { // 类型枚举
+  CONTACT_TYPE_UNSPECIFIED = 0; // 不明确
+  CONTACT_TYPE_PERSONAL    = 1; // 个微联系人
+  CONTACT_TYPE_OFFICIAL    = 2; // 公众号
+  CONTACT_TYPE_CORPORATION = 3; // 企微联系人
 }
 
 message ContactListRequest {}
@@ -29,24 +29,38 @@ message ContactPayloadRequest {
   string id = 1;
 }
 message ContactPayloadResponse {
-  string          id          = 1;
-  ContactGender   gender      = 2;
-  ContactType     type        = 3;
-  string          name        = 4;
-  string          avatar      = 5;
-  string          address     = 6;
-  string          alias       = 7;
-  string          city        = 8;
-  bool            friend      = 9;
-  string          province    = 10;
-  string          signature   = 11;
-  bool            star        = 12;
-  string          weixin      = 13;
-  string          corporation = 14;
-  string          title       = 15;
-  string          description = 16;
-  bool            coworker    = 17;
-  repeated string phone       = 18;
+  string        id        = 1;
+  ContactGender gender    = 2; // 性别
+  ContactType   type      = 3; // 类型
+  string        name      = 4; // 姓名
+  string        avatar    = 5; // 头像
+  string        address   = 6; // 地址
+  string        alias     = 7; // 别名，即备注
+  string        city      = 8; // 城市
+  bool          friend    = 9; // 是否为好友
+  string        province  = 10;// 省份
+  string        signature = 11;// 签名
+  bool          star      = 12;// 是否为特别好友
+  /**
+   * Huan(202203): in gRPC, we can freely rename the field name as long as the number keep consistent.
+   *  so we can just rename `weixin` to `handle` here.
+   *
+   * (Huan(20220329): use `weixin` for now, until we upgrade to v2.0
+   *  the `wechaty-grpc@1.0.0` will use the latest v1.x automatically when running `npm install`
+   *    which will causing a breaking change.
+   *  @link https://github.com/wechaty/getting-started/issues/254
+   *
+   * TODO: rename `weixin` to `handle` in v2.0.0
+   */
+  string   weixin          = 13;// IM专属id，在企微环境中特指weixinId
+  string   corporation     = 14;// 企业
+  string   title           = 15;// 头衔
+  string   description     = 16;// 描述
+  bool     coworker        = 17;// 是否为同事
+  repeated string phones   = 18;// 电话号码，企微中最多5个
+  string   additional_info = 19;// 额外信息，是由JS对象stringify得到的字符串，目前支持的内容包含addContactTime、corpId等。
+
+  repeated string tag_ids = 20; // 标签（的id）
 }
 
 message ContactSelfQRCodeRequest {}
@@ -67,50 +81,45 @@ message ContactSelfSignatureResponse {}
 message ContactAliasRequest {
   string id = 1;
   // nullable
-  google.protobuf.StringValue alias = 2;
+  google.protobuf.StringValue alias_string_value_deprecated = 2 [deprecated = true];  // DEPRECATED, will be removed after Dec 31, 2022
+  optional string alias = 3;
 }
 message ContactAliasResponse {
-  google.protobuf.StringValue alias = 1;
+  google.protobuf.StringValue alias_string_value_deprecated = 1 [deprecated = true];  // DEPRECATED, will be removed after Dec 31, 2022
+  string alias = 2;
 }
 
 message ContactAvatarRequest {
   string id = 1;
-  // nullable
-  /**
-   * Huan(202011) TODO:
-   *  1. rename to file_box
-   *  2. replace it by FileBoxChunk with stream support
-   */
-  google.protobuf.StringValue filebox = 2;
+  google.protobuf.StringValue filebox_string_value_deprecated = 2 [deprecated = true];  // DEPRECATED, will be removed after Dec 31, 2022
+  optional string file_box = 3;
 }
 message ContactAvatarResponse {
-  /**
-   * Huan(202011) TODO:
-   *  1. rename to file_box
-   *  2. replace it by FileBoxChunk with stream support
-   */
-   google.protobuf.StringValue filebox = 1;
+  google.protobuf.StringValue filebox_string_value_deprecated = 1 [deprecated = true];  // DEPRECATED, will be removed after Dec 31, 2022
+  string file_box = 2;
 }
 
 message ContactPhoneRequest {
   string contact_id = 1;
-  repeated string phone_list = 2;
+  repeated string phones = 2;
 }
 
 message ContactPhoneResponse {
-  repeated string phone_list = 2;
+  repeated string phones = 2;
 }
 
 message ContactCorporationRemarkRequest {
   string contact_id = 1;
-  google.protobuf.StringValue corporation_remark = 2;
+  google.protobuf.StringValue corporation_remark_string_value_deprecated = 2 [deprecated = true];  // DEPRECATED, will be removed after Dec 31, 2022
+  string corporation_remark = 3;
 }
 
 message ContactCorporationRemarkResponse {}
 
 message ContactDescriptionRequest {
   string contact_id = 1;
-  google.protobuf.StringValue description = 2;
+  google.protobuf.StringValue description_string_value_deprecated = 2 [deprecated = true];  // DEPRECATED, will be removed after Dec 31, 2022
+  string description = 3;
 }
 
 message ContactDescriptionResponse {}

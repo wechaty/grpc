@@ -1,32 +1,126 @@
 syntax = "proto3";
 package wechaty.puppet;
 
-option go_package="github.com/wechaty/go-grpc/wechaty/puppet";
-option java_package="io.github.wechaty.grpc.puppet";
+option go_package       = "github.com/wechaty/go-grpc/wechaty/puppet";
+option java_package     = "io.github.wechaty.grpc.puppet";
 option csharp_namespace = "github.wechaty.grpc.puppet";
 
-import "google/protobuf/wrappers.proto";
-
-message TagContactAddRequest {
-  string id = 1;
-  string contact_id = 2;
+enum TagType {
+  Unspecific  = 0;
+  PERSONAL    = 1; // 个人标签
+  CORPORATION = 2; // 企业标签
 }
-message TagContactAddResponse {}
 
-message TagContactRemoveRequest {
-  string id = 1;
-  string contact_id = 2;
+message TagPayload {
+  string  id       = 1;
+  string  name     = 2; // 标签名
+  string  group_id = 3; // 所属标签组的id，可为空
+  TagType type     = 4;
 }
-message TagContactRemoveResponse {}
 
-message TagContactDeleteRequest {
-  string id = 1;
+message TagGroupPayload {
+  string  id   = 1;
+  string  name = 2;
+  TagType type = 3;
 }
-message TagContactDeleteResponse {}
 
-message TagContactListRequest {
-  google.protobuf.StringValue contact_id = 1;
+message TagContactTagAddRequest {
+  repeated string tag_ids = 1; // 要打的标签的id列表
+  repeated string contact_ids = 2; // 要打标签的联系人id列表
 }
-message TagContactListResponse {
-  repeated string ids = 1;
+
+message TagContactTagAddResponse {
+}
+
+message TagContactTagRemoveRequest {
+  repeated string tag_ids = 1;
+  repeated string contact_ids = 2;
+}
+
+message TagContactTagRemoveResponse {
+}
+
+message TagGroupAddRequest {
+  string tag_group_name = 1;
+}
+
+message TagGroupAddResponse {
+  string tag_group_id = 1;
+}
+
+message TagGroupDeleteRequest {
+  string tag_group_id = 1;
+}
+
+message TagGroupDeleteResponse {
+}
+
+message TagTagAddRequest {
+  string tag_name     = 1;
+  string tag_group_id = 2;
+}
+
+message TagTagAddResponse {
+  string tag_id = 1;
+}
+
+message TagTagDeleteRequest {
+  string tag_id = 1;
+}
+
+message TagTagDeleteResponse {
+}
+
+message TagGroupListRequest {
+}
+
+message TagGroupListResponse {
+  repeated string tag_group_ids = 1;
+}
+
+message TagGroupTagListRequest {
+  string tag_group_id = 1;
+}
+
+message TagGroupTagListResponse {
+  repeated string tag_ids = 1;
+}
+
+message TagTagListRequest {
+}
+
+message TagTagListResponse {
+  repeated string tag_ids = 1;
+}
+
+message TagContactTagListRequest {
+  string contact_id = 1;
+}
+
+message TagContactTagListResponse {
+  repeated string tag_ids = 1;
+}
+
+message TagTagContactListRequest {
+  string tag_id = 1;
+}
+
+message TagTagContactListResponse {
+  repeated string contact_ids = 1;
+}
+
+message TagGroupPayloadRequest {
+  string group_id = 1;
+}
+
+message TagGroupPayloadResponse {
+  TagGroupPayload payload = 1;
+}
+
+message TagPayloadRequest {
+  string tag_id = 1;
+}
+
+message TagPayloadResponse {
+  TagPayload payload = 1;
 }

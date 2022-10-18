@@ -1,13 +1,14 @@
 import path from 'path'
-import fs from 'fs'
+import fs   from 'fs'
 
-import { ApiStore } from './config'
+import { codeRoot } from './cjs.js'
+
+import type { ApiStore } from './config.js'
 
 function getOpenApiPath (...paths: string[]): string {
   return path.join(
-    __dirname,
-    '..',
-    'generated',
+    codeRoot,
+    'out',
     ...paths,
   )
 }
@@ -19,7 +20,7 @@ const puppetSwaggerFile = getOpenApiPath(
 
 const puppet: ApiStore = {
   v0: {
-    data: fs.readFileSync(puppetSwaggerFile).toString(),
+    data: fs.readFileSync(puppetSwaggerFile, 'utf-8'),
     file: puppetSwaggerFile,
   },
 }
