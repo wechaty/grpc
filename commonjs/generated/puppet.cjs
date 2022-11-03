@@ -18,6 +18,7 @@ const puppetFileList = [
   '../../out/wechaty/puppet/channel_pb.js',
   '../../out/wechaty/puppet/moment_pb.js',
   '../../out/wechaty/puppet/post_pb.js',
+  '../../out/wechaty/puppet/conversation_pb.js',
 
   '../../out/wechaty/puppet_grpc_pb.js',
   '../../out/wechaty/puppet_pb.js',
