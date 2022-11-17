@@ -642,48 +642,6 @@ service Puppet {
    *
    */
 
-  rpc MomentPublish (puppet.MomentPublishRequest) returns (puppet.MomentPublishResponse) {
-    option (google.api.http) = {
-      post: "/moment/publish"
-      body: "*"
-    };
-  }
-
-  rpc PostTap (puppet.PostTapRequest) returns (puppet.PostTapResponse) {
-    option (google.api.http) = {
-      post: "/post/like"
-      body: "*"
-    };
-  }
-
-  rpc MomentSignature (puppet.MomentSignatureRequest) returns (puppet.MomentSignatureResponse) {
-    option (google.api.http) = {
-      post: "/moment/signature"
-      body: "*"
-    };
-  }
-
-  rpc MomentCoverage (puppet.MomentCoverageRequest) returns (puppet.MomentCoverageResponse) {
-    option (google.api.http) = {
-      post: "/moment/coverage"
-      body: "*"
-    };
-  }
-
-  rpc PostPayload (puppet.PostPayloadRequest) returns (puppet.PostPayloadResponse) {
-    option (google.api.http) = {
-      post: "/post/payload"
-      body: "*"
-    };
-  }
-
-  rpc PostPayloadSayable (puppet.PostPayloadSayableRequest) returns (puppet.PostPayloadSayableResponse) {
-    option (google.api.http) = {
-      post: "/post/sayable"
-      body: "*"
-    };
-  }
-
   rpc MomentVisibleList (puppet.MomentVisibleListRequest) returns (puppet.MomentVisibleListResponse) {
     option (google.api.http) = {
       get: "/moment/visibleList"
