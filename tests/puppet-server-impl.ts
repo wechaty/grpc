@@ -480,7 +480,7 @@ export const puppetServerImpl: IPuppetServer = {
     void call
     void callback
     throw new Error('not implemented.')
-  }
+  },
 
   version: (call, callback) => {
     void call
