@@ -677,10 +677,16 @@ service Puppet {
     };
   }
 
-  rpc postPayloadSayable (puppet.PostPayloadSayableRequest) returns (puppet.PostPayloadSayableResponse) {
+  rpc PostPayloadSayable (puppet.PostPayloadSayableRequest) returns (puppet.PostPayloadSayableResponse) {
     option (google.api.http) = {
       post: "/post/sayable"
       body: "*"
+    };
+  }
+
+  rpc MomentVisibleList (puppet.MomentVisibleListRequest) returns (puppet.MomentVisibleListResponse) {
+    option (google.api.http) = {
+      get: "/moment/visibleList"
     };
   }
 

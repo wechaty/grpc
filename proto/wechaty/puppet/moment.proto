@@ -31,3 +31,9 @@ message MomentCoverageResponse {
   string file_box = 1;
 }
 
+message MomentVisibleListRequest {}
+
+message MomentVisibleListResponse {
+  repeated string contact_ids = 1;
+}
+
