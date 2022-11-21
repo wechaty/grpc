@@ -9,6 +9,7 @@ import "google/protobuf/timestamp.proto";
 
 import "wechaty/puppet/url-link.proto";
 import "wechaty/puppet/channel.proto";
+import "wechaty/puppet/location.proto";
 
 enum PostType {
   POST_TYPE_UNSPECIFIED = 0;
@@ -46,6 +47,9 @@ message PostPayloadClient {
   string root_id = 2; // 转发的根id，评论时应该是朋友圈的id
   PostType type = 3;
   repeated PostSayable sayable_list = 4;
+
+  repeated string visible_List = 5;
+  LocationPayload location = 6;
 }
 
 message PostPayloadServer {
@@ -60,6 +64,11 @@ message PostPayloadServer {
   int32 children = 7;
   int32 descendant = 8;
   int32 like = 9;
+
+  reserved 10 to 15;
+
+  repeated string visible_List = 16;
+  LocationPayload location = 17;
 }
 
 message PostTapRequest {
