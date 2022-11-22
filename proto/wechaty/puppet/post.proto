@@ -48,7 +48,7 @@ message PostPayloadClient {
   PostType type = 3;
   repeated PostSayable sayable_list = 4;
 
-  repeated string visible_List = 5;
+  repeated string visible_list = 5;
   LocationPayload location = 6;
 }
 
@@ -67,7 +67,7 @@ message PostPayloadServer {
 
   reserved 10 to 15;
 
-  repeated string visible_List = 16;
+  repeated string visible_list = 16;
   LocationPayload location = 17;
 }
 
