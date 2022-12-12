@@ -7,6 +7,9 @@ option csharp_namespace = "github.wechaty.grpc.puppet";
 
 message ConversationReadRequest {
   string conversation_id = 1;
+  bool   has_read        = 2;
 }
 
-message ConversationReadResponse {}
+message ConversationReadResponse {
+  bool has_read = 1;
+}
