@@ -225,6 +225,12 @@ service Puppet {
       body: "*"
     };
   }
+  rpc ContactDelete (puppet.ContactDeleteRequest) returns (puppet.ContactDeleteResponse) {
+    option (google.api.http) = {
+      put: "/contacts/{contact_id}/delete"
+      body: "*"
+    };
+  }
 
   /**
    * Huan(202002): consider changing response to a stream in the future for better performance
