@@ -25,7 +25,7 @@ message RoomMemberPayloadResponse {
   string avatar                      = 4; // 头像
   string name                        = 5; // 名称
   string additional_info             = 6;
-  float join_time                    = 7;
+  double join_time                   = 7;
   RoomMemberJoinSceneType join_scene = 8;
 }
 
