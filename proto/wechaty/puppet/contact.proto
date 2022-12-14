@@ -123,3 +123,9 @@ message ContactDescriptionRequest {
 }
 
 message ContactDescriptionResponse {}
+
+message ContactDeleteRequest {
+  string contact_id = 1;
+}
+
+message ContactDeleteResponse {}
