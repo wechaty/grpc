@@ -34,6 +34,12 @@ export const puppetServerImpl: IPuppetServer = {
     throw new Error('not implemented')
   },
 
+  contactDelete: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented')
+  },
+
   contactList: (call, callback) => {
     void call
     void callback
