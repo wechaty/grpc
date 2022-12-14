@@ -6,11 +6,11 @@ option java_package="io.github.wechaty.grpc.puppet";
 option csharp_namespace = "github.wechaty.grpc.puppet";
 
 enum RoomMemberJoinSceneType { // 类型枚举
-  ROOM_MEMBER_JOIN_SCENE_TYPE_UNKNOWN     = 0,
-  ROOM_MEMBER_JOIN_SCENE_TYPE_ADD         = 1,
-  ROOM_MEMBER_JOIN_SCENE_TYPE_INVITE_LINK = 2,
-  ROOM_MEMBER_JOIN_SCENE_TYPE_QRCODE      = 3,
-  ROOM_MEMBER_JOIN_SCENE_TYPE_OTHER       = 4,
+  ROOM_MEMBER_JOIN_SCENE_TYPE_UNKNOWN     = 0;
+  ROOM_MEMBER_JOIN_SCENE_TYPE_ADD         = 1;
+  ROOM_MEMBER_JOIN_SCENE_TYPE_INVITE_LINK = 2;
+  ROOM_MEMBER_JOIN_SCENE_TYPE_QRCODE      = 3;
+  ROOM_MEMBER_JOIN_SCENE_TYPE_OTHER       = 4;
 }
 
 message RoomMemberPayloadRequest {
