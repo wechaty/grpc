@@ -14,4 +14,8 @@ message ChannelPayload {
   string nickname  = 6; // 用户名
   string thumb_url = 7; // 缩略图地址
   string url       = 8; // 视频号地址
+
+  // 视频号直播专属
+  string object_id = 9;
+  string object_nonce_id = 10;
 }
