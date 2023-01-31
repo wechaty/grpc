@@ -18,6 +18,7 @@ enum ContactType { // 类型枚举
   CONTACT_TYPE_PERSONAL    = 1; // 个微联系人
   CONTACT_TYPE_OFFICIAL    = 2; // 公众号
   CONTACT_TYPE_CORPORATION = 3; // 企微联系人
+  CONTACT_TYPE_APPLICATION = 4; // 应用联系人 例如小助手
 }
 
 message ContactListRequest {}
