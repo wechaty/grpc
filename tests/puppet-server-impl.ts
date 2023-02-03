@@ -68,7 +68,7 @@ export const puppetServerImpl: IPuppetServer = {
     void call
     void callback
     throw new Error('not implemented.')
-  }
+  },
 
   contactSelfQRCode: (call, callback) => {
     void call
