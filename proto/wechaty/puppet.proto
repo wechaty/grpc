@@ -241,6 +241,13 @@ service Puppet {
     };
   }
 
+  rpc ContactPayloadModify (puppet.ContactPayloadModifyRequest) returns (puppet.ContactPayloadModifyResponse) {
+    option (google.api.http) = {
+      put: "/contacts/{id}/payload-modify"
+      body: "*"
+    };
+  }
+
   /**
    *
    * Friendship
