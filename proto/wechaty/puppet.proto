@@ -460,6 +460,13 @@ service Puppet {
       get: "/rooms/{id}/topic"
     };
   }
+
+  rpc RoomRemark (puppet.RoomRemarkRequest) returns (puppet.RoomRemarkResponse) {
+    option (google.api.http) = {
+      put: "/rooms/{id}/remark"
+    };
+  }
+
   rpc RoomQRCode (puppet.RoomQRCodeRequest) returns (puppet.RoomQRCodeResponse) {
     option (google.api.http) = {
       get: "/rooms/{id}/qrcode"
