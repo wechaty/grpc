@@ -24,6 +24,7 @@ message RoomPayloadResponse {
   repeated string member_ids = 6; // 群成员id列表
   string   handle            = 7; // IM内部id，企微中为群的chat_id
   string   additional_info   = 8;
+  string   room_remark       = 9;
 }
 
 message RoomAddRequest {
@@ -87,3 +88,9 @@ message RoomAnnounceResponse {
   string                      text                         = 2;
 }
 
+message RoomRemarkRequest {
+  string id = 1;
+  string remark = 2;
+}
+
+message RoomRemarkResponse {}
