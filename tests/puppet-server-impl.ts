@@ -166,11 +166,6 @@ export const puppetServerImpl: IPuppetServer = {
     throw new Error('not implemented.')
   },
 
-  messageFileStream: (call) => {
-    void call
-    throw new Error('not implemented.')
-  },
-
   messageForward: (call, callback) => {
     void call
     void callback
@@ -180,11 +175,6 @@ export const puppetServerImpl: IPuppetServer = {
   messageImage: (call, callback) => {
     void call
     void callback
-    throw new Error('not implemented.')
-  },
-
-  messageImageStream: (call) => {
-    void call
     throw new Error('not implemented.')
   },
 
@@ -219,12 +209,6 @@ export const puppetServerImpl: IPuppetServer = {
   },
 
   messageSendFile: (call, callback) => {
-    void call
-    void callback
-    throw new Error('not implemented.')
-  },
-
-  messageSendFileStream: (call, callback) => {
     void call
     void callback
     throw new Error('not implemented.')
