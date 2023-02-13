@@ -21,8 +21,6 @@
  *  const puppet = pkg['puppet']
  *  ```
  */
-export * from '../../out/wechaty/deprecated/file-box_pb.js'
-
 export * from '../../out/wechaty/puppet/base_pb.js'
 export * from '../../out/wechaty/puppet/contact_pb.js'
 export * from '../../out/wechaty/puppet/download-upload_pb.js'

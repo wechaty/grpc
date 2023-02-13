@@ -16,8 +16,6 @@ package wechaty;
 import "google/api/annotations.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
 
-import "wechaty/deprecated/file-box.proto";
-
 import "wechaty/puppet/base.proto";
 import "wechaty/puppet/contact.proto";
 import "wechaty/puppet/download-upload.proto";
@@ -69,13 +67,6 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
 };
 
 service Puppet {
-  /**
-   * Deprecated: will be removed after Dec 31, 2022
-   */
-  rpc MessageFileStream     (puppet.MessageFileStreamRequest)             returns (stream puppet.MessageFileStreamResponse)   {}
-  rpc MessageImageStream    (puppet.MessageImageStreamRequest)            returns (stream puppet.MessageImageStreamResponse)  {}
-  rpc MessageSendFileStream (stream puppet.MessageSendFileStreamRequest)  returns (puppet.MessageSendFileStreamResponse)      {}
-
   /**
    *
    * Base
