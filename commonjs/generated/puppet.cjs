@@ -1,6 +1,4 @@
 const puppetFileList = [
-  '../../out/wechaty/deprecated/file-box_pb.js',
-
   '../../out/wechaty/puppet/base_pb.js',
   '../../out/wechaty/puppet/contact_pb.js',
   '../../out/wechaty/puppet/download-upload_pb.js',
