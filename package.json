@@ -75,7 +75,8 @@
     "request": "^2.88.2",
     "shx": "^0.3.3",
     "ts-protoc-gen": "^0.15.0",
-    "tstest": "^0.7.3"
+    "tstest": "^0.7.3",
+    "esquery": "1.4.0"
   },
   "files": [
     "bin/",
