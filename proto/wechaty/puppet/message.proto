@@ -19,6 +19,8 @@ import "wechaty/puppet/location.proto";
 import "wechaty/puppet/mini-program.proto";
 import "wechaty/puppet/url-link.proto";
 import "wechaty/puppet/channel.proto";
+import "wechaty/puppet/post.proto";
+
 
 enum MessageType { // 消息类型
   MESSAGE_TYPE_UNSPECIFIED  = 0;
@@ -256,4 +258,27 @@ message MessagePreviewRequest {
 
 message MessagePreviewResponse {
   string file_box = 1;
+}
+
+enum MessageBroadcastTargetType {
+  MESSAGE_BROADCAST_TARGET_TYPE_UNKNOWN = 0;
+  MESSAGE_BROADCAST_TARGET_TYPE_CONTACT = 1;
+  MESSAGE_BROADCAST_TARGET_TYPE_ROOM = 2;
+}
+
+message GetMessageBroadcastTargetRequest {}
+
+message GetMessageBroadcastTargetResponse {
+  repeated string contact_ids = 1;
+  repeated string room_ids = 2;
+}
+
+message CreateMessageBroadcastRequest {
+  repeated string target_ids = 1;
+  MessageBroadcastTargetType type = 2;
+  PostPayloadClient content = 3;
+}
+
+message CreateMessageBroadcastResponse {
+  string id = 1;
 }

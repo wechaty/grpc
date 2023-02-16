@@ -401,6 +401,19 @@ service Puppet {
     };
   }
 
+  rpc GetMessageBroadcastTarget (puppet.GetMessageBroadcastTargetRequest) returns (puppet.GetMessageBroadcastTargetResponse) {
+    option (google.api.http) = {
+      get: "/message/broadcast/target"
+    };
+  }
+
+  rpc CreateMessageBroadcast (puppet.CreateMessageBroadcastRequest) returns (puppet.CreateMessageBroadcastResponse) {
+    option (google.api.http) = {
+      post: "/message/broadcast/create"
+      body: "*"
+    };
+  }
+
 
   /**
    *
