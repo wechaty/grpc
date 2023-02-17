@@ -10,6 +10,7 @@ import "google/protobuf/timestamp.proto";
 import "wechaty/puppet/url-link.proto";
 import "wechaty/puppet/channel.proto";
 import "wechaty/puppet/location.proto";
+import "wechaty/puppet/mini-program.proto";
 
 enum PostType {
   POST_TYPE_UNSPECIFIED = 0;
@@ -39,6 +40,7 @@ message PostSayable {
   string file_box = 4; // FileBox.toJSON()
   UrlLinkPayload url_link = 5;
   ChannelPayload channel = 6;
+  MiniProgramPayload mini_program = 7;
 
   repeated string mention_id_list = 13; // 文本类型的sayable可传，朋友圈暂不支持
 }
