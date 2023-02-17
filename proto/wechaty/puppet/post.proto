@@ -25,6 +25,7 @@ enum SayableType {
   SAYABLE_TYPE_FILE = 1;
   SAYABLE_TYPE_URL = 2;
   SAYABLE_TYPE_CHANNEL = 3;
+  SAYABLE_TYPE_MINIPROGRAM = 4;
 }
 
 enum TapType {
