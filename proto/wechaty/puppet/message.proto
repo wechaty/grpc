@@ -260,12 +260,6 @@ message MessagePreviewResponse {
   string file_box = 1;
 }
 
-enum MessageBroadcastTargetType {
-  MESSAGE_BROADCAST_TARGET_TYPE_UNKNOWN = 0;
-  MESSAGE_BROADCAST_TARGET_TYPE_CONTACT = 1;
-  MESSAGE_BROADCAST_TARGET_TYPE_ROOM = 2;
-}
-
 message GetMessageBroadcastTargetRequest {}
 
 message GetMessageBroadcastTargetResponse {
@@ -275,8 +269,7 @@ message GetMessageBroadcastTargetResponse {
 
 message CreateMessageBroadcastRequest {
   repeated string target_ids = 1;
-  MessageBroadcastTargetType type = 2;
-  PostPayloadClient content = 3;
+  PostPayloadClient content = 2;
 }
 
 message CreateMessageBroadcastResponse {
