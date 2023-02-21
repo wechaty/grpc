@@ -277,7 +277,7 @@ message CreateMessageBroadcastResponse {
 }
 
 enum BroadcastStatus {
-  BROADCAST_STATUS_UNKNWON = 0;
+  BROADCAST_STATUS_UNKNOWN = 0;
   BROADCAST_STATUS_SENDING = 1;
   BROADCAST_STATUS_SENT = 2;
 }
