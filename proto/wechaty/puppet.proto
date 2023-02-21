@@ -414,6 +414,12 @@ service Puppet {
     };
   }
 
+  rpc GetMessageBroadcastStatus (puppet.GetMessageBroadcastStatusRequest) returns (puppet.GetMessageBroadcastStatusResponse) {
+    option (google.api.http) = {
+      get: "/message/broadcast/{id}"
+    };
+  }
+
 
   /**
    *
