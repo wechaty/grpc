@@ -149,9 +149,17 @@ message ContactPayloadModifyRequest {
   optional string        title           = 15;  // 头衔
   optional string        description     = 16;  // 描述
   optional bool          coworker        = 17;  // 是否为同事
-  repeated      string phones   = 18;  // 电话号码，企微中最多5个
+  repeated string        phones          = 18;  // 电话号码，企微中最多5个
   optional string        additional_info = 19;  // 额外信息，是由JS对象stringify得到的字符串，目前支持的内容包含addContactTime、corpId等。
-  repeated      string tag_ids  = 20;  // 标签（的id）
+  repeated string        tag_ids         = 20;  // 标签（的id）
+
+  /**
+   *  The protobuf encoding doesn't distinguish between these two cases. (undefined vs [])
+   *  Since protobuf is language-agnostic,
+   *  it doesn't understand the conceptual nuance of "undefined" versus "[]" of Javascript.
+   */
+  optional bool          clear_phones    = 21;
+  optional bool          clear_tag_ids   = 22;
 }
 
 message ContactPayloadModifyResponse {}
