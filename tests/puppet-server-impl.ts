@@ -466,6 +466,12 @@ export const puppetServerImpl: IPuppetServer = {
     throw new Error('not implemented.')
   },
 
+  momentUnpublish: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
   postTap: (call, callback) => {
     void call
     void callback
