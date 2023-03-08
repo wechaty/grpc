@@ -37,3 +37,9 @@ message MomentVisibleListResponse {
   repeated string contact_ids = 1;
 }
 
+message MomentUnpublishRequest {
+  string moment_id = 1;
+}
+
+message MomentUnpublishResponse {
+}

@@ -630,6 +630,13 @@ service Puppet {
     };
   }
 
+  rpc MomentUnpublish (puppet.MomentUnpublishRequest) returns (puppet.MomentUnpublishResponse) {
+    option (google.api.http) = {
+      delete: "/moment/{moment_id}"
+    };
+  }
+
+
   rpc postTap (puppet.PostTapRequest) returns (puppet.PostTapResponse) {
     option (google.api.http) = {
       post: "/post/like"
