@@ -134,7 +134,8 @@ message MessageSendFileResponse {
 
 message MessageSendTextRequest {
   string conversation_id = 1;
-  string text = 2;
+  string text = 2 [deprecated = true];
+  repeated string text_list = 3;
 
   // Huan(202011) FIXME: Issue #99
   // https://github.com/wechaty/grpc/issues/99
