@@ -9,7 +9,6 @@ type IPuppetServer = puppet.IPuppetServer
  * Implements the SayHello RPC method.
  */
 export const puppetServerImpl: IPuppetServer = {
-
   contactAlias: (call, callback) => {
     void call
     void callback
@@ -236,6 +235,42 @@ export const puppetServerImpl: IPuppetServer = {
     throw new Error('not implemented.')
   },
 
+  momentPublish: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  momentUnpublish: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  postTap: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  momentSignature: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  momentCoverage: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  postPayload: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
   roomAdd: (call, callback) => {
     void call
     void callback
@@ -372,5 +407,61 @@ export const puppetServerImpl: IPuppetServer = {
     void callback
     throw new Error('not implemented.')
   },
-
+  currentUser: function (call: ServerUnaryCall<puppet.CurrentUserRequest, puppet.CurrentUserResponse>, callback: sendUnaryData<puppet.CurrentUserResponse>): void {
+    throw new Error('Function not implemented.')
+  },
+  conversationRead: function (call: ServerUnaryCall<ConversationReadRequest, ConversationReadResponse>, callback: sendUnaryData<ConversationReadResponse>): void {
+    throw new Error('Function not implemented.')
+  },
+  messageChannel: function (call: ServerUnaryCall<puppet.MessageChannelRequest, puppet.MessageChannelResponse>, callback: sendUnaryData<puppet.MessageChannelResponse>): void {
+    throw new Error('Function not implemented.')
+  },
+  messageSendChannel: function (call: ServerUnaryCall<puppet.MessageSendChannelRequest, puppet.MessageSendChannelResponse>, callback: sendUnaryData<puppet.MessageSendChannelResponse>): void {
+    throw new Error('Function not implemented.')
+  },
+  messagePreview: function (call: ServerUnaryCall<puppet.MessagePreviewRequest, puppet.MessagePreviewResponse>, callback: sendUnaryData<puppet.MessagePreviewResponse>): void {
+    throw new Error('Function not implemented.')
+  },
+  tagContactTagAdd: function (call: ServerUnaryCall<puppet.TagContactTagAddRequest, puppet.TagContactTagAddResponse>, callback: sendUnaryData<puppet.TagContactTagAddResponse>): void {
+    throw new Error('Function not implemented.')
+  },
+  tagContactTagRemove: function (call: ServerUnaryCall<puppet.TagContactTagRemoveRequest, puppet.TagContactTagRemoveResponse>, callback: sendUnaryData<puppet.TagContactTagRemoveResponse>): void {
+    throw new Error('Function not implemented.')
+  },
+  tagGroupAdd: function (call: ServerUnaryCall<puppet.TagGroupAddRequest, puppet.TagGroupAddResponse>, callback: sendUnaryData<puppet.TagGroupAddResponse>): void {
+    throw new Error('Function not implemented.')
+  },
+  tagGroupDelete: function (call: ServerUnaryCall<puppet.TagGroupDeleteRequest, puppet.TagGroupDeleteResponse>, callback: sendUnaryData<puppet.TagGroupDeleteResponse>): void {
+    throw new Error('Function not implemented.')
+  },
+  tagGroupPayload: function (call: ServerUnaryCall<puppet.TagGroupPayloadRequest, puppet.TagGroupPayloadResponse>, callback: sendUnaryData<puppet.TagGroupPayloadResponse>): void {
+    throw new Error('Function not implemented.')
+  },
+  tagTagAdd: function (call: ServerUnaryCall<puppet.TagTagAddRequest, puppet.TagTagAddResponse>, callback: sendUnaryData<puppet.TagTagAddResponse>): void {
+    throw new Error('Function not implemented.')
+  },
+  tagTagDelete: function (call: ServerUnaryCall<puppet.TagTagDeleteRequest, puppet.TagTagDeleteResponse>, callback: sendUnaryData<puppet.TagTagDeleteResponse>): void {
+    throw new Error('Function not implemented.')
+  },
+  tagPayload: function (call: ServerUnaryCall<puppet.TagPayloadRequest, puppet.TagPayloadResponse>, callback: sendUnaryData<puppet.TagPayloadResponse>): void {
+    throw new Error('Function not implemented.')
+  },
+  tagGroupList: function (call: ServerUnaryCall<puppet.TagGroupListRequest, puppet.TagGroupListResponse>, callback: sendUnaryData<puppet.TagGroupListResponse>): void {
+    throw new Error('Function not implemented.')
+  },
+  tagGroupTagList: function (call: ServerUnaryCall<puppet.TagGroupTagListRequest, puppet.TagGroupTagListResponse>, callback: sendUnaryData<puppet.TagGroupTagListResponse>): void {
+    throw new Error('Function not implemented.')
+  },
+  tagTagList: function (call: ServerUnaryCall<puppet.TagTagListRequest, puppet.TagTagListResponse>, callback: sendUnaryData<puppet.TagTagListResponse>): void {
+    throw new Error('Function not implemented.')
+  },
+  tagContactTagList: function (call: ServerUnaryCall<puppet.TagContactTagListRequest, puppet.TagContactTagListResponse>, callback: sendUnaryData<puppet.TagContactTagListResponse>): void {
+    throw new Error('Function not implemented.')
+  },
+  tagTagContactList: function (call: ServerUnaryCall<puppet.TagTagContactListRequest, puppet.TagTagContactListResponse>, callback: sendUnaryData<puppet.TagTagContactListResponse>): void {
+    throw new Error('Function not implemented.')
+  },
+  postPayloadSayable: function (call: ServerUnaryCall<PostPayloadSayableRequest, PostPayloadSayableResponse>, callback: sendUnaryData<PostPayloadSayableResponse>): void {
+    throw new Error('Function not implemented.')
+  },
 }
