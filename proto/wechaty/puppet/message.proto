@@ -228,3 +228,40 @@ message MessageSendLocationResponse {
    */
   string id = 1;
 }
+
+message CreateMessageBroadcastRequest {
+  repeated string target_ids = 1;
+  PostPayloadClient content = 2;
+}
+
+message CreateMessageBroadcastResponse {
+  string id = 1;
+}
+
+enum BroadcastStatus {
+  BROADCAST_STATUS_UNKNOWN = 0;
+  BROADCAST_STATUS_SENDING = 1;
+  BROADCAST_STATUS_SENT = 2;
+}
+
+enum BroadcastTargetStatus {
+  BROADCAST_TARGET_STATUS_UNSENT = 0;
+  BROADCAST_TARGET_STATUS_SENT = 1;
+  BROADCAST_TARGET_STATUS_NOT_FRIEND = 2;
+  BROADCAST_TARGET_STATUS_OCCUPIED = 3;
+}
+
+message BroadcastTarget {
+  string contact_id = 1;
+  string room_id = 2;
+  BroadcastTargetStatus status = 3;
+}
+
+message GetMessageBroadcastStatusRequest {
+  string id = 1;
+}
+
+message GetMessageBroadcastStatusResponse {
+  BroadcastStatus status = 1;
+  repeated BroadcastTarget detail = 2;
+}

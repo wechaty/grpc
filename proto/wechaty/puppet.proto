@@ -357,6 +357,17 @@ service Puppet {
       body: "*"
     };
   }
+  rpc CreateMessageBroadcast (puppet.CreateMessageBroadcastRequest) returns (puppet.CreateMessageBroadcastResponse) {
+    option (google.api.http) = {
+      post: "/message/broadcast/create"
+      body: "*"
+    };
+  }
+  rpc GetMessageBroadcastStatus (puppet.GetMessageBroadcastStatusRequest) returns (puppet.GetMessageBroadcastStatusResponse) {
+    option (google.api.http) = {
+      get: "/message/broadcast/{id}"
+    };
+  }
 
   /**
    *
