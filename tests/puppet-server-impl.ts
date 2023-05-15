@@ -235,6 +235,18 @@ export const puppetServerImpl: IPuppetServer = {
     throw new Error('not implemented.')
   },
 
+  createMessageBroadcast: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
+  getMessageBroadcastStatus: (call, callback) => {
+    void call
+    void callback
+    throw new Error('not implemented.')
+  },
+
   momentPublish: (call, callback) => {
     void call
     void callback
