@@ -34,10 +34,13 @@ enum EventType {
   EVENT_TYPE_ROOM_ANNOUNCE = 32;
 }
 
-message EventRequest {}
+message EventRequest {
+  int32 lastEventSeq = 1;
+}
 
 message EventResponse {
   EventType type = 1;
   // TODO: Huan(202002) consider to use a PB Map?
   string payload = 2; // JSON.stringify({ ... })
+  int32 seq = 3;
 }
