@@ -35,7 +35,8 @@ enum EventType {
 }
 
 message EventRequest {
-  int32 lastEventSeq = 1;
+  int32 seq = 1; // the seq of the last event
+  string account_id = 2;  // the accountId of the last event
 }
 
 message EventResponse {
