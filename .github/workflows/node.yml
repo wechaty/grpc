@@ -22,6 +22,9 @@ jobs:
           cache: npm
           cache-dependency-path: package.json
 
+      - name: Set up TS
+        run: npm install typescript@4.7.3
+
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
@@ -51,6 +54,10 @@ jobs:
           node-version: 16
           cache: npm
           cache-dependency-path: package.json
+
+      - name: Set up TS
+        run: npm install typescript@4.7.3
+
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
@@ -83,6 +90,10 @@ jobs:
           registry-url: https://registry.npmjs.org/
           cache: npm
           cache-dependency-path: package.json
+
+      - name: Set up TS
+        run: npm install typescript@4.7.3
+
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
