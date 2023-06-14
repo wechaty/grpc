@@ -11,5 +11,5 @@ message ConversationReadRequest {
 }
 
 message ConversationReadResponse {
-  bool success = 1;
+  bool has_read = 1;
 }
