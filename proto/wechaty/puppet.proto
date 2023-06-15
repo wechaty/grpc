@@ -492,6 +492,18 @@ service Puppet {
     };
   }
 
+  rpc RoomOwnerTransfer (puppet.RoomOwnerTransferRequest) returns (puppet.RoomOwnerTransferResponse) {
+    option (google.api.http) = {
+      post: "/rooms/{id}/transfer/${contact_id}"
+    };
+  }
+
+  rpc RoomPermission (puppet.RoomPermissionRequest) returns (puppet.RoomPermissionResponse) {
+    option (google.api.http) = {
+      get: "/rooms/{id}/permission"
+    };
+  }
+
   /**
    *
    * Room Member

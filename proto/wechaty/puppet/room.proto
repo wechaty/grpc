@@ -94,3 +94,23 @@ message RoomRemarkRequest {
 }
 
 message RoomRemarkResponse {}
+
+message RoomOwnerTransferRequest {
+  string id = 1;
+  string contact_id = 2;
+}
+
+message RoomOwnerTransferResponse {}
+
+message RoomPermissionRequest {
+  string id = 1;
+  bool send_message = 2;
+  bool invitation_check = 3;
+  bool room_topic_edit = 4;
+}
+
+message RoomPermissionResponse {
+  bool send_message = 1;
+  bool invitation_check = 2;
+  bool room_topic_edit = 3;
+}
