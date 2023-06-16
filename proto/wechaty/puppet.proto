@@ -28,6 +28,8 @@ import "wechaty/puppet/room-invitation.proto";
 import "wechaty/puppet/room-member.proto";
 import "wechaty/puppet/room.proto";
 import "wechaty/puppet/tag.proto";
+import "wechaty/puppet/channel.proto";
+
 
 option java_package="io.github.wechaty.grpc";
 option go_package="github.com/wechaty/go-grpc/wechaty";
@@ -308,6 +310,11 @@ service Puppet {
       get: "/message/{id}/url-link"
     };
   }
+  rpc MessageChannel (puppet.MessageChannelRequest) returns (puppet.MessageChannelResponse) {
+    option (google.api.http) = {
+      get: "/message/{id}/channel"
+    };
+  }
   rpc MessageRecall (puppet.MessageRecallRequest) returns (puppet.MessageRecallResponse) {
     option (google.api.http) = {
       put: "/message/{id}/recall"
@@ -354,6 +361,12 @@ service Puppet {
   rpc MessageSendLocation (puppet.MessageSendLocationRequest) returns (puppet.MessageSendLocationResponse) {
     option (google.api.http) = {
       post: "/conversations/{conversation_id}/location"
+      body: "*"
+    };
+  }
+  rpc MessageSendChannel (puppet.MessageSendChannelRequest) returns (puppet.MessageSendChannelResponse) {
+    option (google.api.http) = {
+      post: "/conversations/{conversation_id}/channel"
       body: "*"
     };
   }
