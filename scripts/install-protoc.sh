@@ -34,7 +34,7 @@ function check_protoc_version () {
 
   # https://github.com/wechaty/grpc/issues/109
 
-  (($majorVer == 3 && $minorVer >= 17 || $majorVer > 3)) || {
+  ((($majorVer == 3 && $minorVer >= 17) || $majorVer > 3)) || {
     echo "protoc version must >= 3.17 (the installed version is $protocVersion)"
     exit 1
   }
