@@ -1,0 +1,16 @@
+syntax = "proto3";
+package wechaty.puppet;
+
+option go_package="github.com/wechaty/go-grpc/wechaty/puppet";
+option java_package="io.github.wechaty.grpc.puppet";
+option csharp_namespace = "github.wechaty.grpc.puppet";
+
+enum TapType {
+  TAP_TYPE_UNSPECIFIED = 0;
+  TAP_TYPE_LIKE = 1;
+}
+
+message Taps {
+    optional int32 unspecified = 1;
+    optional int32 like = 2;
+  }

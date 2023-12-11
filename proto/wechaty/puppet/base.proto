@@ -12,6 +12,7 @@ enum PayloadType {
   PAYLOAD_TYPE_ROOM        = 3;
   PAYLOAD_TYPE_ROOM_MEMBER = 4;
   PAYLOAD_TYPE_FRIENDSHIP  = 5;
+  PAYLOAD_TYPE_POSY        = 6;
 }
 
 message StartRequest {}

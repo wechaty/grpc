@@ -28,6 +28,7 @@ import "wechaty/puppet/room-invitation.proto";
 import "wechaty/puppet/room-member.proto";
 import "wechaty/puppet/room.proto";
 import "wechaty/puppet/tag.proto";
+import "wechaty/puppet/post.proto";
 import "wechaty/puppet/conversation.proto";
 
 option java_package="io.github.wechaty.grpc";
@@ -483,6 +484,28 @@ service Puppet {
       delete: "/contacts/{contact_id}/tags/{id}"
     };
   }
+
+  /**
+   *
+   * Post
+   *
+   */
+  rpc PostPayload (puppet.PostPayloadRequest) returns (puppet.PostPayloadResponse) {
+    option (google.api.http) = {
+      get: "/posts/{id}"
+    };
+  }
+
+  rpc PostSearch (puppet.PostSearchRequest) returns (puppet.PostSearchResponse) {
+  }
+
+  rpc PostPublish (puppet.PostPublishRequest) returns (puppet.PostPublishResponse) {
+    option (google.api.http) = {
+      post: "/posts/publish"
+      body: "*"
+    };
+  }
+
 
   /**
    * Operate Sub-Collections
